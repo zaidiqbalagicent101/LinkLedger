@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum UserRole {
+  ADVERTISER
+  ADMIN
+  PUBLISHER
+}
+
+enum AccountStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum WebsiteApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum PublisherServiceType {
+  GUEST_POST
+  SPONSORED_ARTICLE
+  LINK_INSERTION
+  BANNER_ADVERTISEMENT
+}
+
+enum ServiceLinkType {
+  DOFOLLOW
+  NOFOLLOW
+  BOTH
+  NOT_APPLICABLE
+}
+
+enum CollaborationRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  NEGOTIATION
+  CANCELLED
+}
+
+model User {
+  id          String        @id @default(cuid()) @db.VarChar(191)
+  fullName    String        @db.VarChar(191)
+  email       String        @unique @db.VarChar(191)
+  password    String        @db.VarChar(255)
+  role        UserRole
+  status      AccountStatus @default(ACTIVE)
+  country     String        @db.VarChar(100)
+  lastLoginAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  sessions    Session[]
+  publisherProfile PublisherProfile?
+  reviewedWebsites PublisherWebsite[] @relation("WebsiteReviewer")
+  websiteReviews WebsiteReview[] @relation("ReviewAdmin")
+  collaborationRequests CollaborationRequest[]
+
+  @@map("users")
+}
+
+model PublisherProfile {
+  id            String            @id @default(cuid()) @db.VarChar(191)
+  userId        String            @unique @db.VarChar(191)
+  publisherName String            @db.VarChar(191)
+  businessName  String?           @db.VarChar(191)
+  country       String            @db.VarChar(100)
+  contactNumber String?           @db.VarChar(40)
+  description   String            @db.Text
+  profileImage  String?           @db.VarChar(2048)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  websites      PublisherWebsite[]
+
+  @@index([country])  
+  @@map("publisher_profiles")
+}
+
+model PublisherWebsite {
+  id                    String                @id @default(cuid()) @db.VarChar(191)
+  publisherProfileId    String                @db.VarChar(191)
+  websiteName           String                @db.VarChar(191)
+  websiteUrl            String                @unique @db.VarChar(512)
+  websiteNiche          String                @db.VarChar(120)
+  monthlyTraffic        Int
+  websiteLanguage       String                @db.VarChar(80)
+  targetAudienceCountry String                @db.VarChar(100)
+  websiteDescription    String                @db.Text
+  websiteLogo           String?               @db.VarChar(2048)
+  domainRating          Int?
+  domainAuthority       Int?
+  metricsVerified       Boolean               @default(false)
+  approvalStatus        WebsiteApprovalStatus @default(PENDING)
+  rejectionReason       String?               @db.Text
+  reviewedAt            DateTime?
+  reviewedById          String?               @db.VarChar(191)
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  publisherProfile      PublisherProfile      @relation(fields: [publisherProfileId], references: [id], onDelete: Cascade)
+  reviewedBy            User?                 @relation("WebsiteReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviews               WebsiteReview[]
+  services              PublisherService[]
+  collaborationRequests CollaborationRequest[]
+
+  @@index([publisherProfileId, createdAt])
+  @@index([approvalStatus, createdAt])
+  @@index([reviewedById])
+  @@map("publisher_websites")
+}
+
+model PublisherService {
+  id                     String               @id @default(cuid()) @db.VarChar(191)
+  publisherWebsiteId     String               @db.VarChar(191)
+  serviceName            String               @db.VarChar(120)
+  serviceType            PublisherServiceType
+  price                  Decimal              @db.Decimal(10, 2)
+  currency               String               @db.Char(3)
+  deliveryTimeDays       Int
+  contentWritingIncluded Boolean              @default(false)
+  linkType               ServiceLinkType      @default(NOT_APPLICABLE)
+  maximumLinks           Int?
+  homepageLinkAvailable  Boolean              @default(false)
+  description            String               @db.Text
+  publishingGuidelines   String?              @db.Text
+  additionalConditions   String?              @db.Text
+  isActive               Boolean              @default(true)
+  archivedAt             DateTime?
+  createdAt              DateTime             @default(now())
+  updatedAt              DateTime             @updatedAt
+  website                PublisherWebsite     @relation(fields: [publisherWebsiteId], references: [id], onDelete: Cascade)
+  collaborationRequests CollaborationRequest[]
+
+  @@index([publisherWebsiteId, createdAt])
+  @@index([publisherWebsiteId, serviceType, isActive])
+  @@index([isActive, archivedAt])
+  @@map("publisher_services")
+}
+
+model WebsiteReview {
+  id                 String                @id @default(cuid()) @db.VarChar(191)
+  publisherWebsiteId String                @db.VarChar(191)
+  adminId            String                @db.VarChar(191)
+  status             WebsiteApprovalStatus
+  rejectionReason    String?               @db.Text
+  reviewedAt         DateTime              @default(now())
+  website            PublisherWebsite      @relation(fields: [publisherWebsiteId], references: [id], onDelete: Cascade)
+  admin              User                  @relation("ReviewAdmin", fields: [adminId], references: [id], onDelete: Restrict)
+
+  @@index([publisherWebsiteId, reviewedAt])
+  @@index([adminId, reviewedAt])
+  @@map("website_reviews")
+}
+
+model Session {
+  id        String   @id @default(cuid()) @db.VarChar(191)
+  userId    String   @db.VarChar(191)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model CollaborationRequest {
+  id                    String                     @id @default(cuid()) @db.VarChar(191)
+  advertiserId          String                     @db.VarChar(191)
+  publisherWebsiteId    String?                    @db.VarChar(191)
+  publisherServiceId    String?                    @db.VarChar(191)
+  websiteNameSnapshot   String                     @db.VarChar(191)
+  websiteUrlSnapshot    String                     @db.VarChar(512)
+  serviceNameSnapshot   String                     @db.VarChar(120)
+  serviceTypeSnapshot   PublisherServiceType
+  originalPrice         Decimal                    @db.Decimal(10, 2)
+  originalCurrency      String                     @db.Char(3)
+  topic                 String                     @db.VarChar(191)
+  targetUrl             String                     @db.VarChar(2048)
+  anchorText            String                     @db.VarChar(191)
+  proposedBudget        Decimal                    @db.Decimal(10, 2)
+  proposedCurrency      String                     @db.Char(3)
+  contentRequirements  String                     @db.Text
+  additionalInstructions String                    @db.Text
+  status                CollaborationRequestStatus @default(PENDING)
+  publisherResponse     String?                    @db.Text
+  revisedPrice          Decimal?                   @db.Decimal(10, 2)
+  revisedCurrency       String?                    @db.Char(3)
+  revisedTerms          String?                    @db.Text
+  revisedAt             DateTime?
+  acceptedAt            DateTime?
+  cancelledAt           DateTime?
+  completedAt           DateTime?
+  dealId                String?                    @unique @db.VarChar(191)
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  advertiser            User                       @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
+  website               PublisherWebsite?          @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
+  service               PublisherService?           @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+
+  @@index([advertiserId, createdAt])
+  @@index([publisherWebsiteId, status, createdAt])
+  @@index([publisherServiceId, status])
+  @@index([status, createdAt])
+  @@map("collaboration_requests")
+}
