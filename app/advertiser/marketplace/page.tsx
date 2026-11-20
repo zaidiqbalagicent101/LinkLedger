@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
-import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, ChevronDown, Search } from "lucide-react";
+import { BuyNowButton } from "@/components/advertiser/BuyNowButton";
 import { requireRole } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { formatServiceLinkType, formatServiceType } from "@/components/publisher/service-options";
@@ -143,6 +144,12 @@ async function MarketplaceListings({ searchParams }: { searchParams: Promise<Sea
     ["BANNER_ADVERTISEMENT", "Banner advertisement"],
   ];
 
+  // Form styling only
+  const labelCls = "text-[12px] font-semibold uppercase tracking-wide text-[#5f6f69]";
+  const inputCls =
+    "h-11 w-full rounded-lg border border-[#d5ded8] bg-[#fbfcfb] px-3.5 text-[14px] text-[#12211c] placeholder:text-[#9aa7a1] outline-none transition hover:border-[#b9c7bf] focus:border-[#0e7a5a] focus:bg-white focus:ring-4 focus:ring-[#0e7a5a]/10";
+  const selectCls = `${inputCls} appearance-none pr-10 cursor-pointer`;
+
   return (
     <main className="min-h-screen bg-[#f6f8f7] text-[#12211c] antialiased">
       <header className="border-b border-[#e5eae8] bg-white">
@@ -152,7 +159,6 @@ async function MarketplaceListings({ searchParams }: { searchParams: Promise<Sea
             LinkLedger
           </Link>
           <nav className="flex items-center gap-5 text-sm font-semibold text-[#5f6f69]">
-            <Link href="/advertiser/requests" className="hover:text-[#0e7a5a]">My requests</Link>
             <Link href="/advertiser/dashboard" className="hover:text-[#0e7a5a]">Dashboard</Link>
           </nav>
         </div>
@@ -165,21 +171,108 @@ async function MarketplaceListings({ searchParams }: { searchParams: Promise<Sea
           <p className="mt-3 max-w-[650px] text-[15px] leading-relaxed text-[#5f6f69]">Compare active publishing services from approved websites.</p>
         </div>
 
-        <form method="get" className="mb-6 grid gap-3 border border-[#e0e7e2] bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
-          <label className="field sm:col-span-2 lg:col-span-4">
-            <span>Search websites</span>
-            <span className="search-box"><Search size={16} /><input name="q" defaultValue={search} placeholder="Website name or URL" /></span>
-          </label>
-          <label className="field"><span>Niche</span><select className="h-[42px] border border-[#d5ded8] bg-white px-3 text-[12px]" name="niche" defaultValue={niche}><option value="">All niches</option>{niches.map(({ websiteNiche }) => <option value={websiteNiche} key={websiteNiche}>{websiteNiche}</option>)}</select></label>
-          <label className="field"><span>Service type</span><select className="h-[42px] border border-[#d5ded8] bg-white px-3 text-[12px]" name="serviceType" defaultValue={serviceType ?? ""}><option value="">All services</option>{serviceTypes.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-          <label className="field"><span>Link type</span><select className="h-[42px] border border-[#d5ded8] bg-white px-3 text-[12px]" name="linkType" defaultValue={linkType ?? ""}><option value="">Any link type</option><option value="DOFOLLOW">Do-follow</option><option value="NOFOLLOW">No-follow</option><option value="BOTH">Both</option><option value="NOT_APPLICABLE">Not applicable</option></select></label>
-          <label className="field"><span>Content writing</span><select className="h-[42px] border border-[#d5ded8] bg-white px-3 text-[12px]" name="contentWriting" defaultValue={valueOf(params, "contentWriting")}><option value="">Any</option><option value="yes">Included</option><option value="no">Not included</option></select></label>
-          <label className="field"><span>Minimum price</span><input name="minPrice" type="number" min="0" step="0.01" defaultValue={valueOf(params, "minPrice")} /></label>
-          <label className="field"><span>Maximum price</span><input name="maxPrice" type="number" min="0" step="0.01" defaultValue={valueOf(params, "maxPrice")} /></label>
-          <label className="field"><span>Minimum monthly traffic</span><input name="minTraffic" type="number" min="0" step="1" defaultValue={valueOf(params, "minTraffic")} /></label>
-          <label className="field"><span>Maximum monthly traffic</span><input name="maxTraffic" type="number" min="0" step="1" defaultValue={valueOf(params, "maxTraffic")} /></label>
-          <label className="field"><span>Sort by</span><select className="h-[42px] border border-[#d5ded8] bg-white px-3 text-[12px]" name="sort" defaultValue={sort}><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="traffic-asc">Traffic: low to high</option><option value="traffic-desc">Traffic: high to low</option></select></label>
-          <div className="flex items-end gap-3 pb-px"><button className="primary-button min-h-[42px]" type="submit"><Search size={15} />Apply filters</button><Link className="text-sm font-semibold text-[#65726d] hover:text-[#0e7a5a]" href="/advertiser/marketplace">Clear</Link></div>
+        <form method="get" className="mb-6 rounded-2xl border border-[#e0e7e2] bg-white p-5 shadow-[0_1px_2px_rgba(16,40,30,0.04)] sm:p-6">
+          <div className="mb-5 flex items-center justify-between">
+            <h2 className="text-[15px] font-semibold text-[#203d33]">Filter services</h2>
+            <Link className="text-[13px] font-semibold text-[#65726d] hover:text-[#0e7a5a]" href="/advertiser/marketplace">Clear all</Link>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <label className="flex flex-col gap-1.5 sm:col-span-2 lg:col-span-4">
+              <span className={labelCls}>Search websites</span>
+              <span className="relative block">
+                <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+                <input className={`${inputCls} pl-10`} name="q" defaultValue={search} placeholder="Website name or URL" />
+              </span>
+            </label>
+
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Niche</span>
+              <span className="relative block">
+                <select className={selectCls} name="niche" defaultValue={niche}>
+                  <option value="">All niches</option>
+                  {niches.map(({ websiteNiche }) => <option value={websiteNiche} key={websiteNiche}>{websiteNiche}</option>)}
+                </select>
+                <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+              </span>
+            </label>
+
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Service type</span>
+              <span className="relative block">
+                <select className={selectCls} name="serviceType" defaultValue={serviceType ?? ""}>
+                  <option value="">All services</option>
+                  {serviceTypes.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                </select>
+                <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+              </span>
+            </label>
+
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Link type</span>
+              <span className="relative block">
+                <select className={selectCls} name="linkType" defaultValue={linkType ?? ""}>
+                  <option value="">Any link type</option>
+                  <option value="DOFOLLOW">Do-follow</option>
+                  <option value="NOFOLLOW">No-follow</option>
+                  <option value="BOTH">Both</option>
+                  <option value="NOT_APPLICABLE">Not applicable</option>
+                </select>
+                <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+              </span>
+            </label>
+
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Content writing</span>
+              <span className="relative block">
+                <select className={selectCls} name="contentWriting" defaultValue={valueOf(params, "contentWriting")}>
+                  <option value="">Any</option>
+                  <option value="yes">Included</option>
+                  <option value="no">Not included</option>
+                </select>
+                <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+              </span>
+            </label>
+
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Min price</span>
+              <input className={inputCls} name="minPrice" type="number" min="0" step="0.01" placeholder="0" defaultValue={valueOf(params, "minPrice")} />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Max price</span>
+              <input className={inputCls} name="maxPrice" type="number" min="0" step="0.01" placeholder="Any" defaultValue={valueOf(params, "maxPrice")} />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Min monthly traffic</span>
+              <input className={inputCls} name="minTraffic" type="number" min="0" step="1" placeholder="0" defaultValue={valueOf(params, "minTraffic")} />
+            </label>
+            <label className="flex flex-col gap-1.5">
+              <span className={labelCls}>Max monthly traffic</span>
+              <input className={inputCls} name="maxTraffic" type="number" min="0" step="1" placeholder="Any" defaultValue={valueOf(params, "maxTraffic")} />
+            </label>
+
+            <label className="flex flex-col gap-1.5 lg:col-span-2">
+              <span className={labelCls}>Sort by</span>
+              <span className="relative block">
+                <select className={selectCls} name="sort" defaultValue={sort}>
+                  <option value="price-asc">Price: low to high</option>
+                  <option value="price-desc">Price: high to low</option>
+                  <option value="traffic-asc">Traffic: low to high</option>
+                  <option value="traffic-desc">Traffic: high to low</option>
+                </select>
+                <ChevronDown size={16} className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8a9892]" />
+              </span>
+            </label>
+
+            <div className="flex items-end sm:col-span-2 lg:col-span-2 lg:justify-end">
+              <button
+                type="submit"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#0e7a5a] px-6 text-[14px] font-semibold text-white shadow-sm transition hover:bg-[#0a6149] focus:outline-none focus:ring-4 focus:ring-[#0e7a5a]/20 lg:w-auto"
+              >
+                <Search size={15} />Apply filters
+              </button>
+            </div>
+          </div>
         </form>
 
         <p className="mb-3 text-[12px] text-[#78847e]">{total.toLocaleString()} service{total === 1 ? "" : "s"} · page {page} of {totalPages}</p>
@@ -216,7 +309,10 @@ async function MarketplaceListings({ searchParams }: { searchParams: Promise<Sea
                   <strong className="whitespace-nowrap text-[20px] font-semibold tabular-nums text-[#203d33]">
                     {new Intl.NumberFormat("en", { style: "currency", currency: service.currency }).format(Number(service.price))}
                   </strong>
-                  <Link href={`/advertiser/marketplace/${service.website.id}?serviceId=${service.id}#request`} className="inline-flex min-h-10 items-center gap-2 bg-[#0e7a5a] px-4 text-sm font-semibold text-white hover:bg-[#0a6149]">View details <ArrowRight size={15} /></Link>
+                  <div className="flex w-full flex-col gap-2 sm:w-auto">
+                    <BuyNowButton serviceId={service.id} />
+                    <Link href={`/advertiser/marketplace/${service.website.id}`} className="inline-flex min-h-10 items-center justify-center gap-2 border border-[#d5ded8] px-4 text-sm font-semibold text-[#203d33] hover:bg-[#f6f8f7]">View details <ArrowRight size={15} /></Link>
+                  </div>
                 </div>
               </article>
             ))}

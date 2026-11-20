@@ -4,6 +4,7 @@ import { connection } from "next/server";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { PublisherRequestResponseForm } from "@/components/CollaborationForms";
+import { getCurrencyOptions } from "@/lib/currency-options";
 import { formatServiceType } from "@/components/publisher/service-options";
 import { requirePublisherProfile } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -74,7 +75,7 @@ async function PublisherRequestDetails({ params }: RequestPageProps) {
           {request.acceptedAt && <div><dt>Accepted</dt><dd>{request.acceptedAt.toLocaleDateString()}</dd></div>}
         </dl>
         {request.status === "PENDING" ? (
-          <section className="mt-8"><p className="eyebrow">Your decision</p><h2 className="mt-2 mb-4 text-[21px] font-semibold text-[#17352f]">Respond to request</h2><PublisherRequestResponseForm requestId={request.id} /></section>
+          <section className="mt-8"><p className="eyebrow">Your decision</p><h2 className="mt-2 mb-4 text-[21px] font-semibold text-[#17352f]">Respond to request</h2><PublisherRequestResponseForm requestId={request.id} currencyOptions={getCurrencyOptions(request.revisedCurrency ?? undefined)} /></section>
         ) : (
           <p className="mt-6 border border-[#e0e7e2] bg-white p-4 text-[12px] text-[#65726d]">This request is {request.status.toLowerCase()}; it can no longer be changed from the publisher side.</p>
         )}

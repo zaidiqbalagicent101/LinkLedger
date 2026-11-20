@@ -19,13 +19,6 @@ export const serviceLinkTypeOptions: { value: ServiceLinkTypeValue; label: strin
   { value: ServiceLinkType.NOT_APPLICABLE, label: "Not applicable" },
 ];
 
-const currencyNames = new Intl.DisplayNames(["en"], { type: "currency" });
-
-export const currencyOptions = Intl.supportedValuesOf("currency").map((currency) => ({
-  value: currency,
-  label: `${currency} - ${currencyNames.of(currency) ?? currency}`,
-}));
-
 export function formatServiceType(type: PublisherServiceTypeValue): string {
   return serviceTypeOptions.find((option) => option.value === type)?.label ?? type;
 }

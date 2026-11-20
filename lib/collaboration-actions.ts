@@ -20,23 +20,6 @@ const moneySchema = z.string()
   .refine((value) => Number(value) > 0, "Amount must be greater than zero.");
 const optionalText = z.string().trim().max(5000).optional().transform((value) => value || null);
 
-const requestSchema = z.object({
-  websiteId: z.string().cuid(),
-  serviceId: z.string().cuid(),
-  topic: z.string().trim().min(2, "Enter a topic.").max(191),
-  targetUrl: z.string().trim().max(2048).url("Enter a valid target URL.").refine((value) => {
-    try {
-      return ["http:", "https:"].includes(new URL(value).protocol);
-    } catch {
-      return false;
-    }
-  }, "Use an HTTP or HTTPS target URL."),
-  anchorText: z.string().trim().min(1, "Enter anchor text.").max(191),
-  proposedBudget: moneySchema,
-  contentRequirements: z.string().trim().min(5, "Describe your content requirements.").max(5000),
-  additionalInstructions: optionalText,
-});
-
 const publisherResponseSchema = z.object({
   requestId: requestIdSchema,
   decision: z.enum(["ACCEPTED", "REJECTED", "NEGOTIATION"]),
@@ -68,65 +51,6 @@ function fieldErrors(error: z.ZodError): CollaborationActionState {
     if (typeof key === "string" && errors[key] === undefined) errors[key] = issue.message;
   }
   return { errors };
-}
-
-export async function createCollaborationRequestAction(
-  _previousState: CollaborationActionState | undefined,
-  formData: FormData,
-): Promise<CollaborationActionState> {
-  const user = await requireRole("ADVERTISER");
-  const result = parseForm(requestSchema, formData);
-  if (!result.success) return fieldErrors(result.error);
-
-  const service = await prisma.publisherService.findFirst({
-    where: {
-      id: result.data.serviceId,
-      publisherWebsiteId: result.data.websiteId,
-      isActive: true,
-      archivedAt: null,
-      website: { approvalStatus: "APPROVED" },
-    },
-    select: {
-      id: true,
-      serviceName: true,
-      serviceType: true,
-      price: true,
-      currency: true,
-      website: { select: { id: true, websiteName: true, websiteUrl: true } },
-    },
-  });
-
-  if (!service) return { message: "This service is no longer available." };
-
-  try {
-    await prisma.collaborationRequest.create({
-      data: {
-        advertiserId: user.id,
-        publisherWebsiteId: service.website.id,
-        publisherServiceId: service.id,
-        websiteNameSnapshot: service.website.websiteName,
-        websiteUrlSnapshot: service.website.websiteUrl,
-        serviceNameSnapshot: service.serviceName,
-        serviceTypeSnapshot: service.serviceType,
-        originalPrice: service.price,
-        originalCurrency: service.currency,
-        topic: result.data.topic,
-        targetUrl: result.data.targetUrl,
-        anchorText: result.data.anchorText,
-        proposedBudget: result.data.proposedBudget,
-        proposedCurrency: service.currency,
-        contentRequirements: result.data.contentRequirements,
-        additionalInstructions: result.data.additionalInstructions ?? "",
-      },
-      select: { id: true },
-    });
-  } catch {
-    return { message: "We couldn't submit this request. Please try again." };
-  }
-
-  revalidatePath("/advertiser/requests");
-  revalidatePath("/publisher/requests");
-  redirect("/advertiser/requests");
 }
 
 export async function respondToCollaborationRequestAction(

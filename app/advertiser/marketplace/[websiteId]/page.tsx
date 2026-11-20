@@ -17,10 +17,9 @@ import {
   Link2,
   House,
   FileText,
-  Send,
 } from "lucide-react";
 import { notFound } from "next/navigation";
-import { CollaborationRequestForm } from "@/components/CollaborationForms";
+import { BuyNowButton } from "@/components/advertiser/BuyNowButton";
 import {
   formatServiceLinkType,
   formatServiceType,
@@ -30,18 +29,13 @@ import { prisma } from "@/lib/prisma";
 
 type WebsitePageProps = {
   params: Promise<{ websiteId: string }>;
-  searchParams: Promise<{ serviceId?: string | string[] }>;
 };
 
-export default function MarketplaceWebsitePage({
-  params,
-  searchParams,
-}: WebsitePageProps) {
+export default function MarketplaceWebsitePage({ params }: WebsitePageProps) {
   return (
     <Suspense fallback={<main className="min-h-screen animate-pulse bg-[#f6f8f7]" />}>
       <MarketplaceWebsiteDetails
         params={params}
-        searchParams={searchParams}
       />
     </Suspense>
   );
@@ -49,15 +43,11 @@ export default function MarketplaceWebsitePage({
 
 async function MarketplaceWebsiteDetails({
   params,
-  searchParams,
 }: WebsitePageProps) {
   await connection();
   await requireRole("ADVERTISER");
 
-  const [{ websiteId }, query] = await Promise.all([
-    params,
-    searchParams,
-  ]);
+  const { websiteId } = await params;
 
   const website = await prisma.publisherWebsite.findFirst({
     where: {
@@ -104,14 +94,6 @@ async function MarketplaceWebsiteDetails({
 
   if (!website) notFound();
 
-  const serviceId = Array.isArray(query.serviceId)
-    ? query.serviceId[0]
-    : query.serviceId;
-
-  const selectedService = website.services.find(
-    (service) => service.id === serviceId
-  );
-
   return (
     <main className="min-h-screen bg-[#f6f8f7] text-[#12211c] antialiased">
 
@@ -134,12 +116,6 @@ async function MarketplaceWebsiteDetails({
               className="text-sm font-semibold text-[#0e7a5a]"
             >
               Marketplace
-            </Link>
-            <Link
-              href="/advertiser/requests"
-              className="text-sm font-medium text-[#5f6f69] transition-colors hover:text-[#0e7a5a]"
-            >
-              My requests
             </Link>
           </nav>
         </div>
@@ -316,11 +292,7 @@ async function MarketplaceWebsiteDetails({
             {website.services.map((service) => (
               <article
                 key={service.id}
-                className={`flex min-w-0 flex-col rounded-xl border bg-white p-5 transition-all duration-200 sm:p-6 ${
-                  selectedService?.id === service.id
-                    ? "border-[#0e7a5a] shadow-[0_0_0_2px_rgba(14,122,90,0.08)]"
-                    : "border-[#e5eae8] hover:border-[#b8d9cb] hover:shadow-[0_12px_28px_-20px_rgba(18,33,28,0.3)]"
-                }`}
+                className="flex min-w-0 flex-col rounded-xl border border-[#e5eae8] bg-white p-5 transition-all duration-200 hover:border-[#b8d9cb] hover:shadow-[0_12px_28px_-20px_rgba(18,33,28,0.3)] sm:p-6"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -396,76 +368,11 @@ async function MarketplaceWebsiteDetails({
                 )}
 
                 <div className="mt-auto pt-6">
-                  <Link
-                    href={`/advertiser/marketplace/${website.id}?serviceId=${service.id}#request`}
-                    className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition-colors ${
-                      selectedService?.id === service.id
-                        ? "border border-[#0e7a5a] bg-[#eaf5ef] text-[#0a6149]"
-                        : "bg-[#0e7a5a] text-white hover:bg-[#0a6149]"
-                    }`}
-                  >
-                    {selectedService?.id === service.id ? "Selected" : "Select service"}
-                    <CheckCircle2 size={16} />
-                  </Link>
+                  <BuyNowButton serviceId={service.id} />
                 </div>
               </article>
             ))}
           </div>
-        </div>
-
-        {/* Collaboration Request */}
-        <div id="request" className="mt-12 scroll-mt-24">
-          <div className="mb-6">
-            <p className="text-xs font-bold uppercase tracking-[1.2px] text-[#0a6149]">
-              Start a collaboration
-            </p>
-            <h2 className="mt-2 text-[25px] font-semibold tracking-tight">
-              Send a request
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-[#5f6f69]">
-              Share your campaign requirements with this publisher.
-            </p>
-          </div>
-
-          {selectedService ? (
-            <div className="overflow-hidden rounded-xl border border-[#e5eae8] bg-white shadow-[0_8px_30px_-25px_rgba(18,33,28,0.2)]">
-              <div className="flex flex-col justify-between gap-3 border-b border-[#e5eae8] bg-[#f6faf7] p-5 sm:flex-row sm:items-center sm:px-7">
-                <div>
-                  <p className="text-xs text-[#82918b]">Selected service</p>
-                  <p className="mt-1 text-[15px] font-semibold">
-                    {selectedService.serviceName}
-                  </p>
-                </div>
-                <p className="text-lg font-semibold tabular-nums text-[#0e7a5a]">
-                  {new Intl.NumberFormat("en", {
-                    style: "currency",
-                    currency: selectedService.currency,
-                  }).format(Number(selectedService.price))}
-                </p>
-              </div>
-
-              <div className="p-5 sm:p-7">
-                <CollaborationRequestForm
-                  websiteId={website.id}
-                  serviceId={selectedService.id}
-                  servicePrice={String(selectedService.price)}
-                  currency={selectedService.currency}
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center rounded-xl border border-dashed border-[#cbd7cf] bg-white px-6 py-10 text-center">
-              <div className="grid size-12 place-items-center rounded-xl bg-[#e7f4ed] text-[#0e7a5a]">
-                <Send size={22} />
-              </div>
-              <h3 className="mt-4 text-[16px] font-semibold">
-                Select a service to continue
-              </h3>
-              <p className="mt-2 max-w-[410px] text-sm leading-relaxed text-[#78847e]">
-                Select an active service above to prepare your collaboration request.
-              </p>
-            </div>
-          )}
         </div>
 
         <Link
@@ -487,12 +394,6 @@ async function MarketplaceWebsiteDetails({
               className="transition-colors hover:text-[#0e7a5a]"
             >
               Marketplace
-            </Link>
-            <Link
-              href="/advertiser/requests"
-              className="transition-colors hover:text-[#0e7a5a]"
-            >
-              My requests
             </Link>
           </div>
         </div>

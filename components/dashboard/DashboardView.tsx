@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, LogOut, Globe2, UserRound, CheckCircle2, Inbox } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, LogOut, Globe2, UserRound, CheckCircle2 } from "lucide-react";
 import { logoutAction } from "@/lib/auth-actions";
 import type { AuthenticatedUser } from "@/lib/auth";
 
@@ -8,6 +8,7 @@ export function DashboardView({ user }: { user: AuthenticatedUser }) {
   const roleName = user.role === "ADVERTISER" ? "Advertiser" : "Publisher";
   const firstName = user.fullName.split(" ")[0];
   const isPublisher = user.role === "PUBLISHER";
+  const isAdvertiser = user.role === "ADVERTISER";
 
   return (
     <main className="min-h-screen bg-[#f6f8f7] text-[#12211c] antialiased">
@@ -28,20 +29,46 @@ export function DashboardView({ user }: { user: AuthenticatedUser }) {
           </Link>
 
           <div className="flex items-center gap-4">
-            <span className="hidden text-sm text-[#5f6f69] sm:block">
-              {user.email}
-            </span>
-
-            <form action={logoutAction}>
-              <button
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-[#e5eae8] bg-white px-3.5 text-sm font-semibold text-[#12211c] transition-colors hover:border-[#c3d3cc] hover:bg-[#f6f8f7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e7a5a]"
-                type="submit"
-                title="Sign out"
-              >
-                <LogOut size={16} />
-                <span>Sign out</span>
-              </button>
-            </form>
+            {isAdvertiser || isPublisher ? (
+              <details className="group relative">
+                <summary className="flex min-h-10 max-w-[220px] cursor-pointer list-none items-center gap-2 rounded-lg border border-[#e5eae8] bg-white px-3.5 text-sm font-semibold text-[#12211c] hover:border-[#c3d3cc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e7a5a]">
+                  <span className="truncate">{user.fullName}</span>
+                  <ChevronDown size={16} className="shrink-0 text-[#5f6f69] transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="absolute right-0 z-20 mt-2 w-56 border border-[#e5eae8] bg-white p-1.5 shadow-[0_12px_28px_-16px_rgba(18,33,28,0.35)]">
+                  {isAdvertiser ? (
+                    <>
+                      <Link href="/advertiser/marketplace" className="block rounded px-3 py-2.5 text-sm font-medium text-[#203d33] hover:bg-[#f6f8f7]">Browse Marketplace</Link>
+                      <Link href="/advertiser/orders" className="block rounded px-3 py-2.5 text-sm font-medium text-[#203d33] hover:bg-[#f6f8f7]">My Orders</Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/publisher/websites" className="block rounded px-3 py-2.5 text-sm font-medium text-[#203d33] hover:bg-[#f6f8f7]">My websites</Link>
+                      <Link href="/publisher/onboarding" className="block rounded px-3 py-2.5 text-sm font-medium text-[#203d33] hover:bg-[#f6f8f7]">Edit profile</Link>
+                    </>
+                  )}
+                  <form action={logoutAction}>
+                    <button className="flex w-full items-center gap-2 rounded px-3 py-2.5 text-left text-sm font-medium text-[#9b2c25] hover:bg-[#fff3f1]" type="submit">
+                      <LogOut size={15} />Log out
+                    </button>
+                  </form>
+                </div>
+              </details>
+            ) : (
+              <>
+                <span className="hidden text-sm text-[#5f6f69] sm:block">{user.email}</span>
+                <form action={logoutAction}>
+                  <button
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-[#e5eae8] bg-white px-3.5 text-sm font-semibold text-[#12211c] transition-colors hover:border-[#c3d3cc] hover:bg-[#f6f8f7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e7a5a]"
+                    type="submit"
+                    title="Sign out"
+                  >
+                    <LogOut size={16} />
+                    <span>Sign out</span>
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </header>
@@ -162,18 +189,6 @@ export function DashboardView({ user }: { user: AuthenticatedUser }) {
                   </span>
                 </Link>
 
-                <Link
-                  href="/publisher/requests"
-                  className="group rounded-xl border border-[#e5eae8] bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#b8d9cb] hover:shadow-[0_12px_28px_-20px_rgba(18,33,28,0.3)]"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="grid size-11 place-items-center rounded-xl bg-[#e7f4ed] text-[#0e7a5a]"><Inbox size={21} /></span>
-                    <ArrowUpRight size={19} className="text-[#82918b] transition-colors group-hover:text-[#0e7a5a]" />
-                  </div>
-                  <h3 className="mt-5 text-[17px] font-semibold">Incoming requests</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5f6f69]">Review advertiser briefs and respond to proposals.</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#0e7a5a]">Open requests<ArrowRight size={15} /></span>
-                </Link>
               </>
             ) : (
               <div className="rounded-xl border border-[#e5eae8] bg-white p-6 sm:col-span-2">
@@ -197,10 +212,10 @@ export function DashboardView({ user }: { user: AuthenticatedUser }) {
                   <ArrowRight size={15} />
                 </Link>
                 <Link
-                  href="/advertiser/requests"
+                  href="/advertiser/orders"
                   className="ml-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-[#0e7a5a] hover:text-[#0a6149]"
                 >
-                  My requests
+                  My Orders
                   <ArrowRight size={15} />
                 </Link>
               </div>

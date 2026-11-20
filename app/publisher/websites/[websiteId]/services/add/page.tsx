@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, BriefcaseBusiness, ShieldCheck } from "lucide-re
 import { notFound } from "next/navigation";
 import { PublisherServiceForm } from "@/components/publisher/PublisherServiceForm";
 import { requirePublisherProfile } from "@/lib/auth";
+import { getCurrencyOptions } from "@/lib/currency-options";
 import { prisma } from "@/lib/prisma";
 
 type AddServicePageProps = {
@@ -32,6 +33,7 @@ export default async function AddWebsiteServicePage({
 
   if (!website) notFound();
 
+  const currencyOptions = getCurrencyOptions();
   const servicesUrl = `/publisher/websites/${website.id}/services`;
 
   return (
@@ -131,7 +133,7 @@ export default async function AddWebsiteServicePage({
             </p>
           </div>
 
-          <PublisherServiceForm websiteId={website.id} />
+          <PublisherServiceForm websiteId={website.id} currencyOptions={currencyOptions} />
         </div>
 
         {/* Back Link */}

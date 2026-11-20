@@ -7,7 +7,7 @@ import {
   updatePublisherServiceAction,
   type PublisherServiceActionState,
 } from "@/lib/publisher-service-actions";
-import { currencyOptions, serviceLinkTypeOptions, serviceTypeOptions } from "@/components/publisher/service-options";
+import { serviceLinkTypeOptions, serviceTypeOptions } from "@/components/publisher/service-options";
 
 export type PublisherServiceValues = {
   id: string;
@@ -30,9 +30,11 @@ const selectStyles = "h-[46px] w-full rounded-[3px] border border-[#d5ded8] bg-w
 export function PublisherServiceForm({
   websiteId,
   service,
+  currencyOptions,
 }: {
   websiteId: string;
   service?: PublisherServiceValues;
+  currencyOptions: { value: string; label: string }[];
 }) {
   const submit = service ? updatePublisherServiceAction : createPublisherServiceAction;
   const [state, action, pending] = useActionState<PublisherServiceActionState | undefined, FormData>(

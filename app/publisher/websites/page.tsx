@@ -9,6 +9,7 @@ import {
   LayoutGrid,
   Clock3,
   CheckCircle2,
+  ChevronDown,
 } from "lucide-react";
 import { requirePublisherProfile } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -227,6 +228,50 @@ const pageStyles = `
   font-variant-numeric: tabular-nums;
 }
 
+.publisher-services-dropdown > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+  list-style: none;
+}
+
+.publisher-services-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.publisher-services-dropdown[open] > summary svg {
+  transform: rotate(180deg);
+}
+
+.publisher-services-list {
+  display: grid;
+  gap: 7px;
+  min-width: 150px;
+  max-width: 230px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publisher-services-list a,
+.publisher-services-manage,
+.publisher-services-empty {
+  color: var(--accent-dark) !important;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.publisher-services-manage {
+  display: inline-block;
+  margin-top: 9px;
+}
+
 .publisher-status {
   display: inline-flex;
   align-items: center;
@@ -396,6 +441,10 @@ export default async function PublisherWebsitesPage() {
       monthlyTraffic: true,
       approvalStatus: true,
       createdAt: true,
+      services: {
+        orderBy: { serviceName: "asc" },
+        select: { id: true, serviceName: true },
+      },
     },
   });
 
@@ -446,6 +495,7 @@ export default async function PublisherWebsitesPage() {
                   <th>Website</th>
                   <th>Niche</th>
                   <th>Monthly traffic</th>
+                  <th>Services</th>
                   <th>Status</th>
                   <th>Created</th>
                   <th>
@@ -483,6 +533,33 @@ export default async function PublisherWebsitesPage() {
 
                       <td className="publisher-traffic">
                         {website.monthlyTraffic.toLocaleString()}
+                      </td>
+
+                      <td>
+                        {website.services.length ? (
+                          <details className="publisher-services-dropdown">
+                            <summary>
+                              {website.services.length} service{website.services.length === 1 ? "" : "s"}
+                              <ChevronDown size={14} />
+                            </summary>
+                            <ul className="publisher-services-list">
+                              {website.services.map((service) => (
+                                <li key={service.id}>
+                                  <Link href={`/publisher/websites/${website.id}/services/${service.id}`}>
+                                    {service.serviceName}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                            <Link className="publisher-services-manage" href={`/publisher/websites/${website.id}/services`}>
+                              Manage services
+                            </Link>
+                          </details>
+                        ) : (
+                          <Link className="publisher-services-empty" href={`/publisher/websites/${website.id}/services/add`}>
+                            Add first service
+                          </Link>
+                        )}
                       </td>
 
                       <td>

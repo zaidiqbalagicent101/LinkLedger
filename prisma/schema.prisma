@@ -46,6 +46,29 @@ enum CollaborationRequestStatus {
   CANCELLED
 }
 
+enum OrderSource {
+  DIRECT_PURCHASE
+  CUSTOM_DEAL
+}
+
+enum OrderStatus {
+  CONFIRMED
+  IN_PROGRESS
+  CONTENT_SUBMITTED
+  REVISION_REQUESTED
+  APPROVED
+  PUBLISHED
+  COMPLETED
+  CANCELLATION_REQUESTED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
+
 model User {
   id          String        @id @default(cuid()) @db.VarChar(191)
   fullName    String        @db.VarChar(191)
@@ -62,6 +85,7 @@ model User {
   reviewedWebsites PublisherWebsite[] @relation("WebsiteReviewer")
   websiteReviews WebsiteReview[] @relation("ReviewAdmin")
   collaborationRequests CollaborationRequest[]
+  orders Order[]
 
   @@map("users")
 }
@@ -109,6 +133,7 @@ model PublisherWebsite {
   reviews               WebsiteReview[]
   services              PublisherService[]
   collaborationRequests CollaborationRequest[]
+  orders                Order[]
 
   @@index([publisherProfileId, createdAt])
   @@index([approvalStatus, createdAt])
@@ -137,6 +162,7 @@ model PublisherService {
   updatedAt              DateTime             @updatedAt
   website                PublisherWebsite     @relation(fields: [publisherWebsiteId], references: [id], onDelete: Cascade)
   collaborationRequests CollaborationRequest[]
+  orders                 Order[]
 
   @@index([publisherWebsiteId, createdAt])
   @@index([publisherWebsiteId, serviceType, isActive])
@@ -204,10 +230,76 @@ model CollaborationRequest {
   advertiser            User                       @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
   website               PublisherWebsite?          @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
   service               PublisherService?           @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+  order                 Order?
 
   @@index([advertiserId, createdAt])
   @@index([publisherWebsiteId, status, createdAt])
   @@index([publisherServiceId, status])
   @@index([status, createdAt])
   @@map("collaboration_requests")
+}
+
+model Order {
+  id                              String               @id @default(cuid()) @db.VarChar(191)
+  idempotencyKey                  String               @unique @db.VarChar(191)
+  source                          OrderSource
+  status                          OrderStatus          @default(CONFIRMED)
+  paymentStatus                   PaymentStatus        @default(PENDING)
+  advertiserId                    String               @db.VarChar(191)
+  publisherWebsiteId              String?              @db.VarChar(191)
+  publisherServiceId              String?              @db.VarChar(191)
+  customRequestId                 String?              @unique @db.VarChar(191)
+  websiteNameSnapshot             String               @db.VarChar(191)
+  websiteUrlSnapshot              String               @db.VarChar(512)
+  websiteNicheSnapshot            String               @db.VarChar(120)
+  monthlyTrafficSnapshot          Int
+  websiteLanguageSnapshot         String               @db.VarChar(80)
+  targetAudienceCountrySnapshot   String               @db.VarChar(100)
+  websiteDescriptionSnapshot      String               @db.Text
+  domainRatingSnapshot             Int?
+  domainAuthoritySnapshot          Int?
+  serviceNameSnapshot             String               @db.VarChar(120)
+  serviceTypeSnapshot             PublisherServiceType
+  serviceDescriptionSnapshot      String               @db.Text
+  publishingGuidelinesSnapshot    String?              @db.Text
+  additionalConditionsSnapshot    String?              @db.Text
+  originalPrice                   Decimal              @db.Decimal(10, 2)
+  originalCurrency                String               @db.Char(3)
+  originalDeliveryTimeDays        Int
+  originalContentWritingIncluded  Boolean
+  originalLinkType                ServiceLinkType
+  originalMaximumLinks            Int?
+  originalHomepageLinkAvailable   Boolean
+  agreedPrice                     Decimal              @db.Decimal(10, 2)
+  agreedCurrency                  String               @db.Char(3)
+  agreedDeliveryTimeDays          Int
+  agreedContentWritingIncluded    Boolean
+  agreedLinkType                  ServiceLinkType
+  agreedNumberOfLinks             Int?
+  agreedHomepageLinkAvailable     Boolean
+  topic                           String?              @db.VarChar(191)
+  targetUrl                       String?              @db.VarChar(2048)
+  anchorText                      String?              @db.VarChar(191)
+  contentRequirements             String               @db.Text
+  additionalInstructions          String               @db.Text
+  cancellationReason              String?              @db.Text
+  cancellationRequestedAt         DateTime?
+  cancellationResponse            String?              @db.Text
+  cancellationRespondedAt         DateTime?
+  cancelledAt                     DateTime?
+  publishedAt                     DateTime?
+  completedAt                     DateTime?
+  createdAt                       DateTime             @default(now())
+  updatedAt                       DateTime             @updatedAt
+  advertiser                      User                 @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
+  website                         PublisherWebsite?    @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
+  service                         PublisherService?    @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+  customRequest                   CollaborationRequest? @relation(fields: [customRequestId], references: [id], onDelete: SetNull)
+
+  @@index([advertiserId, createdAt])
+  @@index([publisherWebsiteId, status, createdAt])
+  @@index([publisherServiceId, status])
+  @@index([status, createdAt])
+  @@index([paymentStatus, createdAt])
+  @@map("orders")
 }

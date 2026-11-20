@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { PublisherServiceForm } from "@/components/publisher/PublisherServiceForm";
 import { requirePublisherProfile } from "@/lib/auth";
+import { getCurrencyOptions } from "@/lib/currency-options";
 import { prisma } from "@/lib/prisma";
 
 type EditServicePageProps = { params: Promise<{ websiteId: string; serviceId: string }> };
@@ -23,6 +24,8 @@ export default async function EditPublisherServicePage({ params }: EditServicePa
   });
 
   if (!service) notFound();
+
+  const currencyOptions = getCurrencyOptions(service.currency);
 
   return (
     <main className="min-h-screen bg-[#f6f8f7] text-[#12211c] antialiased">
@@ -54,6 +57,7 @@ export default async function EditPublisherServicePage({ params }: EditServicePa
         <div className="rounded-lg border border-[#e5eae8] bg-white p-5 shadow-[0_8px_30px_-25px_rgba(18,33,28,0.2)] sm:p-8">
           <PublisherServiceForm
             websiteId={websiteId}
+            currencyOptions={currencyOptions}
             service={{
               id: service.id,
               serviceName: service.serviceName,
