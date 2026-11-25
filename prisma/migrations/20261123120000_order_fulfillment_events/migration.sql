@@ -1,0 +1,1 @@
+-- Placeholder: migration already recorded/applied in existing database.

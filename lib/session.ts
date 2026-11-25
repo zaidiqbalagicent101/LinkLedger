@@ -1,6 +1,5 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { connection } from "next/server";
 import { getIronSession, type IronSession } from "iron-session";
 
 export type SessionData = {
@@ -15,7 +14,6 @@ const password =
 export async function getSession(
   rememberMe = true,
 ): Promise<IronSession<SessionData>> {
-  await connection();
   const cookieStore = await cookies();
 
   if (process.env.NODE_ENV === "production" && (!sessionPassword || sessionPassword.length < 32)) {

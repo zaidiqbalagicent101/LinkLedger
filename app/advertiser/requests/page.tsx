@@ -20,6 +20,7 @@ import {
   AdvertiserCancelRequestForm,
   AdvertiserProposalResponseForm,
 } from "@/components/CollaborationForms";
+import { AdvertiserAccountMenu } from "@/components/advertiser/AdvertiserAccountMenu";
 import { formatServiceType } from "@/components/publisher/service-options";
 import { requireRole } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -101,20 +102,7 @@ async function AdvertiserRequestsContent() {
             LinkLedger
           </Link>
 
-          <nav className="flex items-center gap-4 sm:gap-7">
-            <Link
-              href="/advertiser/marketplace"
-              className="text-sm font-medium text-[#5f6f69] transition-colors hover:text-[#0e7a5a]"
-            >
-              Marketplace
-            </Link>
-            <Link
-              href="/advertiser/dashboard"
-              className="text-sm font-semibold text-[#0e7a5a]"
-            >
-              Dashboard
-            </Link>
-          </nav>
+          <AdvertiserAccountMenu />
         </div>
       </header>
 

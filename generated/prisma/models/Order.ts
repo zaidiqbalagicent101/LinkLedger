@@ -36,6 +36,7 @@ export type OrderAvgAggregateOutputType = {
   agreedPrice: runtime.Decimal | null
   agreedDeliveryTimeDays: number | null
   agreedNumberOfLinks: number | null
+  paymentAmount: number | null
 }
 
 export type OrderSumAggregateOutputType = {
@@ -48,6 +49,7 @@ export type OrderSumAggregateOutputType = {
   agreedPrice: runtime.Decimal | null
   agreedDeliveryTimeDays: number | null
   agreedNumberOfLinks: number | null
+  paymentAmount: number | null
 }
 
 export type OrderMinAggregateOutputType = {
@@ -98,8 +100,19 @@ export type OrderMinAggregateOutputType = {
   cancellationResponse: string | null
   cancellationRespondedAt: Date | null
   cancelledAt: Date | null
+  publicationUrl: string | null
   publishedAt: Date | null
   completedAt: Date | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
+  razorpayRefundId: string | null
+  paymentAmount: number | null
+  paymentCurrency: string | null
+  paymentCapturedAt: Date | null
+  paymentRefundedAt: Date | null
+  paymentFailureCode: string | null
+  paymentFailureMessage: string | null
+  paymentUpdatedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -152,8 +165,19 @@ export type OrderMaxAggregateOutputType = {
   cancellationResponse: string | null
   cancellationRespondedAt: Date | null
   cancelledAt: Date | null
+  publicationUrl: string | null
   publishedAt: Date | null
   completedAt: Date | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
+  razorpayRefundId: string | null
+  paymentAmount: number | null
+  paymentCurrency: string | null
+  paymentCapturedAt: Date | null
+  paymentRefundedAt: Date | null
+  paymentFailureCode: string | null
+  paymentFailureMessage: string | null
+  paymentUpdatedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -206,8 +230,19 @@ export type OrderCountAggregateOutputType = {
   cancellationResponse: number
   cancellationRespondedAt: number
   cancelledAt: number
+  publicationUrl: number
   publishedAt: number
   completedAt: number
+  razorpayOrderId: number
+  razorpayPaymentId: number
+  razorpayRefundId: number
+  paymentAmount: number
+  paymentCurrency: number
+  paymentCapturedAt: number
+  paymentRefundedAt: number
+  paymentFailureCode: number
+  paymentFailureMessage: number
+  paymentUpdatedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -224,6 +259,7 @@ export type OrderAvgAggregateInputType = {
   agreedPrice?: true
   agreedDeliveryTimeDays?: true
   agreedNumberOfLinks?: true
+  paymentAmount?: true
 }
 
 export type OrderSumAggregateInputType = {
@@ -236,6 +272,7 @@ export type OrderSumAggregateInputType = {
   agreedPrice?: true
   agreedDeliveryTimeDays?: true
   agreedNumberOfLinks?: true
+  paymentAmount?: true
 }
 
 export type OrderMinAggregateInputType = {
@@ -286,8 +323,19 @@ export type OrderMinAggregateInputType = {
   cancellationResponse?: true
   cancellationRespondedAt?: true
   cancelledAt?: true
+  publicationUrl?: true
   publishedAt?: true
   completedAt?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
+  razorpayRefundId?: true
+  paymentAmount?: true
+  paymentCurrency?: true
+  paymentCapturedAt?: true
+  paymentRefundedAt?: true
+  paymentFailureCode?: true
+  paymentFailureMessage?: true
+  paymentUpdatedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -340,8 +388,19 @@ export type OrderMaxAggregateInputType = {
   cancellationResponse?: true
   cancellationRespondedAt?: true
   cancelledAt?: true
+  publicationUrl?: true
   publishedAt?: true
   completedAt?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
+  razorpayRefundId?: true
+  paymentAmount?: true
+  paymentCurrency?: true
+  paymentCapturedAt?: true
+  paymentRefundedAt?: true
+  paymentFailureCode?: true
+  paymentFailureMessage?: true
+  paymentUpdatedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -394,8 +453,19 @@ export type OrderCountAggregateInputType = {
   cancellationResponse?: true
   cancellationRespondedAt?: true
   cancelledAt?: true
+  publicationUrl?: true
   publishedAt?: true
   completedAt?: true
+  razorpayOrderId?: true
+  razorpayPaymentId?: true
+  razorpayRefundId?: true
+  paymentAmount?: true
+  paymentCurrency?: true
+  paymentCapturedAt?: true
+  paymentRefundedAt?: true
+  paymentFailureCode?: true
+  paymentFailureMessage?: true
+  paymentUpdatedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -535,8 +605,19 @@ export type OrderGroupByOutputType = {
   cancellationResponse: string | null
   cancellationRespondedAt: Date | null
   cancelledAt: Date | null
+  publicationUrl: string | null
   publishedAt: Date | null
   completedAt: Date | null
+  razorpayOrderId: string | null
+  razorpayPaymentId: string | null
+  razorpayRefundId: string | null
+  paymentAmount: number | null
+  paymentCurrency: string | null
+  paymentCapturedAt: Date | null
+  paymentRefundedAt: Date | null
+  paymentFailureCode: string | null
+  paymentFailureMessage: string | null
+  paymentUpdatedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: OrderCountAggregateOutputType | null
@@ -612,14 +693,26 @@ export type OrderWhereInput = {
   cancellationResponse?: Prisma.StringNullableFilter<"Order"> | string | null
   cancellationRespondedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  publicationUrl?: Prisma.StringNullableFilter<"Order"> | string | null
   publishedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  razorpayOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableFilter<"Order"> | string | null
+  razorpayRefundId?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentAmount?: Prisma.IntNullableFilter<"Order"> | number | null
+  paymentCurrency?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentCapturedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentRefundedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentFailureCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentFailureMessage?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentUpdatedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   advertiser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   website?: Prisma.XOR<Prisma.PublisherWebsiteNullableScalarRelationFilter, Prisma.PublisherWebsiteWhereInput> | null
   service?: Prisma.XOR<Prisma.PublisherServiceNullableScalarRelationFilter, Prisma.PublisherServiceWhereInput> | null
-  customDealRequest?: Prisma.XOR<Prisma.CollaborationRequestNullableScalarRelationFilter, Prisma.CollaborationRequestWhereInput> | null
+  customRequest?: Prisma.XOR<Prisma.CollaborationRequestNullableScalarRelationFilter, Prisma.CollaborationRequestWhereInput> | null
+  paymentAttempts?: Prisma.PaymentAttemptListRelationFilter
 }
 
 export type OrderOrderByWithRelationInput = {
@@ -670,14 +763,26 @@ export type OrderOrderByWithRelationInput = {
   cancellationResponse?: Prisma.SortOrderInput | Prisma.SortOrder
   cancellationRespondedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  publicationUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayRefundId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentCapturedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentRefundedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentFailureCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentFailureMessage?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   advertiser?: Prisma.UserOrderByWithRelationInput
   website?: Prisma.PublisherWebsiteOrderByWithRelationInput
   service?: Prisma.PublisherServiceOrderByWithRelationInput
-  customDealRequest?: Prisma.CollaborationRequestOrderByWithRelationInput
+  customRequest?: Prisma.CollaborationRequestOrderByWithRelationInput
+  paymentAttempts?: Prisma.PaymentAttemptOrderByRelationAggregateInput
   _relevance?: Prisma.OrderOrderByRelevanceInput
 }
 
@@ -685,6 +790,9 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   idempotencyKey?: string
   customRequestId?: string
+  razorpayOrderId?: string
+  razorpayPaymentId?: string
+  razorpayRefundId?: string
   AND?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
   OR?: Prisma.OrderWhereInput[]
   NOT?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
@@ -732,15 +840,24 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   cancellationResponse?: Prisma.StringNullableFilter<"Order"> | string | null
   cancellationRespondedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  publicationUrl?: Prisma.StringNullableFilter<"Order"> | string | null
   publishedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentAmount?: Prisma.IntNullableFilter<"Order"> | number | null
+  paymentCurrency?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentCapturedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentRefundedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentFailureCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentFailureMessage?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentUpdatedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   advertiser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   website?: Prisma.XOR<Prisma.PublisherWebsiteNullableScalarRelationFilter, Prisma.PublisherWebsiteWhereInput> | null
   service?: Prisma.XOR<Prisma.PublisherServiceNullableScalarRelationFilter, Prisma.PublisherServiceWhereInput> | null
-  customDealRequest?: Prisma.XOR<Prisma.CollaborationRequestNullableScalarRelationFilter, Prisma.CollaborationRequestWhereInput> | null
-}, "id" | "idempotencyKey" | "customRequestId">
+  customRequest?: Prisma.XOR<Prisma.CollaborationRequestNullableScalarRelationFilter, Prisma.CollaborationRequestWhereInput> | null
+  paymentAttempts?: Prisma.PaymentAttemptListRelationFilter
+}, "id" | "idempotencyKey" | "customRequestId" | "razorpayOrderId" | "razorpayPaymentId" | "razorpayRefundId">
 
 export type OrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -790,8 +907,19 @@ export type OrderOrderByWithAggregationInput = {
   cancellationResponse?: Prisma.SortOrderInput | Prisma.SortOrder
   cancellationRespondedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  publicationUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayRefundId?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentCapturedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentRefundedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentFailureCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentFailureMessage?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
@@ -852,8 +980,19 @@ export type OrderScalarWhereWithAggregatesInput = {
   cancellationResponse?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   cancellationRespondedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  publicationUrl?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  razorpayOrderId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  razorpayRefundId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  paymentAmount?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
+  paymentCurrency?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  paymentCapturedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  paymentRefundedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  paymentFailureCode?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  paymentFailureMessage?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
+  paymentUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
 }
@@ -902,14 +1041,26 @@ export type OrderCreateInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutOrdersInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutOrdersInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutOrdersInput
-  customDealRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  customRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  paymentAttempts?: Prisma.PaymentAttemptCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
@@ -960,10 +1111,22 @@ export type OrderUncheckedCreateInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUpdateInput = {
@@ -1010,14 +1173,26 @@ export type OrderUpdateInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutOrdersNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutOrdersNestedInput
-  customDealRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  customRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  paymentAttempts?: Prisma.PaymentAttemptUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateInput = {
@@ -1068,10 +1243,22 @@ export type OrderUncheckedUpdateInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateManyInput = {
@@ -1122,8 +1309,19 @@ export type OrderCreateManyInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1172,8 +1370,19 @@ export type OrderUpdateManyMutationInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1226,8 +1435,19 @@ export type OrderUncheckedUpdateManyInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1301,8 +1521,19 @@ export type OrderCountOrderByAggregateInput = {
   cancellationResponse?: Prisma.SortOrder
   cancellationRespondedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
+  publicationUrl?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
+  razorpayRefundId?: Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrder
+  paymentCurrency?: Prisma.SortOrder
+  paymentCapturedAt?: Prisma.SortOrder
+  paymentRefundedAt?: Prisma.SortOrder
+  paymentFailureCode?: Prisma.SortOrder
+  paymentFailureMessage?: Prisma.SortOrder
+  paymentUpdatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1317,6 +1548,7 @@ export type OrderAvgOrderByAggregateInput = {
   agreedPrice?: Prisma.SortOrder
   agreedDeliveryTimeDays?: Prisma.SortOrder
   agreedNumberOfLinks?: Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrder
 }
 
 export type OrderMaxOrderByAggregateInput = {
@@ -1367,8 +1599,19 @@ export type OrderMaxOrderByAggregateInput = {
   cancellationResponse?: Prisma.SortOrder
   cancellationRespondedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
+  publicationUrl?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
+  razorpayRefundId?: Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrder
+  paymentCurrency?: Prisma.SortOrder
+  paymentCapturedAt?: Prisma.SortOrder
+  paymentRefundedAt?: Prisma.SortOrder
+  paymentFailureCode?: Prisma.SortOrder
+  paymentFailureMessage?: Prisma.SortOrder
+  paymentUpdatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1421,8 +1664,19 @@ export type OrderMinOrderByAggregateInput = {
   cancellationResponse?: Prisma.SortOrder
   cancellationRespondedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
+  publicationUrl?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  razorpayOrderId?: Prisma.SortOrder
+  razorpayPaymentId?: Prisma.SortOrder
+  razorpayRefundId?: Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrder
+  paymentCurrency?: Prisma.SortOrder
+  paymentCapturedAt?: Prisma.SortOrder
+  paymentRefundedAt?: Prisma.SortOrder
+  paymentFailureCode?: Prisma.SortOrder
+  paymentFailureMessage?: Prisma.SortOrder
+  paymentUpdatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1437,6 +1691,12 @@ export type OrderSumOrderByAggregateInput = {
   agreedPrice?: Prisma.SortOrder
   agreedDeliveryTimeDays?: Prisma.SortOrder
   agreedNumberOfLinks?: Prisma.SortOrder
+  paymentAmount?: Prisma.SortOrder
+}
+
+export type OrderScalarRelationFilter = {
+  is?: Prisma.OrderWhereInput
+  isNot?: Prisma.OrderWhereInput
 }
 
 export type OrderCreateNestedManyWithoutAdvertiserInput = {
@@ -1565,36 +1825,36 @@ export type OrderUncheckedUpdateManyWithoutServiceNestedInput = {
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
-export type OrderCreateNestedOneWithoutCustomDealRequestInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomDealRequestInput
+export type OrderCreateNestedOneWithoutCustomRequestInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomRequestInput
   connect?: Prisma.OrderWhereUniqueInput
 }
 
-export type OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomDealRequestInput
+export type OrderUncheckedCreateNestedOneWithoutCustomRequestInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomRequestInput
   connect?: Prisma.OrderWhereUniqueInput
 }
 
-export type OrderUpdateOneWithoutCustomDealRequestNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomDealRequestInput
-  upsert?: Prisma.OrderUpsertWithoutCustomDealRequestInput
+export type OrderUpdateOneWithoutCustomRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomRequestInput
+  upsert?: Prisma.OrderUpsertWithoutCustomRequestInput
   disconnect?: Prisma.OrderWhereInput | boolean
   delete?: Prisma.OrderWhereInput | boolean
   connect?: Prisma.OrderWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutCustomDealRequestInput, Prisma.OrderUpdateWithoutCustomDealRequestInput>, Prisma.OrderUncheckedUpdateWithoutCustomDealRequestInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutCustomRequestInput, Prisma.OrderUpdateWithoutCustomRequestInput>, Prisma.OrderUncheckedUpdateWithoutCustomRequestInput>
 }
 
-export type OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomDealRequestInput
-  upsert?: Prisma.OrderUpsertWithoutCustomDealRequestInput
+export type OrderUncheckedUpdateOneWithoutCustomRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomRequestInput
+  upsert?: Prisma.OrderUpsertWithoutCustomRequestInput
   disconnect?: Prisma.OrderWhereInput | boolean
   delete?: Prisma.OrderWhereInput | boolean
   connect?: Prisma.OrderWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutCustomDealRequestInput, Prisma.OrderUpdateWithoutCustomDealRequestInput>, Prisma.OrderUncheckedUpdateWithoutCustomDealRequestInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutCustomRequestInput, Prisma.OrderUpdateWithoutCustomRequestInput>, Prisma.OrderUncheckedUpdateWithoutCustomRequestInput>
 }
 
 export type EnumOrderSourceFieldUpdateOperationsInput = {
@@ -1607,6 +1867,20 @@ export type EnumOrderStatusFieldUpdateOperationsInput = {
 
 export type EnumPaymentStatusFieldUpdateOperationsInput = {
   set?: $Enums.PaymentStatus
+}
+
+export type OrderCreateNestedOneWithoutPaymentAttemptsInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedCreateWithoutPaymentAttemptsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentAttemptsInput
+  connect?: Prisma.OrderWhereUniqueInput
+}
+
+export type OrderUpdateOneRequiredWithoutPaymentAttemptsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedCreateWithoutPaymentAttemptsInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentAttemptsInput
+  upsert?: Prisma.OrderUpsertWithoutPaymentAttemptsInput
+  connect?: Prisma.OrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutPaymentAttemptsInput, Prisma.OrderUpdateWithoutPaymentAttemptsInput>, Prisma.OrderUncheckedUpdateWithoutPaymentAttemptsInput>
 }
 
 export type OrderCreateWithoutAdvertiserInput = {
@@ -1653,13 +1927,25 @@ export type OrderCreateWithoutAdvertiserInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutOrdersInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutOrdersInput
-  customDealRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  customRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  paymentAttempts?: Prisma.PaymentAttemptCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutAdvertiserInput = {
@@ -1709,10 +1995,22 @@ export type OrderUncheckedCreateWithoutAdvertiserInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutAdvertiserInput = {
@@ -1792,8 +2090,19 @@ export type OrderScalarWhereInput = {
   cancellationResponse?: Prisma.StringNullableFilter<"Order"> | string | null
   cancellationRespondedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  publicationUrl?: Prisma.StringNullableFilter<"Order"> | string | null
   publishedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  razorpayOrderId?: Prisma.StringNullableFilter<"Order"> | string | null
+  razorpayPaymentId?: Prisma.StringNullableFilter<"Order"> | string | null
+  razorpayRefundId?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentAmount?: Prisma.IntNullableFilter<"Order"> | number | null
+  paymentCurrency?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentCapturedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentRefundedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  paymentFailureCode?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentFailureMessage?: Prisma.StringNullableFilter<"Order"> | string | null
+  paymentUpdatedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
 }
@@ -1842,13 +2151,25 @@ export type OrderCreateWithoutWebsiteInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutOrdersInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutOrdersInput
-  customDealRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  customRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  paymentAttempts?: Prisma.PaymentAttemptCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutWebsiteInput = {
@@ -1898,10 +2219,22 @@ export type OrderUncheckedCreateWithoutWebsiteInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutWebsiteInput = {
@@ -1974,13 +2307,25 @@ export type OrderCreateWithoutServiceInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutOrdersInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutOrdersInput
-  customDealRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  customRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+  paymentAttempts?: Prisma.PaymentAttemptCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutServiceInput = {
@@ -2030,10 +2375,22 @@ export type OrderUncheckedCreateWithoutServiceInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutServiceInput = {
@@ -2062,7 +2419,7 @@ export type OrderUpdateManyWithWhereWithoutServiceInput = {
   data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutServiceInput>
 }
 
-export type OrderCreateWithoutCustomDealRequestInput = {
+export type OrderCreateWithoutCustomRequestInput = {
   id?: string
   idempotencyKey: string
   source: $Enums.OrderSource
@@ -2106,16 +2463,28 @@ export type OrderCreateWithoutCustomDealRequestInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutOrdersInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutOrdersInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutOrdersInput
+  paymentAttempts?: Prisma.PaymentAttemptCreateNestedManyWithoutOrderInput
 }
 
-export type OrderUncheckedCreateWithoutCustomDealRequestInput = {
+export type OrderUncheckedCreateWithoutCustomRequestInput = {
   id?: string
   idempotencyKey: string
   source: $Enums.OrderSource
@@ -2162,29 +2531,41 @@ export type OrderUncheckedCreateWithoutCustomDealRequestInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutOrderInput
 }
 
-export type OrderCreateOrConnectWithoutCustomDealRequestInput = {
+export type OrderCreateOrConnectWithoutCustomRequestInput = {
   where: Prisma.OrderWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
 }
 
-export type OrderUpsertWithoutCustomDealRequestInput = {
-  update: Prisma.XOR<Prisma.OrderUpdateWithoutCustomDealRequestInput, Prisma.OrderUncheckedUpdateWithoutCustomDealRequestInput>
-  create: Prisma.XOR<Prisma.OrderCreateWithoutCustomDealRequestInput, Prisma.OrderUncheckedCreateWithoutCustomDealRequestInput>
+export type OrderUpsertWithoutCustomRequestInput = {
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutCustomRequestInput, Prisma.OrderUncheckedUpdateWithoutCustomRequestInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutCustomRequestInput, Prisma.OrderUncheckedCreateWithoutCustomRequestInput>
   where?: Prisma.OrderWhereInput
 }
 
-export type OrderUpdateToOneWithWhereWithoutCustomDealRequestInput = {
+export type OrderUpdateToOneWithWhereWithoutCustomRequestInput = {
   where?: Prisma.OrderWhereInput
-  data: Prisma.XOR<Prisma.OrderUpdateWithoutCustomDealRequestInput, Prisma.OrderUncheckedUpdateWithoutCustomDealRequestInput>
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutCustomRequestInput, Prisma.OrderUncheckedUpdateWithoutCustomRequestInput>
 }
 
-export type OrderUpdateWithoutCustomDealRequestInput = {
+export type OrderUpdateWithoutCustomRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumOrderSourceFieldUpdateOperationsInput | $Enums.OrderSource
@@ -2228,16 +2609,28 @@ export type OrderUpdateWithoutCustomDealRequestInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutOrdersNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutOrdersNestedInput
+  paymentAttempts?: Prisma.PaymentAttemptUpdateManyWithoutOrderNestedInput
 }
 
-export type OrderUncheckedUpdateWithoutCustomDealRequestInput = {
+export type OrderUncheckedUpdateWithoutCustomRequestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
   source?: Prisma.EnumOrderSourceFieldUpdateOperationsInput | $Enums.OrderSource
@@ -2284,8 +2677,296 @@ export type OrderUncheckedUpdateWithoutCustomDealRequestInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderCreateWithoutPaymentAttemptsInput = {
+  id?: string
+  idempotencyKey: string
+  source: $Enums.OrderSource
+  status?: $Enums.OrderStatus
+  paymentStatus?: $Enums.PaymentStatus
+  websiteNameSnapshot: string
+  websiteUrlSnapshot: string
+  websiteNicheSnapshot: string
+  monthlyTrafficSnapshot: number
+  websiteLanguageSnapshot: string
+  targetAudienceCountrySnapshot: string
+  websiteDescriptionSnapshot: string
+  domainRatingSnapshot?: number | null
+  domainAuthoritySnapshot?: number | null
+  serviceNameSnapshot: string
+  serviceTypeSnapshot: $Enums.PublisherServiceType
+  serviceDescriptionSnapshot: string
+  publishingGuidelinesSnapshot?: string | null
+  additionalConditionsSnapshot?: string | null
+  originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  originalCurrency: string
+  originalDeliveryTimeDays: number
+  originalContentWritingIncluded: boolean
+  originalLinkType: $Enums.ServiceLinkType
+  originalMaximumLinks?: number | null
+  originalHomepageLinkAvailable: boolean
+  agreedPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  agreedCurrency: string
+  agreedDeliveryTimeDays: number
+  agreedContentWritingIncluded: boolean
+  agreedLinkType: $Enums.ServiceLinkType
+  agreedNumberOfLinks?: number | null
+  agreedHomepageLinkAvailable: boolean
+  topic?: string | null
+  targetUrl?: string | null
+  anchorText?: string | null
+  contentRequirements: string
+  additionalInstructions: string
+  cancellationReason?: string | null
+  cancellationRequestedAt?: Date | string | null
+  cancellationResponse?: string | null
+  cancellationRespondedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  publicationUrl?: string | null
+  publishedAt?: Date | string | null
+  completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  advertiser: Prisma.UserCreateNestedOneWithoutOrdersInput
+  website?: Prisma.PublisherWebsiteCreateNestedOneWithoutOrdersInput
+  service?: Prisma.PublisherServiceCreateNestedOneWithoutOrdersInput
+  customRequest?: Prisma.CollaborationRequestCreateNestedOneWithoutOrderInput
+}
+
+export type OrderUncheckedCreateWithoutPaymentAttemptsInput = {
+  id?: string
+  idempotencyKey: string
+  source: $Enums.OrderSource
+  status?: $Enums.OrderStatus
+  paymentStatus?: $Enums.PaymentStatus
+  advertiserId: string
+  publisherWebsiteId?: string | null
+  publisherServiceId?: string | null
+  customRequestId?: string | null
+  websiteNameSnapshot: string
+  websiteUrlSnapshot: string
+  websiteNicheSnapshot: string
+  monthlyTrafficSnapshot: number
+  websiteLanguageSnapshot: string
+  targetAudienceCountrySnapshot: string
+  websiteDescriptionSnapshot: string
+  domainRatingSnapshot?: number | null
+  domainAuthoritySnapshot?: number | null
+  serviceNameSnapshot: string
+  serviceTypeSnapshot: $Enums.PublisherServiceType
+  serviceDescriptionSnapshot: string
+  publishingGuidelinesSnapshot?: string | null
+  additionalConditionsSnapshot?: string | null
+  originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  originalCurrency: string
+  originalDeliveryTimeDays: number
+  originalContentWritingIncluded: boolean
+  originalLinkType: $Enums.ServiceLinkType
+  originalMaximumLinks?: number | null
+  originalHomepageLinkAvailable: boolean
+  agreedPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  agreedCurrency: string
+  agreedDeliveryTimeDays: number
+  agreedContentWritingIncluded: boolean
+  agreedLinkType: $Enums.ServiceLinkType
+  agreedNumberOfLinks?: number | null
+  agreedHomepageLinkAvailable: boolean
+  topic?: string | null
+  targetUrl?: string | null
+  anchorText?: string | null
+  contentRequirements: string
+  additionalInstructions: string
+  cancellationReason?: string | null
+  cancellationRequestedAt?: Date | string | null
+  cancellationResponse?: string | null
+  cancellationRespondedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  publicationUrl?: string | null
+  publishedAt?: Date | string | null
+  completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type OrderCreateOrConnectWithoutPaymentAttemptsInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedCreateWithoutPaymentAttemptsInput>
+}
+
+export type OrderUpsertWithoutPaymentAttemptsInput = {
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedUpdateWithoutPaymentAttemptsInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedCreateWithoutPaymentAttemptsInput>
+  where?: Prisma.OrderWhereInput
+}
+
+export type OrderUpdateToOneWithWhereWithoutPaymentAttemptsInput = {
+  where?: Prisma.OrderWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutPaymentAttemptsInput, Prisma.OrderUncheckedUpdateWithoutPaymentAttemptsInput>
+}
+
+export type OrderUpdateWithoutPaymentAttemptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  source?: Prisma.EnumOrderSourceFieldUpdateOperationsInput | $Enums.OrderSource
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteNicheSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  monthlyTrafficSnapshot?: Prisma.IntFieldUpdateOperationsInput | number
+  websiteLanguageSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  targetAudienceCountrySnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteDescriptionSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
+  serviceDescriptionSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  originalDeliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  originalContentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  originalLinkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  originalHomepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  agreedPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  agreedCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  agreedDeliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  agreedContentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  agreedLinkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  agreedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  agreedHomepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  topic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anchorText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentRequirements?: Prisma.StringFieldUpdateOperationsInput | string
+  additionalInstructions?: Prisma.StringFieldUpdateOperationsInput | string
+  cancellationReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancellationRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  advertiser?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  website?: Prisma.PublisherWebsiteUpdateOneWithoutOrdersNestedInput
+  service?: Prisma.PublisherServiceUpdateOneWithoutOrdersNestedInput
+  customRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutPaymentAttemptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  source?: Prisma.EnumOrderSourceFieldUpdateOperationsInput | $Enums.OrderSource
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  advertiserId?: Prisma.StringFieldUpdateOperationsInput | string
+  publisherWebsiteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customRequestId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteNicheSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  monthlyTrafficSnapshot?: Prisma.IntFieldUpdateOperationsInput | number
+  websiteLanguageSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  targetAudienceCountrySnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  websiteDescriptionSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
+  serviceDescriptionSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
+  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  originalDeliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  originalContentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  originalLinkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  originalHomepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  agreedPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  agreedCurrency?: Prisma.StringFieldUpdateOperationsInput | string
+  agreedDeliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  agreedContentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  agreedLinkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  agreedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  agreedHomepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  topic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anchorText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contentRequirements?: Prisma.StringFieldUpdateOperationsInput | string
+  additionalInstructions?: Prisma.StringFieldUpdateOperationsInput | string
+  cancellationReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancellationRequestedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2337,8 +3018,19 @@ export type OrderCreateManyAdvertiserInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2387,13 +3079,25 @@ export type OrderUpdateWithoutAdvertiserInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   website?: Prisma.PublisherWebsiteUpdateOneWithoutOrdersNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutOrdersNestedInput
-  customDealRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  customRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  paymentAttempts?: Prisma.PaymentAttemptUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutAdvertiserInput = {
@@ -2443,10 +3147,22 @@ export type OrderUncheckedUpdateWithoutAdvertiserInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutAdvertiserInput = {
@@ -2496,8 +3212,19 @@ export type OrderUncheckedUpdateManyWithoutAdvertiserInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2549,8 +3276,19 @@ export type OrderCreateManyWebsiteInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2599,13 +3337,25 @@ export type OrderUpdateWithoutWebsiteInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutOrdersNestedInput
-  customDealRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  customRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  paymentAttempts?: Prisma.PaymentAttemptUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutWebsiteInput = {
@@ -2655,10 +3405,22 @@ export type OrderUncheckedUpdateWithoutWebsiteInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutWebsiteInput = {
@@ -2708,8 +3470,19 @@ export type OrderUncheckedUpdateManyWithoutWebsiteInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2761,8 +3534,19 @@ export type OrderCreateManyServiceInput = {
   cancellationResponse?: string | null
   cancellationRespondedAt?: Date | string | null
   cancelledAt?: Date | string | null
+  publicationUrl?: string | null
   publishedAt?: Date | string | null
   completedAt?: Date | string | null
+  razorpayOrderId?: string | null
+  razorpayPaymentId?: string | null
+  razorpayRefundId?: string | null
+  paymentAmount?: number | null
+  paymentCurrency?: string | null
+  paymentCapturedAt?: Date | string | null
+  paymentRefundedAt?: Date | string | null
+  paymentFailureCode?: string | null
+  paymentFailureMessage?: string | null
+  paymentUpdatedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2811,13 +3595,25 @@ export type OrderUpdateWithoutServiceInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutOrdersNestedInput
-  customDealRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  customRequest?: Prisma.CollaborationRequestUpdateOneWithoutOrderNestedInput
+  paymentAttempts?: Prisma.PaymentAttemptUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutServiceInput = {
@@ -2867,10 +3663,22 @@ export type OrderUncheckedUpdateWithoutServiceInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  paymentAttempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutServiceInput = {
@@ -2920,12 +3728,52 @@ export type OrderUncheckedUpdateManyWithoutServiceInput = {
   cancellationResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cancellationRespondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicationUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayRefundId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentCapturedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentRefundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  paymentFailureCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentFailureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type OrderCountOutputType
+ */
+
+export type OrderCountOutputType = {
+  paymentAttempts: number
+}
+
+export type OrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  paymentAttempts?: boolean | OrderCountOutputTypeCountPaymentAttemptsArgs
+}
+
+/**
+ * OrderCountOutputType without action
+ */
+export type OrderCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderCountOutputType
+   */
+  select?: Prisma.OrderCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * OrderCountOutputType without action
+ */
+export type OrderCountOutputTypeCountPaymentAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentAttemptWhereInput
+}
 
 
 export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2976,14 +3824,27 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   cancellationResponse?: boolean
   cancellationRespondedAt?: boolean
   cancelledAt?: boolean
+  publicationUrl?: boolean
   publishedAt?: boolean
   completedAt?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
+  razorpayRefundId?: boolean
+  paymentAmount?: boolean
+  paymentCurrency?: boolean
+  paymentCapturedAt?: boolean
+  paymentRefundedAt?: boolean
+  paymentFailureCode?: boolean
+  paymentFailureMessage?: boolean
+  paymentUpdatedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   advertiser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   website?: boolean | Prisma.Order$websiteArgs<ExtArgs>
   service?: boolean | Prisma.Order$serviceArgs<ExtArgs>
-  customDealRequest?: boolean | Prisma.Order$customDealRequestArgs<ExtArgs>
+  customRequest?: boolean | Prisma.Order$customRequestArgs<ExtArgs>
+  paymentAttempts?: boolean | Prisma.Order$paymentAttemptsArgs<ExtArgs>
+  _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 
@@ -3036,18 +3897,31 @@ export type OrderSelectScalar = {
   cancellationResponse?: boolean
   cancellationRespondedAt?: boolean
   cancelledAt?: boolean
+  publicationUrl?: boolean
   publishedAt?: boolean
   completedAt?: boolean
+  razorpayOrderId?: boolean
+  razorpayPaymentId?: boolean
+  razorpayRefundId?: boolean
+  paymentAmount?: boolean
+  paymentCurrency?: boolean
+  paymentCapturedAt?: boolean
+  paymentRefundedAt?: boolean
+  paymentFailureCode?: boolean
+  paymentFailureMessage?: boolean
+  paymentUpdatedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idempotencyKey" | "source" | "status" | "paymentStatus" | "advertiserId" | "publisherWebsiteId" | "publisherServiceId" | "customRequestId" | "websiteNameSnapshot" | "websiteUrlSnapshot" | "websiteNicheSnapshot" | "monthlyTrafficSnapshot" | "websiteLanguageSnapshot" | "targetAudienceCountrySnapshot" | "websiteDescriptionSnapshot" | "domainRatingSnapshot" | "domainAuthoritySnapshot" | "serviceNameSnapshot" | "serviceTypeSnapshot" | "serviceDescriptionSnapshot" | "publishingGuidelinesSnapshot" | "additionalConditionsSnapshot" | "originalPrice" | "originalCurrency" | "originalDeliveryTimeDays" | "originalContentWritingIncluded" | "originalLinkType" | "originalMaximumLinks" | "originalHomepageLinkAvailable" | "agreedPrice" | "agreedCurrency" | "agreedDeliveryTimeDays" | "agreedContentWritingIncluded" | "agreedLinkType" | "agreedNumberOfLinks" | "agreedHomepageLinkAvailable" | "topic" | "targetUrl" | "anchorText" | "contentRequirements" | "additionalInstructions" | "cancellationReason" | "cancellationRequestedAt" | "cancellationResponse" | "cancellationRespondedAt" | "cancelledAt" | "publishedAt" | "completedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "idempotencyKey" | "source" | "status" | "paymentStatus" | "advertiserId" | "publisherWebsiteId" | "publisherServiceId" | "customRequestId" | "websiteNameSnapshot" | "websiteUrlSnapshot" | "websiteNicheSnapshot" | "monthlyTrafficSnapshot" | "websiteLanguageSnapshot" | "targetAudienceCountrySnapshot" | "websiteDescriptionSnapshot" | "domainRatingSnapshot" | "domainAuthoritySnapshot" | "serviceNameSnapshot" | "serviceTypeSnapshot" | "serviceDescriptionSnapshot" | "publishingGuidelinesSnapshot" | "additionalConditionsSnapshot" | "originalPrice" | "originalCurrency" | "originalDeliveryTimeDays" | "originalContentWritingIncluded" | "originalLinkType" | "originalMaximumLinks" | "originalHomepageLinkAvailable" | "agreedPrice" | "agreedCurrency" | "agreedDeliveryTimeDays" | "agreedContentWritingIncluded" | "agreedLinkType" | "agreedNumberOfLinks" | "agreedHomepageLinkAvailable" | "topic" | "targetUrl" | "anchorText" | "contentRequirements" | "additionalInstructions" | "cancellationReason" | "cancellationRequestedAt" | "cancellationResponse" | "cancellationRespondedAt" | "cancelledAt" | "publicationUrl" | "publishedAt" | "completedAt" | "razorpayOrderId" | "razorpayPaymentId" | "razorpayRefundId" | "paymentAmount" | "paymentCurrency" | "paymentCapturedAt" | "paymentRefundedAt" | "paymentFailureCode" | "paymentFailureMessage" | "paymentUpdatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   advertiser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   website?: boolean | Prisma.Order$websiteArgs<ExtArgs>
   service?: boolean | Prisma.Order$serviceArgs<ExtArgs>
-  customDealRequest?: boolean | Prisma.Order$customDealRequestArgs<ExtArgs>
+  customRequest?: boolean | Prisma.Order$customRequestArgs<ExtArgs>
+  paymentAttempts?: boolean | Prisma.Order$paymentAttemptsArgs<ExtArgs>
+  _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3056,7 +3930,8 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     advertiser: Prisma.$UserPayload<ExtArgs>
     website: Prisma.$PublisherWebsitePayload<ExtArgs> | null
     service: Prisma.$PublisherServicePayload<ExtArgs> | null
-    customDealRequest: Prisma.$CollaborationRequestPayload<ExtArgs> | null
+    customRequest: Prisma.$CollaborationRequestPayload<ExtArgs> | null
+    paymentAttempts: Prisma.$PaymentAttemptPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3106,8 +3981,19 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     cancellationResponse: string | null
     cancellationRespondedAt: Date | null
     cancelledAt: Date | null
+    publicationUrl: string | null
     publishedAt: Date | null
     completedAt: Date | null
+    razorpayOrderId: string | null
+    razorpayPaymentId: string | null
+    razorpayRefundId: string | null
+    paymentAmount: number | null
+    paymentCurrency: string | null
+    paymentCapturedAt: Date | null
+    paymentRefundedAt: Date | null
+    paymentFailureCode: string | null
+    paymentFailureMessage: string | null
+    paymentUpdatedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["order"]>
@@ -3453,7 +4339,8 @@ export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Ty
   advertiser<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   website<T extends Prisma.Order$websiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$websiteArgs<ExtArgs>>): Prisma.Prisma__PublisherWebsiteClient<runtime.Types.Result.GetResult<Prisma.$PublisherWebsitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   service<T extends Prisma.Order$serviceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$serviceArgs<ExtArgs>>): Prisma.Prisma__PublisherServiceClient<runtime.Types.Result.GetResult<Prisma.$PublisherServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  customDealRequest<T extends Prisma.Order$customDealRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$customDealRequestArgs<ExtArgs>>): Prisma.Prisma__CollaborationRequestClient<runtime.Types.Result.GetResult<Prisma.$CollaborationRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customRequest<T extends Prisma.Order$customRequestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$customRequestArgs<ExtArgs>>): Prisma.Prisma__CollaborationRequestClient<runtime.Types.Result.GetResult<Prisma.$CollaborationRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  paymentAttempts<T extends Prisma.Order$paymentAttemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$paymentAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3530,8 +4417,19 @@ export interface OrderFieldRefs {
   readonly cancellationResponse: Prisma.FieldRef<"Order", 'String'>
   readonly cancellationRespondedAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly cancelledAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly publicationUrl: Prisma.FieldRef<"Order", 'String'>
   readonly publishedAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly razorpayOrderId: Prisma.FieldRef<"Order", 'String'>
+  readonly razorpayPaymentId: Prisma.FieldRef<"Order", 'String'>
+  readonly razorpayRefundId: Prisma.FieldRef<"Order", 'String'>
+  readonly paymentAmount: Prisma.FieldRef<"Order", 'Int'>
+  readonly paymentCurrency: Prisma.FieldRef<"Order", 'String'>
+  readonly paymentCapturedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly paymentRefundedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly paymentFailureCode: Prisma.FieldRef<"Order", 'String'>
+  readonly paymentFailureMessage: Prisma.FieldRef<"Order", 'String'>
+  readonly paymentUpdatedAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Order", 'DateTime'>
 }
@@ -3920,9 +4818,9 @@ export type Order$serviceArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Order.customDealRequest
+ * Order.customRequest
  */
-export type Order$customDealRequestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Order$customRequestArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the CollaborationRequest
    */
@@ -3936,6 +4834,30 @@ export type Order$customDealRequestArgs<ExtArgs extends runtime.Types.Extensions
    */
   include?: Prisma.CollaborationRequestInclude<ExtArgs> | null
   where?: Prisma.CollaborationRequestWhereInput
+}
+
+/**
+ * Order.paymentAttempts
+ */
+export type Order$paymentAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentAttempt
+   */
+  select?: Prisma.PaymentAttemptSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentAttempt
+   */
+  omit?: Prisma.PaymentAttemptOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentAttemptInclude<ExtArgs> | null
+  where?: Prisma.PaymentAttemptWhereInput
+  orderBy?: Prisma.PaymentAttemptOrderByWithRelationInput | Prisma.PaymentAttemptOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentAttemptWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentAttemptScalarFieldEnum | Prisma.PaymentAttemptScalarFieldEnum[]
 }
 
 /**

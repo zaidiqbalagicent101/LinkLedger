@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
 import { ArrowLeft, ArrowRight, Inbox } from "lucide-react";
+import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 import { formatServiceType } from "@/components/publisher/service-options";
 import { requirePublisherProfile } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -33,7 +34,7 @@ async function PublisherRequestsContent() {
 
   return (
     <main className="workspace-page">
-      <header className="workspace-header"><Link className="brand" href="/"><span className="brand-mark">L</span><span>LinkLedger</span></Link><nav className="workspace-nav"><Link href="/publisher/websites">My websites</Link><Link href="/publisher/dashboard">Dashboard</Link></nav></header>
+      <header className="workspace-header"><Link className="brand" href="/"><span className="brand-mark">L</span><span>LinkLedger</span></Link><PublisherAccountMenu /></header>
       <section className="workspace-content">
         <Link className="back-link" href="/publisher/dashboard"><ArrowLeft size={15} /> Publisher dashboard</Link>
         <div className="workspace-title-row"><div><p className="eyebrow">Publisher workspace</p><h1>Incoming requests</h1><p className="workspace-intro">Review collaboration requests for your websites.</p></div></div>

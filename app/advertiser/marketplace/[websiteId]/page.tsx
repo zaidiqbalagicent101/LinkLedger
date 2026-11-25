@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -20,6 +19,7 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { BuyNowButton } from "@/components/advertiser/BuyNowButton";
+import { AdvertiserAccountMenu } from "@/components/advertiser/AdvertiserAccountMenu";
 import {
   formatServiceLinkType,
   formatServiceType,
@@ -45,9 +45,23 @@ async function MarketplaceWebsiteDetails({
   params,
 }: WebsitePageProps) {
   await connection();
-  await requireRole("ADVERTISER");
+  const user = await requireRole("ADVERTISER");
 
   const { websiteId } = await params;
+
+  const purchasedServiceIds = new Set(
+    (await prisma.order.findMany({
+      where: {
+        advertiserId: user.id,
+        source: "DIRECT_PURCHASE",
+        paymentStatus: "PAID",
+        publisherServiceId: { not: null },
+      },
+      select: { publisherServiceId: true },
+    }))
+      .map((order) => order.publisherServiceId)
+      .filter((serviceId): serviceId is string => Boolean(serviceId)),
+  );
 
   const website = await prisma.publisherWebsite.findFirst({
     where: {
@@ -110,14 +124,7 @@ async function MarketplaceWebsiteDetails({
             LinkLedger
           </Link>
 
-          <nav className="flex items-center gap-4 sm:gap-7">
-            <Link
-              href="/advertiser/marketplace"
-              className="text-sm font-semibold text-[#0e7a5a]"
-            >
-              Marketplace
-            </Link>
-          </nav>
+          <AdvertiserAccountMenu />
         </div>
       </header>
 
@@ -368,7 +375,10 @@ async function MarketplaceWebsiteDetails({
                 )}
 
                 <div className="mt-auto pt-6">
-                  <BuyNowButton serviceId={service.id} />
+                  <BuyNowButton
+                    serviceId={service.id}
+                    alreadyPurchased={purchasedServiceIds.has(service.id)}
+                  />
                 </div>
               </article>
             ))}

@@ -53,12 +53,22 @@ export type Session = Prisma.SessionModel
  */
 export type CollaborationRequest = Prisma.CollaborationRequestModel
 /**
- * Model CollaborationMessage
- * 
- */
-export type CollaborationMessage = Prisma.CollaborationMessageModel
-/**
  * Model Order
  * 
  */
 export type Order = Prisma.OrderModel
+/**
+ * Model PaymentAttempt
+ * 
+ */
+export type PaymentAttempt = Prisma.PaymentAttemptModel
+/**
+ * Model RazorpayWebhookEvent
+ * 
+ */
+export type RazorpayWebhookEvent = Prisma.RazorpayWebhookEventModel
+/**
+ * Model AdvertiserCartItem
+ * 
+ */
+export type AdvertiserCartItem = Prisma.AdvertiserCartItemModel

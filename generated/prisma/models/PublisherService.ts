@@ -331,6 +331,7 @@ export type PublisherServiceWhereInput = {
   website?: Prisma.XOR<Prisma.PublisherWebsiteScalarRelationFilter, Prisma.PublisherWebsiteWhereInput>
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  cartItems?: Prisma.AdvertiserCartItemListRelationFilter
 }
 
 export type PublisherServiceOrderByWithRelationInput = {
@@ -355,6 +356,7 @@ export type PublisherServiceOrderByWithRelationInput = {
   website?: Prisma.PublisherWebsiteOrderByWithRelationInput
   collaborationRequests?: Prisma.CollaborationRequestOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  cartItems?: Prisma.AdvertiserCartItemOrderByRelationAggregateInput
   _relevance?: Prisma.PublisherServiceOrderByRelevanceInput
 }
 
@@ -383,6 +385,7 @@ export type PublisherServiceWhereUniqueInput = Prisma.AtLeast<{
   website?: Prisma.XOR<Prisma.PublisherWebsiteScalarRelationFilter, Prisma.PublisherWebsiteWhereInput>
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  cartItems?: Prisma.AdvertiserCartItemListRelationFilter
 }, "id">
 
 export type PublisherServiceOrderByWithAggregationInput = {
@@ -456,6 +459,7 @@ export type PublisherServiceCreateInput = {
   website: Prisma.PublisherWebsiteCreateNestedOneWithoutServicesInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutServiceInput
   orders?: Prisma.OrderCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceUncheckedCreateInput = {
@@ -479,6 +483,7 @@ export type PublisherServiceUncheckedCreateInput = {
   updatedAt?: Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutServiceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceUpdateInput = {
@@ -502,6 +507,7 @@ export type PublisherServiceUpdateInput = {
   website?: Prisma.PublisherWebsiteUpdateOneRequiredWithoutServicesNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutServiceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceUncheckedUpdateInput = {
@@ -525,6 +531,7 @@ export type PublisherServiceUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutServiceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceCreateManyInput = {
@@ -685,6 +692,11 @@ export type PublisherServiceNullableScalarRelationFilter = {
   isNot?: Prisma.PublisherServiceWhereInput | null
 }
 
+export type PublisherServiceScalarRelationFilter = {
+  is?: Prisma.PublisherServiceWhereInput
+  isNot?: Prisma.PublisherServiceWhereInput
+}
+
 export type PublisherServiceCreateNestedManyWithoutWebsiteInput = {
   create?: Prisma.XOR<Prisma.PublisherServiceCreateWithoutWebsiteInput, Prisma.PublisherServiceUncheckedCreateWithoutWebsiteInput> | Prisma.PublisherServiceCreateWithoutWebsiteInput[] | Prisma.PublisherServiceUncheckedCreateWithoutWebsiteInput[]
   connectOrCreate?: Prisma.PublisherServiceCreateOrConnectWithoutWebsiteInput | Prisma.PublisherServiceCreateOrConnectWithoutWebsiteInput[]
@@ -775,6 +787,20 @@ export type PublisherServiceUpdateOneWithoutOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PublisherServiceUpdateToOneWithWhereWithoutOrdersInput, Prisma.PublisherServiceUpdateWithoutOrdersInput>, Prisma.PublisherServiceUncheckedUpdateWithoutOrdersInput>
 }
 
+export type PublisherServiceCreateNestedOneWithoutCartItemsInput = {
+  create?: Prisma.XOR<Prisma.PublisherServiceCreateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedCreateWithoutCartItemsInput>
+  connectOrCreate?: Prisma.PublisherServiceCreateOrConnectWithoutCartItemsInput
+  connect?: Prisma.PublisherServiceWhereUniqueInput
+}
+
+export type PublisherServiceUpdateOneRequiredWithoutCartItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.PublisherServiceCreateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedCreateWithoutCartItemsInput>
+  connectOrCreate?: Prisma.PublisherServiceCreateOrConnectWithoutCartItemsInput
+  upsert?: Prisma.PublisherServiceUpsertWithoutCartItemsInput
+  connect?: Prisma.PublisherServiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PublisherServiceUpdateToOneWithWhereWithoutCartItemsInput, Prisma.PublisherServiceUpdateWithoutCartItemsInput>, Prisma.PublisherServiceUncheckedUpdateWithoutCartItemsInput>
+}
+
 export type PublisherServiceCreateWithoutWebsiteInput = {
   id?: string
   serviceName: string
@@ -795,6 +821,7 @@ export type PublisherServiceCreateWithoutWebsiteInput = {
   updatedAt?: Date | string
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutServiceInput
   orders?: Prisma.OrderCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceUncheckedCreateWithoutWebsiteInput = {
@@ -817,6 +844,7 @@ export type PublisherServiceUncheckedCreateWithoutWebsiteInput = {
   updatedAt?: Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutServiceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceCreateOrConnectWithoutWebsiteInput = {
@@ -889,6 +917,7 @@ export type PublisherServiceCreateWithoutCollaborationRequestsInput = {
   updatedAt?: Date | string
   website: Prisma.PublisherWebsiteCreateNestedOneWithoutServicesInput
   orders?: Prisma.OrderCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceUncheckedCreateWithoutCollaborationRequestsInput = {
@@ -911,6 +940,7 @@ export type PublisherServiceUncheckedCreateWithoutCollaborationRequestsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceCreateOrConnectWithoutCollaborationRequestsInput = {
@@ -949,6 +979,7 @@ export type PublisherServiceUpdateWithoutCollaborationRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   website?: Prisma.PublisherWebsiteUpdateOneRequiredWithoutServicesNestedInput
   orders?: Prisma.OrderUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceUncheckedUpdateWithoutCollaborationRequestsInput = {
@@ -971,6 +1002,7 @@ export type PublisherServiceUncheckedUpdateWithoutCollaborationRequestsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orders?: Prisma.OrderUncheckedUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceCreateWithoutOrdersInput = {
@@ -993,6 +1025,7 @@ export type PublisherServiceCreateWithoutOrdersInput = {
   updatedAt?: Date | string
   website: Prisma.PublisherWebsiteCreateNestedOneWithoutServicesInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceUncheckedCreateWithoutOrdersInput = {
@@ -1015,6 +1048,7 @@ export type PublisherServiceUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutServiceInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutPublisherServiceInput
 }
 
 export type PublisherServiceCreateOrConnectWithoutOrdersInput = {
@@ -1053,6 +1087,7 @@ export type PublisherServiceUpdateWithoutOrdersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   website?: Prisma.PublisherWebsiteUpdateOneRequiredWithoutServicesNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceUncheckedUpdateWithoutOrdersInput = {
@@ -1075,6 +1110,115 @@ export type PublisherServiceUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutPublisherServiceNestedInput
+}
+
+export type PublisherServiceCreateWithoutCartItemsInput = {
+  id?: string
+  serviceName: string
+  serviceType: $Enums.PublisherServiceType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency: string
+  deliveryTimeDays: number
+  contentWritingIncluded?: boolean
+  linkType?: $Enums.ServiceLinkType
+  maximumLinks?: number | null
+  homepageLinkAvailable?: boolean
+  description: string
+  publishingGuidelines?: string | null
+  additionalConditions?: string | null
+  isActive?: boolean
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  website: Prisma.PublisherWebsiteCreateNestedOneWithoutServicesInput
+  collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutServiceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutServiceInput
+}
+
+export type PublisherServiceUncheckedCreateWithoutCartItemsInput = {
+  id?: string
+  publisherWebsiteId: string
+  serviceName: string
+  serviceType: $Enums.PublisherServiceType
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency: string
+  deliveryTimeDays: number
+  contentWritingIncluded?: boolean
+  linkType?: $Enums.ServiceLinkType
+  maximumLinks?: number | null
+  homepageLinkAvailable?: boolean
+  description: string
+  publishingGuidelines?: string | null
+  additionalConditions?: string | null
+  isActive?: boolean
+  archivedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutServiceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutServiceInput
+}
+
+export type PublisherServiceCreateOrConnectWithoutCartItemsInput = {
+  where: Prisma.PublisherServiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.PublisherServiceCreateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedCreateWithoutCartItemsInput>
+}
+
+export type PublisherServiceUpsertWithoutCartItemsInput = {
+  update: Prisma.XOR<Prisma.PublisherServiceUpdateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedUpdateWithoutCartItemsInput>
+  create: Prisma.XOR<Prisma.PublisherServiceCreateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedCreateWithoutCartItemsInput>
+  where?: Prisma.PublisherServiceWhereInput
+}
+
+export type PublisherServiceUpdateToOneWithWhereWithoutCartItemsInput = {
+  where?: Prisma.PublisherServiceWhereInput
+  data: Prisma.XOR<Prisma.PublisherServiceUpdateWithoutCartItemsInput, Prisma.PublisherServiceUncheckedUpdateWithoutCartItemsInput>
+}
+
+export type PublisherServiceUpdateWithoutCartItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceName?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceType?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  contentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  linkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  maximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  homepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  publishingGuidelines?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  website?: Prisma.PublisherWebsiteUpdateOneRequiredWithoutServicesNestedInput
+  collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutServiceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutServiceNestedInput
+}
+
+export type PublisherServiceUncheckedUpdateWithoutCartItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  publisherWebsiteId?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceName?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceType?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  deliveryTimeDays?: Prisma.IntFieldUpdateOperationsInput | number
+  contentWritingIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  linkType?: Prisma.EnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType
+  maximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  homepageLinkAvailable?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  publishingGuidelines?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalConditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutServiceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutServiceNestedInput
 }
 
 export type PublisherServiceCreateManyWebsiteInput = {
@@ -1117,6 +1261,7 @@ export type PublisherServiceUpdateWithoutWebsiteInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutServiceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceUncheckedUpdateWithoutWebsiteInput = {
@@ -1139,6 +1284,7 @@ export type PublisherServiceUncheckedUpdateWithoutWebsiteInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutServiceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutServiceNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutPublisherServiceNestedInput
 }
 
 export type PublisherServiceUncheckedUpdateManyWithoutWebsiteInput = {
@@ -1169,11 +1315,13 @@ export type PublisherServiceUncheckedUpdateManyWithoutWebsiteInput = {
 export type PublisherServiceCountOutputType = {
   collaborationRequests: number
   orders: number
+  cartItems: number
 }
 
 export type PublisherServiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collaborationRequests?: boolean | PublisherServiceCountOutputTypeCountCollaborationRequestsArgs
   orders?: boolean | PublisherServiceCountOutputTypeCountOrdersArgs
+  cartItems?: boolean | PublisherServiceCountOutputTypeCountCartItemsArgs
 }
 
 /**
@@ -1200,6 +1348,13 @@ export type PublisherServiceCountOutputTypeCountOrdersArgs<ExtArgs extends runti
   where?: Prisma.OrderWhereInput
 }
 
+/**
+ * PublisherServiceCountOutputType without action
+ */
+export type PublisherServiceCountOutputTypeCountCartItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdvertiserCartItemWhereInput
+}
+
 
 export type PublisherServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1223,6 +1378,7 @@ export type PublisherServiceSelect<ExtArgs extends runtime.Types.Extensions.Inte
   website?: boolean | Prisma.PublisherWebsiteDefaultArgs<ExtArgs>
   collaborationRequests?: boolean | Prisma.PublisherService$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.PublisherService$ordersArgs<ExtArgs>
+  cartItems?: boolean | Prisma.PublisherService$cartItemsArgs<ExtArgs>
   _count?: boolean | Prisma.PublisherServiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["publisherService"]>
 
@@ -1254,6 +1410,7 @@ export type PublisherServiceInclude<ExtArgs extends runtime.Types.Extensions.Int
   website?: boolean | Prisma.PublisherWebsiteDefaultArgs<ExtArgs>
   collaborationRequests?: boolean | Prisma.PublisherService$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.PublisherService$ordersArgs<ExtArgs>
+  cartItems?: boolean | Prisma.PublisherService$cartItemsArgs<ExtArgs>
   _count?: boolean | Prisma.PublisherServiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1263,6 +1420,7 @@ export type $PublisherServicePayload<ExtArgs extends runtime.Types.Extensions.In
     website: Prisma.$PublisherWebsitePayload<ExtArgs>
     collaborationRequests: Prisma.$CollaborationRequestPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    cartItems: Prisma.$AdvertiserCartItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1626,6 +1784,7 @@ export interface Prisma__PublisherServiceClient<T, Null = never, ExtArgs extends
   website<T extends Prisma.PublisherWebsiteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PublisherWebsiteDefaultArgs<ExtArgs>>): Prisma.Prisma__PublisherWebsiteClient<runtime.Types.Result.GetResult<Prisma.$PublisherWebsitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   collaborationRequests<T extends Prisma.PublisherService$collaborationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PublisherService$collaborationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollaborationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.PublisherService$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PublisherService$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cartItems<T extends Prisma.PublisherService$cartItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PublisherService$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdvertiserCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2066,6 +2225,30 @@ export type PublisherService$ordersArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * PublisherService.cartItems
+ */
+export type PublisherService$cartItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdvertiserCartItem
+   */
+  select?: Prisma.AdvertiserCartItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdvertiserCartItem
+   */
+  omit?: Prisma.AdvertiserCartItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdvertiserCartItemInclude<ExtArgs> | null
+  where?: Prisma.AdvertiserCartItemWhereInput
+  orderBy?: Prisma.AdvertiserCartItemOrderByWithRelationInput | Prisma.AdvertiserCartItemOrderByWithRelationInput[]
+  cursor?: Prisma.AdvertiserCartItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdvertiserCartItemScalarFieldEnum | Prisma.AdvertiserCartItemScalarFieldEnum[]
 }
 
 /**

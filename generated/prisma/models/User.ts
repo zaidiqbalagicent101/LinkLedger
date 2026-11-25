@@ -228,7 +228,7 @@ export type UserWhereInput = {
   websiteReviews?: Prisma.WebsiteReviewListRelationFilter
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
-  collaborationMessages?: Prisma.CollaborationMessageListRelationFilter
+  cartItems?: Prisma.AdvertiserCartItemListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -248,7 +248,7 @@ export type UserOrderByWithRelationInput = {
   websiteReviews?: Prisma.WebsiteReviewOrderByRelationAggregateInput
   collaborationRequests?: Prisma.CollaborationRequestOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
-  collaborationMessages?: Prisma.CollaborationMessageOrderByRelationAggregateInput
+  cartItems?: Prisma.AdvertiserCartItemOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -272,7 +272,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   websiteReviews?: Prisma.WebsiteReviewListRelationFilter
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
-  collaborationMessages?: Prisma.CollaborationMessageListRelationFilter
+  cartItems?: Prisma.AdvertiserCartItemListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -324,7 +324,7 @@ export type UserCreateInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -344,7 +344,7 @@ export type UserUncheckedCreateInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUpdateInput = {
@@ -364,7 +364,7 @@ export type UserUpdateInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -384,7 +384,7 @@ export type UserUncheckedUpdateInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -573,20 +573,6 @@ export type UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCollaborationRequestsInput, Prisma.UserUpdateWithoutCollaborationRequestsInput>, Prisma.UserUncheckedUpdateWithoutCollaborationRequestsInput>
 }
 
-export type UserCreateNestedOneWithoutCollaborationMessagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollaborationMessagesInput, Prisma.UserUncheckedCreateWithoutCollaborationMessagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollaborationMessagesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutCollaborationMessagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollaborationMessagesInput, Prisma.UserUncheckedCreateWithoutCollaborationMessagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollaborationMessagesInput
-  upsert?: Prisma.UserUpsertWithoutCollaborationMessagesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCollaborationMessagesInput, Prisma.UserUpdateWithoutCollaborationMessagesInput>, Prisma.UserUncheckedUpdateWithoutCollaborationMessagesInput>
-}
-
 export type UserCreateNestedOneWithoutOrdersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
@@ -599,6 +585,20 @@ export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
   upsert?: Prisma.UserUpsertWithoutOrdersInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+}
+
+export type UserCreateNestedOneWithoutCartItemsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCartItemsInput, Prisma.UserUncheckedCreateWithoutCartItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCartItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCartItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCartItemsInput, Prisma.UserUncheckedCreateWithoutCartItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCartItemsInput
+  upsert?: Prisma.UserUpsertWithoutCartItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCartItemsInput, Prisma.UserUpdateWithoutCartItemsInput>, Prisma.UserUncheckedUpdateWithoutCartItemsInput>
 }
 
 export type UserCreateWithoutPublisherProfileInput = {
@@ -617,7 +617,7 @@ export type UserCreateWithoutPublisherProfileInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutPublisherProfileInput = {
@@ -636,7 +636,7 @@ export type UserUncheckedCreateWithoutPublisherProfileInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutPublisherProfileInput = {
@@ -671,7 +671,7 @@ export type UserUpdateWithoutPublisherProfileInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPublisherProfileInput = {
@@ -690,7 +690,7 @@ export type UserUncheckedUpdateWithoutPublisherProfileInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateWithoutReviewedWebsitesInput = {
@@ -709,7 +709,7 @@ export type UserCreateWithoutReviewedWebsitesInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedWebsitesInput = {
@@ -728,7 +728,7 @@ export type UserUncheckedCreateWithoutReviewedWebsitesInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedWebsitesInput = {
@@ -763,7 +763,7 @@ export type UserUpdateWithoutReviewedWebsitesInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedWebsitesInput = {
@@ -782,7 +782,7 @@ export type UserUncheckedUpdateWithoutReviewedWebsitesInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateWithoutWebsiteReviewsInput = {
@@ -801,7 +801,7 @@ export type UserCreateWithoutWebsiteReviewsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutWebsiteReviewsInput = {
@@ -820,7 +820,7 @@ export type UserUncheckedCreateWithoutWebsiteReviewsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutWebsiteReviewsInput = {
@@ -855,7 +855,7 @@ export type UserUpdateWithoutWebsiteReviewsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWebsiteReviewsInput = {
@@ -874,7 +874,7 @@ export type UserUncheckedUpdateWithoutWebsiteReviewsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -893,7 +893,7 @@ export type UserCreateWithoutSessionsInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -912,7 +912,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -947,7 +947,7 @@ export type UserUpdateWithoutSessionsInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -966,7 +966,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateWithoutCollaborationRequestsInput = {
@@ -985,7 +985,7 @@ export type UserCreateWithoutCollaborationRequestsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutCollaborationRequestsInput = {
@@ -1004,7 +1004,7 @@ export type UserUncheckedCreateWithoutCollaborationRequestsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutCollaborationRequestsInput = {
@@ -1039,7 +1039,7 @@ export type UserUpdateWithoutCollaborationRequestsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCollaborationRequestsInput = {
@@ -1058,99 +1058,7 @@ export type UserUncheckedUpdateWithoutCollaborationRequestsInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
-}
-
-export type UserCreateWithoutCollaborationMessagesInput = {
-  id?: string
-  fullName: string
-  email: string
-  password: string
-  role: $Enums.UserRole
-  status?: $Enums.AccountStatus
-  country: string
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  publisherProfile?: Prisma.PublisherProfileCreateNestedOneWithoutUserInput
-  reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
-  websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
-  collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
-}
-
-export type UserUncheckedCreateWithoutCollaborationMessagesInput = {
-  id?: string
-  fullName: string
-  email: string
-  password: string
-  role: $Enums.UserRole
-  status?: $Enums.AccountStatus
-  country: string
-  lastLoginAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  publisherProfile?: Prisma.PublisherProfileUncheckedCreateNestedOneWithoutUserInput
-  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
-  websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
-  collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
-}
-
-export type UserCreateOrConnectWithoutCollaborationMessagesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCollaborationMessagesInput, Prisma.UserUncheckedCreateWithoutCollaborationMessagesInput>
-}
-
-export type UserUpsertWithoutCollaborationMessagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCollaborationMessagesInput, Prisma.UserUncheckedUpdateWithoutCollaborationMessagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCollaborationMessagesInput, Prisma.UserUncheckedCreateWithoutCollaborationMessagesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutCollaborationMessagesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCollaborationMessagesInput, Prisma.UserUncheckedUpdateWithoutCollaborationMessagesInput>
-}
-
-export type UserUpdateWithoutCollaborationMessagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  fullName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  publisherProfile?: Prisma.PublisherProfileUpdateOneWithoutUserNestedInput
-  reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
-  websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
-  collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutCollaborationMessagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  fullName?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  publisherProfile?: Prisma.PublisherProfileUncheckedUpdateOneWithoutUserNestedInput
-  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
-  websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
-  collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -1169,7 +1077,7 @@ export type UserCreateWithoutOrdersInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -1188,7 +1096,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutSenderInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -1223,7 +1131,7 @@ export type UserUpdateWithoutOrdersInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -1242,7 +1150,99 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
-  collaborationMessages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutSenderNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+}
+
+export type UserCreateWithoutCartItemsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  role: $Enums.UserRole
+  status?: $Enums.AccountStatus
+  country: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  publisherProfile?: Prisma.PublisherProfileCreateNestedOneWithoutUserInput
+  reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
+  websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
+  collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
+}
+
+export type UserUncheckedCreateWithoutCartItemsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  role: $Enums.UserRole
+  status?: $Enums.AccountStatus
+  country: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  publisherProfile?: Prisma.PublisherProfileUncheckedCreateNestedOneWithoutUserInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
+  websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
+}
+
+export type UserCreateOrConnectWithoutCartItemsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCartItemsInput, Prisma.UserUncheckedCreateWithoutCartItemsInput>
+}
+
+export type UserUpsertWithoutCartItemsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCartItemsInput, Prisma.UserUncheckedUpdateWithoutCartItemsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCartItemsInput, Prisma.UserUncheckedCreateWithoutCartItemsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCartItemsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCartItemsInput, Prisma.UserUncheckedUpdateWithoutCartItemsInput>
+}
+
+export type UserUpdateWithoutCartItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  publisherProfile?: Prisma.PublisherProfileUpdateOneWithoutUserNestedInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
+  websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
+  collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCartItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  publisherProfile?: Prisma.PublisherProfileUncheckedUpdateOneWithoutUserNestedInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
+  websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
 
@@ -1256,7 +1256,7 @@ export type UserCountOutputType = {
   websiteReviews: number
   collaborationRequests: number
   orders: number
-  collaborationMessages: number
+  cartItems: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1265,7 +1265,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   websiteReviews?: boolean | UserCountOutputTypeCountWebsiteReviewsArgs
   collaborationRequests?: boolean | UserCountOutputTypeCountCollaborationRequestsArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
-  collaborationMessages?: boolean | UserCountOutputTypeCountCollaborationMessagesArgs
+  cartItems?: boolean | UserCountOutputTypeCountCartItemsArgs
 }
 
 /**
@@ -1316,8 +1316,8 @@ export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Ext
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCollaborationMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CollaborationMessageWhereInput
+export type UserCountOutputTypeCountCartItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdvertiserCartItemWhereInput
 }
 
 
@@ -1338,7 +1338,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   websiteReviews?: boolean | Prisma.User$websiteReviewsArgs<ExtArgs>
   collaborationRequests?: boolean | Prisma.User$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  collaborationMessages?: boolean | Prisma.User$collaborationMessagesArgs<ExtArgs>
+  cartItems?: boolean | Prisma.User$cartItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1365,7 +1365,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   websiteReviews?: boolean | Prisma.User$websiteReviewsArgs<ExtArgs>
   collaborationRequests?: boolean | Prisma.User$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  collaborationMessages?: boolean | Prisma.User$collaborationMessagesArgs<ExtArgs>
+  cartItems?: boolean | Prisma.User$cartItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1378,7 +1378,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     websiteReviews: Prisma.$WebsiteReviewPayload<ExtArgs>[]
     collaborationRequests: Prisma.$CollaborationRequestPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
-    collaborationMessages: Prisma.$CollaborationMessagePayload<ExtArgs>[]
+    cartItems: Prisma.$AdvertiserCartItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1737,7 +1737,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   websiteReviews<T extends Prisma.User$websiteReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$websiteReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WebsiteReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   collaborationRequests<T extends Prisma.User$collaborationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collaborationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollaborationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  collaborationMessages<T extends Prisma.User$collaborationMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collaborationMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollaborationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cartItems<T extends Prisma.User$cartItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdvertiserCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2264,27 +2264,27 @@ export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
- * User.collaborationMessages
+ * User.cartItems
  */
-export type User$collaborationMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$cartItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CollaborationMessage
+   * Select specific fields to fetch from the AdvertiserCartItem
    */
-  select?: Prisma.CollaborationMessageSelect<ExtArgs> | null
+  select?: Prisma.AdvertiserCartItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CollaborationMessage
+   * Omit specific fields from the AdvertiserCartItem
    */
-  omit?: Prisma.CollaborationMessageOmit<ExtArgs> | null
+  omit?: Prisma.AdvertiserCartItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CollaborationMessageInclude<ExtArgs> | null
-  where?: Prisma.CollaborationMessageWhereInput
-  orderBy?: Prisma.CollaborationMessageOrderByWithRelationInput | Prisma.CollaborationMessageOrderByWithRelationInput[]
-  cursor?: Prisma.CollaborationMessageWhereUniqueInput
+  include?: Prisma.AdvertiserCartItemInclude<ExtArgs> | null
+  where?: Prisma.AdvertiserCartItemWhereInput
+  orderBy?: Prisma.AdvertiserCartItemOrderByWithRelationInput | Prisma.AdvertiserCartItemOrderByWithRelationInput[]
+  cursor?: Prisma.AdvertiserCartItemWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CollaborationMessageScalarFieldEnum | Prisma.CollaborationMessageScalarFieldEnum[]
+  distinct?: Prisma.AdvertiserCartItemScalarFieldEnum | Prisma.AdvertiserCartItemScalarFieldEnum[]
 }
 
 /**

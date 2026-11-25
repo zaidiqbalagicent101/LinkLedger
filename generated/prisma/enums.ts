@@ -66,14 +66,6 @@ export const CollaborationRequestStatus = {
 export type CollaborationRequestStatus = (typeof CollaborationRequestStatus)[keyof typeof CollaborationRequestStatus]
 
 
-export const CollaborationMessageType = {
-  MESSAGE: 'MESSAGE',
-  PROPOSAL: 'PROPOSAL'
-} as const
-
-export type CollaborationMessageType = (typeof CollaborationMessageType)[keyof typeof CollaborationMessageType]
-
-
 export const OrderSource = {
   DIRECT_PURCHASE: 'DIRECT_PURCHASE',
   CUSTOM_DEAL: 'CUSTOM_DEAL'
@@ -99,8 +91,21 @@ export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 export const PaymentStatus = {
   PENDING: 'PENDING',
+  AUTHORIZED: 'AUTHORIZED',
   PAID: 'PAID',
+  FAILED: 'FAILED',
   REFUNDED: 'REFUNDED'
 } as const
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const PaymentAttemptStatus = {
+  PENDING: 'PENDING',
+  AUTHORIZED: 'AUTHORIZED',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentAttemptStatus = (typeof PaymentAttemptStatus)[keyof typeof PaymentAttemptStatus]

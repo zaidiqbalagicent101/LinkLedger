@@ -404,8 +404,10 @@ export const ModelName = {
   WebsiteReview: 'WebsiteReview',
   Session: 'Session',
   CollaborationRequest: 'CollaborationRequest',
-  CollaborationMessage: 'CollaborationMessage',
-  Order: 'Order'
+  Order: 'Order',
+  PaymentAttempt: 'PaymentAttempt',
+  RazorpayWebhookEvent: 'RazorpayWebhookEvent',
+  AdvertiserCartItem: 'AdvertiserCartItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "publisherProfile" | "publisherWebsite" | "publisherService" | "websiteReview" | "session" | "collaborationRequest" | "collaborationMessage" | "order"
+    modelProps: "user" | "publisherProfile" | "publisherWebsite" | "publisherService" | "websiteReview" | "session" | "collaborationRequest" | "order" | "paymentAttempt" | "razorpayWebhookEvent" | "advertiserCartItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -887,72 +889,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    CollaborationMessage: {
-      payload: Prisma.$CollaborationMessagePayload<ExtArgs>
-      fields: Prisma.CollaborationMessageFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.CollaborationMessageFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.CollaborationMessageFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        findFirst: {
-          args: Prisma.CollaborationMessageFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.CollaborationMessageFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        findMany: {
-          args: Prisma.CollaborationMessageFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>[]
-        }
-        create: {
-          args: Prisma.CollaborationMessageCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        createMany: {
-          args: Prisma.CollaborationMessageCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.CollaborationMessageDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        update: {
-          args: Prisma.CollaborationMessageUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        deleteMany: {
-          args: Prisma.CollaborationMessageDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.CollaborationMessageUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.CollaborationMessageUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CollaborationMessagePayload>
-        }
-        aggregate: {
-          args: Prisma.CollaborationMessageAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCollaborationMessage>
-        }
-        groupBy: {
-          args: Prisma.CollaborationMessageGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CollaborationMessageGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.CollaborationMessageCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CollaborationMessageCountAggregateOutputType> | number
-        }
-      }
-    }
     Order: {
       payload: Prisma.$OrderPayload<ExtArgs>
       fields: Prisma.OrderFieldRefs
@@ -1016,6 +952,204 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.OrderCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.OrderCountAggregateOutputType> | number
+        }
+      }
+    }
+    PaymentAttempt: {
+      payload: Prisma.$PaymentAttemptPayload<ExtArgs>
+      fields: Prisma.PaymentAttemptFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PaymentAttemptFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PaymentAttemptFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        findFirst: {
+          args: Prisma.PaymentAttemptFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PaymentAttemptFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        findMany: {
+          args: Prisma.PaymentAttemptFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>[]
+        }
+        create: {
+          args: Prisma.PaymentAttemptCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        createMany: {
+          args: Prisma.PaymentAttemptCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.PaymentAttemptDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        update: {
+          args: Prisma.PaymentAttemptUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        deleteMany: {
+          args: Prisma.PaymentAttemptDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PaymentAttemptUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.PaymentAttemptUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAttemptPayload>
+        }
+        aggregate: {
+          args: Prisma.PaymentAttemptAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePaymentAttempt>
+        }
+        groupBy: {
+          args: Prisma.PaymentAttemptGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentAttemptGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PaymentAttemptCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PaymentAttemptCountAggregateOutputType> | number
+        }
+      }
+    }
+    RazorpayWebhookEvent: {
+      payload: Prisma.$RazorpayWebhookEventPayload<ExtArgs>
+      fields: Prisma.RazorpayWebhookEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RazorpayWebhookEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RazorpayWebhookEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        findFirst: {
+          args: Prisma.RazorpayWebhookEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RazorpayWebhookEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        findMany: {
+          args: Prisma.RazorpayWebhookEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>[]
+        }
+        create: {
+          args: Prisma.RazorpayWebhookEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        createMany: {
+          args: Prisma.RazorpayWebhookEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.RazorpayWebhookEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        update: {
+          args: Prisma.RazorpayWebhookEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.RazorpayWebhookEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RazorpayWebhookEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.RazorpayWebhookEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RazorpayWebhookEventPayload>
+        }
+        aggregate: {
+          args: Prisma.RazorpayWebhookEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRazorpayWebhookEvent>
+        }
+        groupBy: {
+          args: Prisma.RazorpayWebhookEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RazorpayWebhookEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RazorpayWebhookEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RazorpayWebhookEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    AdvertiserCartItem: {
+      payload: Prisma.$AdvertiserCartItemPayload<ExtArgs>
+      fields: Prisma.AdvertiserCartItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdvertiserCartItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdvertiserCartItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        findFirst: {
+          args: Prisma.AdvertiserCartItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdvertiserCartItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        findMany: {
+          args: Prisma.AdvertiserCartItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>[]
+        }
+        create: {
+          args: Prisma.AdvertiserCartItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        createMany: {
+          args: Prisma.AdvertiserCartItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AdvertiserCartItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        update: {
+          args: Prisma.AdvertiserCartItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdvertiserCartItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdvertiserCartItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AdvertiserCartItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdvertiserCartItemPayload>
+        }
+        aggregate: {
+          args: Prisma.AdvertiserCartItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdvertiserCartItem>
+        }
+        groupBy: {
+          args: Prisma.AdvertiserCartItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdvertiserCartItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdvertiserCartItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdvertiserCartItemCountAggregateOutputType> | number
         }
       }
     }
@@ -1168,25 +1302,10 @@ export const CollaborationRequestScalarFieldEnum = {
   publisherServiceId: 'publisherServiceId',
   websiteNameSnapshot: 'websiteNameSnapshot',
   websiteUrlSnapshot: 'websiteUrlSnapshot',
-  websiteNicheSnapshot: 'websiteNicheSnapshot',
-  monthlyTrafficSnapshot: 'monthlyTrafficSnapshot',
-  websiteLanguageSnapshot: 'websiteLanguageSnapshot',
-  targetAudienceCountrySnapshot: 'targetAudienceCountrySnapshot',
-  websiteDescriptionSnapshot: 'websiteDescriptionSnapshot',
-  domainRatingSnapshot: 'domainRatingSnapshot',
-  domainAuthoritySnapshot: 'domainAuthoritySnapshot',
   serviceNameSnapshot: 'serviceNameSnapshot',
   serviceTypeSnapshot: 'serviceTypeSnapshot',
-  serviceDescriptionSnapshot: 'serviceDescriptionSnapshot',
-  publishingGuidelinesSnapshot: 'publishingGuidelinesSnapshot',
-  additionalConditionsSnapshot: 'additionalConditionsSnapshot',
   originalPrice: 'originalPrice',
   originalCurrency: 'originalCurrency',
-  originalDeliveryTimeDays: 'originalDeliveryTimeDays',
-  originalContentWritingIncluded: 'originalContentWritingIncluded',
-  originalLinkType: 'originalLinkType',
-  originalMaximumLinks: 'originalMaximumLinks',
-  originalHomepageLinkAvailable: 'originalHomepageLinkAvailable',
   topic: 'topic',
   targetUrl: 'targetUrl',
   anchorText: 'anchorText',
@@ -1200,14 +1319,6 @@ export const CollaborationRequestScalarFieldEnum = {
   revisedCurrency: 'revisedCurrency',
   revisedTerms: 'revisedTerms',
   revisedAt: 'revisedAt',
-  requestedDeliveryTimeDays: 'requestedDeliveryTimeDays',
-  requestedNumberOfLinks: 'requestedNumberOfLinks',
-  requestedHomepageLinkAvailable: 'requestedHomepageLinkAvailable',
-  requestedLinkType: 'requestedLinkType',
-  revisedDeliveryTimeDays: 'revisedDeliveryTimeDays',
-  revisedNumberOfLinks: 'revisedNumberOfLinks',
-  revisedHomepageLinkAvailable: 'revisedHomepageLinkAvailable',
-  revisedLinkType: 'revisedLinkType',
   acceptedAt: 'acceptedAt',
   cancelledAt: 'cancelledAt',
   completedAt: 'completedAt',
@@ -1217,25 +1328,6 @@ export const CollaborationRequestScalarFieldEnum = {
 } as const
 
 export type CollaborationRequestScalarFieldEnum = (typeof CollaborationRequestScalarFieldEnum)[keyof typeof CollaborationRequestScalarFieldEnum]
-
-
-export const CollaborationMessageScalarFieldEnum = {
-  id: 'id',
-  collaborationRequestId: 'collaborationRequestId',
-  senderId: 'senderId',
-  type: 'type',
-  body: 'body',
-  proposalPrice: 'proposalPrice',
-  proposalCurrency: 'proposalCurrency',
-  proposalDeliveryTimeDays: 'proposalDeliveryTimeDays',
-  proposalNumberOfLinks: 'proposalNumberOfLinks',
-  proposalHomepageLinkAvailable: 'proposalHomepageLinkAvailable',
-  proposalLinkType: 'proposalLinkType',
-  proposalTerms: 'proposalTerms',
-  createdAt: 'createdAt'
-} as const
-
-export type CollaborationMessageScalarFieldEnum = (typeof CollaborationMessageScalarFieldEnum)[keyof typeof CollaborationMessageScalarFieldEnum]
 
 
 export const OrderScalarFieldEnum = {
@@ -1286,13 +1378,63 @@ export const OrderScalarFieldEnum = {
   cancellationResponse: 'cancellationResponse',
   cancellationRespondedAt: 'cancellationRespondedAt',
   cancelledAt: 'cancelledAt',
+  publicationUrl: 'publicationUrl',
   publishedAt: 'publishedAt',
   completedAt: 'completedAt',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  razorpayRefundId: 'razorpayRefundId',
+  paymentAmount: 'paymentAmount',
+  paymentCurrency: 'paymentCurrency',
+  paymentCapturedAt: 'paymentCapturedAt',
+  paymentRefundedAt: 'paymentRefundedAt',
+  paymentFailureCode: 'paymentFailureCode',
+  paymentFailureMessage: 'paymentFailureMessage',
+  paymentUpdatedAt: 'paymentUpdatedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const PaymentAttemptScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  idempotencyKey: 'idempotencyKey',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  failureCode: 'failureCode',
+  failureMessage: 'failureMessage',
+  lastVerifiedAt: 'lastVerifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentAttemptScalarFieldEnum = (typeof PaymentAttemptScalarFieldEnum)[keyof typeof PaymentAttemptScalarFieldEnum]
+
+
+export const RazorpayWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  processedAt: 'processedAt',
+  payloadHash: 'payloadHash'
+} as const
+
+export type RazorpayWebhookEventScalarFieldEnum = (typeof RazorpayWebhookEventScalarFieldEnum)[keyof typeof RazorpayWebhookEventScalarFieldEnum]
+
+
+export const AdvertiserCartItemScalarFieldEnum = {
+  id: 'id',
+  advertiserId: 'advertiserId',
+  publisherServiceId: 'publisherServiceId',
+  createdAt: 'createdAt'
+} as const
+
+export type AdvertiserCartItemScalarFieldEnum = (typeof AdvertiserCartItemScalarFieldEnum)[keyof typeof AdvertiserCartItemScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1391,14 +1533,7 @@ export const CollaborationRequestOrderByRelevanceFieldEnum = {
   publisherServiceId: 'publisherServiceId',
   websiteNameSnapshot: 'websiteNameSnapshot',
   websiteUrlSnapshot: 'websiteUrlSnapshot',
-  websiteNicheSnapshot: 'websiteNicheSnapshot',
-  websiteLanguageSnapshot: 'websiteLanguageSnapshot',
-  targetAudienceCountrySnapshot: 'targetAudienceCountrySnapshot',
-  websiteDescriptionSnapshot: 'websiteDescriptionSnapshot',
   serviceNameSnapshot: 'serviceNameSnapshot',
-  serviceDescriptionSnapshot: 'serviceDescriptionSnapshot',
-  publishingGuidelinesSnapshot: 'publishingGuidelinesSnapshot',
-  additionalConditionsSnapshot: 'additionalConditionsSnapshot',
   originalCurrency: 'originalCurrency',
   topic: 'topic',
   targetUrl: 'targetUrl',
@@ -1413,18 +1548,6 @@ export const CollaborationRequestOrderByRelevanceFieldEnum = {
 } as const
 
 export type CollaborationRequestOrderByRelevanceFieldEnum = (typeof CollaborationRequestOrderByRelevanceFieldEnum)[keyof typeof CollaborationRequestOrderByRelevanceFieldEnum]
-
-
-export const CollaborationMessageOrderByRelevanceFieldEnum = {
-  id: 'id',
-  collaborationRequestId: 'collaborationRequestId',
-  senderId: 'senderId',
-  body: 'body',
-  proposalCurrency: 'proposalCurrency',
-  proposalTerms: 'proposalTerms'
-} as const
-
-export type CollaborationMessageOrderByRelevanceFieldEnum = (typeof CollaborationMessageOrderByRelevanceFieldEnum)[keyof typeof CollaborationMessageOrderByRelevanceFieldEnum]
 
 
 export const OrderOrderByRelevanceFieldEnum = {
@@ -1452,10 +1575,49 @@ export const OrderOrderByRelevanceFieldEnum = {
   contentRequirements: 'contentRequirements',
   additionalInstructions: 'additionalInstructions',
   cancellationReason: 'cancellationReason',
-  cancellationResponse: 'cancellationResponse'
+  cancellationResponse: 'cancellationResponse',
+  publicationUrl: 'publicationUrl',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  razorpayRefundId: 'razorpayRefundId',
+  paymentCurrency: 'paymentCurrency',
+  paymentFailureCode: 'paymentFailureCode',
+  paymentFailureMessage: 'paymentFailureMessage'
 } as const
 
 export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
+
+
+export const PaymentAttemptOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  idempotencyKey: 'idempotencyKey',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  currency: 'currency',
+  failureCode: 'failureCode',
+  failureMessage: 'failureMessage'
+} as const
+
+export type PaymentAttemptOrderByRelevanceFieldEnum = (typeof PaymentAttemptOrderByRelevanceFieldEnum)[keyof typeof PaymentAttemptOrderByRelevanceFieldEnum]
+
+
+export const RazorpayWebhookEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  payloadHash: 'payloadHash'
+} as const
+
+export type RazorpayWebhookEventOrderByRelevanceFieldEnum = (typeof RazorpayWebhookEventOrderByRelevanceFieldEnum)[keyof typeof RazorpayWebhookEventOrderByRelevanceFieldEnum]
+
+
+export const AdvertiserCartItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  advertiserId: 'advertiserId',
+  publisherServiceId: 'publisherServiceId'
+} as const
+
+export type AdvertiserCartItemOrderByRelevanceFieldEnum = (typeof AdvertiserCartItemOrderByRelevanceFieldEnum)[keyof typeof AdvertiserCartItemOrderByRelevanceFieldEnum]
 
 
 
@@ -1542,13 +1704,6 @@ export type EnumCollaborationRequestStatusFieldRefInput<$PrismaModel> = FieldRef
 
 
 /**
- * Reference to a field of type 'CollaborationMessageType'
- */
-export type EnumCollaborationMessageTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CollaborationMessageType'>
-    
-
-
-/**
  * Reference to a field of type 'OrderSource'
  */
 export type EnumOrderSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderSource'>
@@ -1566,6 +1721,13 @@ export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'PaymentStatus'
  */
 export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentAttemptStatus'
+ */
+export type EnumPaymentAttemptStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentAttemptStatus'>
     
 
 
@@ -1733,8 +1895,10 @@ export type GlobalOmitConfig = {
   websiteReview?: Prisma.WebsiteReviewOmit
   session?: Prisma.SessionOmit
   collaborationRequest?: Prisma.CollaborationRequestOmit
-  collaborationMessage?: Prisma.CollaborationMessageOmit
   order?: Prisma.OrderOmit
+  paymentAttempt?: Prisma.PaymentAttemptOmit
+  razorpayWebhookEvent?: Prisma.RazorpayWebhookEventOmit
+  advertiserCartItem?: Prisma.AdvertiserCartItemOmit
 }
 
 /* Types for Logging */

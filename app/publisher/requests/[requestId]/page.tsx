@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { connection } from "next/server";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
+import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 import { PublisherRequestResponseForm } from "@/components/CollaborationForms";
 import { getCurrencyOptions } from "@/lib/currency-options";
 import { formatServiceType } from "@/components/publisher/service-options";
@@ -51,7 +52,7 @@ async function PublisherRequestDetails({ params }: RequestPageProps) {
 
   return (
     <main className="workspace-page">
-      <header className="workspace-header"><Link className="brand" href="/"><span className="brand-mark">L</span><span>LinkLedger</span></Link><nav className="workspace-nav"><Link href="/publisher/requests">Incoming requests</Link><Link href="/publisher/dashboard">Dashboard</Link></nav></header>
+      <header className="workspace-header"><Link className="brand" href="/"><span className="brand-mark">L</span><span>LinkLedger</span></Link><PublisherAccountMenu /></header>
       <section className="workspace-content workspace-content--narrow">
         <Link className="back-link" href="/publisher/requests"><ArrowLeft size={15} /> Incoming requests</Link>
         <div className="workspace-title-row">

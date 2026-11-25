@@ -58,8 +58,10 @@ export const ModelName = {
   WebsiteReview: 'WebsiteReview',
   Session: 'Session',
   CollaborationRequest: 'CollaborationRequest',
-  CollaborationMessage: 'CollaborationMessage',
-  Order: 'Order'
+  Order: 'Order',
+  PaymentAttempt: 'PaymentAttempt',
+  RazorpayWebhookEvent: 'RazorpayWebhookEvent',
+  AdvertiserCartItem: 'AdvertiserCartItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -188,25 +190,10 @@ export const CollaborationRequestScalarFieldEnum = {
   publisherServiceId: 'publisherServiceId',
   websiteNameSnapshot: 'websiteNameSnapshot',
   websiteUrlSnapshot: 'websiteUrlSnapshot',
-  websiteNicheSnapshot: 'websiteNicheSnapshot',
-  monthlyTrafficSnapshot: 'monthlyTrafficSnapshot',
-  websiteLanguageSnapshot: 'websiteLanguageSnapshot',
-  targetAudienceCountrySnapshot: 'targetAudienceCountrySnapshot',
-  websiteDescriptionSnapshot: 'websiteDescriptionSnapshot',
-  domainRatingSnapshot: 'domainRatingSnapshot',
-  domainAuthoritySnapshot: 'domainAuthoritySnapshot',
   serviceNameSnapshot: 'serviceNameSnapshot',
   serviceTypeSnapshot: 'serviceTypeSnapshot',
-  serviceDescriptionSnapshot: 'serviceDescriptionSnapshot',
-  publishingGuidelinesSnapshot: 'publishingGuidelinesSnapshot',
-  additionalConditionsSnapshot: 'additionalConditionsSnapshot',
   originalPrice: 'originalPrice',
   originalCurrency: 'originalCurrency',
-  originalDeliveryTimeDays: 'originalDeliveryTimeDays',
-  originalContentWritingIncluded: 'originalContentWritingIncluded',
-  originalLinkType: 'originalLinkType',
-  originalMaximumLinks: 'originalMaximumLinks',
-  originalHomepageLinkAvailable: 'originalHomepageLinkAvailable',
   topic: 'topic',
   targetUrl: 'targetUrl',
   anchorText: 'anchorText',
@@ -220,14 +207,6 @@ export const CollaborationRequestScalarFieldEnum = {
   revisedCurrency: 'revisedCurrency',
   revisedTerms: 'revisedTerms',
   revisedAt: 'revisedAt',
-  requestedDeliveryTimeDays: 'requestedDeliveryTimeDays',
-  requestedNumberOfLinks: 'requestedNumberOfLinks',
-  requestedHomepageLinkAvailable: 'requestedHomepageLinkAvailable',
-  requestedLinkType: 'requestedLinkType',
-  revisedDeliveryTimeDays: 'revisedDeliveryTimeDays',
-  revisedNumberOfLinks: 'revisedNumberOfLinks',
-  revisedHomepageLinkAvailable: 'revisedHomepageLinkAvailable',
-  revisedLinkType: 'revisedLinkType',
   acceptedAt: 'acceptedAt',
   cancelledAt: 'cancelledAt',
   completedAt: 'completedAt',
@@ -237,25 +216,6 @@ export const CollaborationRequestScalarFieldEnum = {
 } as const
 
 export type CollaborationRequestScalarFieldEnum = (typeof CollaborationRequestScalarFieldEnum)[keyof typeof CollaborationRequestScalarFieldEnum]
-
-
-export const CollaborationMessageScalarFieldEnum = {
-  id: 'id',
-  collaborationRequestId: 'collaborationRequestId',
-  senderId: 'senderId',
-  type: 'type',
-  body: 'body',
-  proposalPrice: 'proposalPrice',
-  proposalCurrency: 'proposalCurrency',
-  proposalDeliveryTimeDays: 'proposalDeliveryTimeDays',
-  proposalNumberOfLinks: 'proposalNumberOfLinks',
-  proposalHomepageLinkAvailable: 'proposalHomepageLinkAvailable',
-  proposalLinkType: 'proposalLinkType',
-  proposalTerms: 'proposalTerms',
-  createdAt: 'createdAt'
-} as const
-
-export type CollaborationMessageScalarFieldEnum = (typeof CollaborationMessageScalarFieldEnum)[keyof typeof CollaborationMessageScalarFieldEnum]
 
 
 export const OrderScalarFieldEnum = {
@@ -306,13 +266,63 @@ export const OrderScalarFieldEnum = {
   cancellationResponse: 'cancellationResponse',
   cancellationRespondedAt: 'cancellationRespondedAt',
   cancelledAt: 'cancelledAt',
+  publicationUrl: 'publicationUrl',
   publishedAt: 'publishedAt',
   completedAt: 'completedAt',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  razorpayRefundId: 'razorpayRefundId',
+  paymentAmount: 'paymentAmount',
+  paymentCurrency: 'paymentCurrency',
+  paymentCapturedAt: 'paymentCapturedAt',
+  paymentRefundedAt: 'paymentRefundedAt',
+  paymentFailureCode: 'paymentFailureCode',
+  paymentFailureMessage: 'paymentFailureMessage',
+  paymentUpdatedAt: 'paymentUpdatedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const PaymentAttemptScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  idempotencyKey: 'idempotencyKey',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  amount: 'amount',
+  currency: 'currency',
+  status: 'status',
+  failureCode: 'failureCode',
+  failureMessage: 'failureMessage',
+  lastVerifiedAt: 'lastVerifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentAttemptScalarFieldEnum = (typeof PaymentAttemptScalarFieldEnum)[keyof typeof PaymentAttemptScalarFieldEnum]
+
+
+export const RazorpayWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  processedAt: 'processedAt',
+  payloadHash: 'payloadHash'
+} as const
+
+export type RazorpayWebhookEventScalarFieldEnum = (typeof RazorpayWebhookEventScalarFieldEnum)[keyof typeof RazorpayWebhookEventScalarFieldEnum]
+
+
+export const AdvertiserCartItemScalarFieldEnum = {
+  id: 'id',
+  advertiserId: 'advertiserId',
+  publisherServiceId: 'publisherServiceId',
+  createdAt: 'createdAt'
+} as const
+
+export type AdvertiserCartItemScalarFieldEnum = (typeof AdvertiserCartItemScalarFieldEnum)[keyof typeof AdvertiserCartItemScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -411,14 +421,7 @@ export const CollaborationRequestOrderByRelevanceFieldEnum = {
   publisherServiceId: 'publisherServiceId',
   websiteNameSnapshot: 'websiteNameSnapshot',
   websiteUrlSnapshot: 'websiteUrlSnapshot',
-  websiteNicheSnapshot: 'websiteNicheSnapshot',
-  websiteLanguageSnapshot: 'websiteLanguageSnapshot',
-  targetAudienceCountrySnapshot: 'targetAudienceCountrySnapshot',
-  websiteDescriptionSnapshot: 'websiteDescriptionSnapshot',
   serviceNameSnapshot: 'serviceNameSnapshot',
-  serviceDescriptionSnapshot: 'serviceDescriptionSnapshot',
-  publishingGuidelinesSnapshot: 'publishingGuidelinesSnapshot',
-  additionalConditionsSnapshot: 'additionalConditionsSnapshot',
   originalCurrency: 'originalCurrency',
   topic: 'topic',
   targetUrl: 'targetUrl',
@@ -433,18 +436,6 @@ export const CollaborationRequestOrderByRelevanceFieldEnum = {
 } as const
 
 export type CollaborationRequestOrderByRelevanceFieldEnum = (typeof CollaborationRequestOrderByRelevanceFieldEnum)[keyof typeof CollaborationRequestOrderByRelevanceFieldEnum]
-
-
-export const CollaborationMessageOrderByRelevanceFieldEnum = {
-  id: 'id',
-  collaborationRequestId: 'collaborationRequestId',
-  senderId: 'senderId',
-  body: 'body',
-  proposalCurrency: 'proposalCurrency',
-  proposalTerms: 'proposalTerms'
-} as const
-
-export type CollaborationMessageOrderByRelevanceFieldEnum = (typeof CollaborationMessageOrderByRelevanceFieldEnum)[keyof typeof CollaborationMessageOrderByRelevanceFieldEnum]
 
 
 export const OrderOrderByRelevanceFieldEnum = {
@@ -472,8 +463,47 @@ export const OrderOrderByRelevanceFieldEnum = {
   contentRequirements: 'contentRequirements',
   additionalInstructions: 'additionalInstructions',
   cancellationReason: 'cancellationReason',
-  cancellationResponse: 'cancellationResponse'
+  cancellationResponse: 'cancellationResponse',
+  publicationUrl: 'publicationUrl',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  razorpayRefundId: 'razorpayRefundId',
+  paymentCurrency: 'paymentCurrency',
+  paymentFailureCode: 'paymentFailureCode',
+  paymentFailureMessage: 'paymentFailureMessage'
 } as const
 
 export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
+
+
+export const PaymentAttemptOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  idempotencyKey: 'idempotencyKey',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  currency: 'currency',
+  failureCode: 'failureCode',
+  failureMessage: 'failureMessage'
+} as const
+
+export type PaymentAttemptOrderByRelevanceFieldEnum = (typeof PaymentAttemptOrderByRelevanceFieldEnum)[keyof typeof PaymentAttemptOrderByRelevanceFieldEnum]
+
+
+export const RazorpayWebhookEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  payloadHash: 'payloadHash'
+} as const
+
+export type RazorpayWebhookEventOrderByRelevanceFieldEnum = (typeof RazorpayWebhookEventOrderByRelevanceFieldEnum)[keyof typeof RazorpayWebhookEventOrderByRelevanceFieldEnum]
+
+
+export const AdvertiserCartItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  advertiserId: 'advertiserId',
+  publisherServiceId: 'publisherServiceId'
+} as const
+
+export type AdvertiserCartItemOrderByRelevanceFieldEnum = (typeof AdvertiserCartItemOrderByRelevanceFieldEnum)[keyof typeof AdvertiserCartItemOrderByRelevanceFieldEnum]
 

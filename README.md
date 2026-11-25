@@ -14,6 +14,12 @@ Create the first admin only after the database migration is applied: set `ADMIN_
 
 Advertiser and publisher accounts share the `User` table. Login sessions are stored in the database and protected by encrypted, HTTP-only cookies. Set a strong `SESSION_PASSWORD` in every production environment; the development fallback must never be used in production.
 
+## Razorpay payments
+
+Use Razorpay Test Mode first. Configure `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`, and `NEXT_PUBLIC_RAZORPAY_KEY_ID` in `.env`. Never expose `RAZORPAY_KEY_SECRET`.
+
+Register `https://your-domain/api/webhooks/razorpay` in Razorpay and enable payment authorized, captured, failed, and refund events. Confirmation occurs only after server signature verification and provider payment capture validation. Duplicate and delayed webhooks are protected by provider event IDs.
+
 ## Checks
 
 - `npm run lint`

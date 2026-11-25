@@ -13,6 +13,7 @@ import { requirePublisherProfile } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { formatServiceType } from "@/components/publisher/service-options";
 import { PublisherServiceControls } from "@/components/publisher/PublisherServiceControls";
+import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 
 type WebsiteServicesPageProps = {
   params: Promise<{ websiteId: string }>;
@@ -68,13 +69,7 @@ export default async function WebsiteServicesPage({
             LinkLedger
           </Link>
 
-          <Link
-            href={websiteUrl}
-            className="inline-flex max-w-[50%] items-center gap-2 text-sm font-semibold text-[#5f6f69] transition-colors hover:text-[#0e7a5a]"
-          >
-            <ArrowLeft size={16} className="shrink-0" />
-            <span className="truncate">{website.websiteName}</span>
-          </Link>
+          <PublisherAccountMenu />
         </div>
       </header>
 

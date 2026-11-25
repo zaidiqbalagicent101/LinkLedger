@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { connection } from "next/server";
 import {
@@ -14,6 +13,8 @@ import {
 } from "lucide-react";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+
+export const instant = false;
 
 type AdminUsersPageProps = {
   searchParams: Promise<{ q?: string; role?: string }>;

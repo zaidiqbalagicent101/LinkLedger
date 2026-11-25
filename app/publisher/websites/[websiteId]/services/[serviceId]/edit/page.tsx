@@ -2,6 +2,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
+import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 import { PublisherServiceForm } from "@/components/publisher/PublisherServiceForm";
 import { requirePublisherProfile } from "@/lib/auth";
 import { getCurrencyOptions } from "@/lib/currency-options";
@@ -35,9 +36,7 @@ export default async function EditPublisherServicePage({ params }: EditServicePa
             <span className="grid size-8 place-items-center rounded-lg bg-[#0e7a5a] text-[17px] text-white">L</span>
             LinkLedger
           </Link>
-          <Link href={`/publisher/websites/${websiteId}/services/${serviceId}`} className="inline-flex items-center gap-2 text-sm font-semibold text-[#5f6f69] hover:text-[#0e7a5a]">
-            <ArrowLeft size={16} /> Service details
-          </Link>
+          <PublisherAccountMenu />
         </div>
       </header>
 

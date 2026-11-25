@@ -27,33 +27,15 @@ export type AggregateCollaborationRequest = {
 }
 
 export type CollaborationRequestAvgAggregateOutputType = {
-  monthlyTrafficSnapshot: number | null
-  domainRatingSnapshot: number | null
-  domainAuthoritySnapshot: number | null
   originalPrice: runtime.Decimal | null
-  originalDeliveryTimeDays: number | null
-  originalMaximumLinks: number | null
   proposedBudget: runtime.Decimal | null
   revisedPrice: runtime.Decimal | null
-  requestedDeliveryTimeDays: number | null
-  requestedNumberOfLinks: number | null
-  revisedDeliveryTimeDays: number | null
-  revisedNumberOfLinks: number | null
 }
 
 export type CollaborationRequestSumAggregateOutputType = {
-  monthlyTrafficSnapshot: number | null
-  domainRatingSnapshot: number | null
-  domainAuthoritySnapshot: number | null
   originalPrice: runtime.Decimal | null
-  originalDeliveryTimeDays: number | null
-  originalMaximumLinks: number | null
   proposedBudget: runtime.Decimal | null
   revisedPrice: runtime.Decimal | null
-  requestedDeliveryTimeDays: number | null
-  requestedNumberOfLinks: number | null
-  revisedDeliveryTimeDays: number | null
-  revisedNumberOfLinks: number | null
 }
 
 export type CollaborationRequestMinAggregateOutputType = {
@@ -63,25 +45,10 @@ export type CollaborationRequestMinAggregateOutputType = {
   publisherServiceId: string | null
   websiteNameSnapshot: string | null
   websiteUrlSnapshot: string | null
-  websiteNicheSnapshot: string | null
-  monthlyTrafficSnapshot: number | null
-  websiteLanguageSnapshot: string | null
-  targetAudienceCountrySnapshot: string | null
-  websiteDescriptionSnapshot: string | null
-  domainRatingSnapshot: number | null
-  domainAuthoritySnapshot: number | null
   serviceNameSnapshot: string | null
   serviceTypeSnapshot: $Enums.PublisherServiceType | null
-  serviceDescriptionSnapshot: string | null
-  publishingGuidelinesSnapshot: string | null
-  additionalConditionsSnapshot: string | null
   originalPrice: runtime.Decimal | null
   originalCurrency: string | null
-  originalDeliveryTimeDays: number | null
-  originalContentWritingIncluded: boolean | null
-  originalLinkType: $Enums.ServiceLinkType | null
-  originalMaximumLinks: number | null
-  originalHomepageLinkAvailable: boolean | null
   topic: string | null
   targetUrl: string | null
   anchorText: string | null
@@ -95,14 +62,6 @@ export type CollaborationRequestMinAggregateOutputType = {
   revisedCurrency: string | null
   revisedTerms: string | null
   revisedAt: Date | null
-  requestedDeliveryTimeDays: number | null
-  requestedNumberOfLinks: number | null
-  requestedHomepageLinkAvailable: boolean | null
-  requestedLinkType: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays: number | null
-  revisedNumberOfLinks: number | null
-  revisedHomepageLinkAvailable: boolean | null
-  revisedLinkType: $Enums.ServiceLinkType | null
   acceptedAt: Date | null
   cancelledAt: Date | null
   completedAt: Date | null
@@ -118,25 +77,10 @@ export type CollaborationRequestMaxAggregateOutputType = {
   publisherServiceId: string | null
   websiteNameSnapshot: string | null
   websiteUrlSnapshot: string | null
-  websiteNicheSnapshot: string | null
-  monthlyTrafficSnapshot: number | null
-  websiteLanguageSnapshot: string | null
-  targetAudienceCountrySnapshot: string | null
-  websiteDescriptionSnapshot: string | null
-  domainRatingSnapshot: number | null
-  domainAuthoritySnapshot: number | null
   serviceNameSnapshot: string | null
   serviceTypeSnapshot: $Enums.PublisherServiceType | null
-  serviceDescriptionSnapshot: string | null
-  publishingGuidelinesSnapshot: string | null
-  additionalConditionsSnapshot: string | null
   originalPrice: runtime.Decimal | null
   originalCurrency: string | null
-  originalDeliveryTimeDays: number | null
-  originalContentWritingIncluded: boolean | null
-  originalLinkType: $Enums.ServiceLinkType | null
-  originalMaximumLinks: number | null
-  originalHomepageLinkAvailable: boolean | null
   topic: string | null
   targetUrl: string | null
   anchorText: string | null
@@ -150,14 +94,6 @@ export type CollaborationRequestMaxAggregateOutputType = {
   revisedCurrency: string | null
   revisedTerms: string | null
   revisedAt: Date | null
-  requestedDeliveryTimeDays: number | null
-  requestedNumberOfLinks: number | null
-  requestedHomepageLinkAvailable: boolean | null
-  requestedLinkType: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays: number | null
-  revisedNumberOfLinks: number | null
-  revisedHomepageLinkAvailable: boolean | null
-  revisedLinkType: $Enums.ServiceLinkType | null
   acceptedAt: Date | null
   cancelledAt: Date | null
   completedAt: Date | null
@@ -173,25 +109,10 @@ export type CollaborationRequestCountAggregateOutputType = {
   publisherServiceId: number
   websiteNameSnapshot: number
   websiteUrlSnapshot: number
-  websiteNicheSnapshot: number
-  monthlyTrafficSnapshot: number
-  websiteLanguageSnapshot: number
-  targetAudienceCountrySnapshot: number
-  websiteDescriptionSnapshot: number
-  domainRatingSnapshot: number
-  domainAuthoritySnapshot: number
   serviceNameSnapshot: number
   serviceTypeSnapshot: number
-  serviceDescriptionSnapshot: number
-  publishingGuidelinesSnapshot: number
-  additionalConditionsSnapshot: number
   originalPrice: number
   originalCurrency: number
-  originalDeliveryTimeDays: number
-  originalContentWritingIncluded: number
-  originalLinkType: number
-  originalMaximumLinks: number
-  originalHomepageLinkAvailable: number
   topic: number
   targetUrl: number
   anchorText: number
@@ -205,14 +126,6 @@ export type CollaborationRequestCountAggregateOutputType = {
   revisedCurrency: number
   revisedTerms: number
   revisedAt: number
-  requestedDeliveryTimeDays: number
-  requestedNumberOfLinks: number
-  requestedHomepageLinkAvailable: number
-  requestedLinkType: number
-  revisedDeliveryTimeDays: number
-  revisedNumberOfLinks: number
-  revisedHomepageLinkAvailable: number
-  revisedLinkType: number
   acceptedAt: number
   cancelledAt: number
   completedAt: number
@@ -224,33 +137,15 @@ export type CollaborationRequestCountAggregateOutputType = {
 
 
 export type CollaborationRequestAvgAggregateInputType = {
-  monthlyTrafficSnapshot?: true
-  domainRatingSnapshot?: true
-  domainAuthoritySnapshot?: true
   originalPrice?: true
-  originalDeliveryTimeDays?: true
-  originalMaximumLinks?: true
   proposedBudget?: true
   revisedPrice?: true
-  requestedDeliveryTimeDays?: true
-  requestedNumberOfLinks?: true
-  revisedDeliveryTimeDays?: true
-  revisedNumberOfLinks?: true
 }
 
 export type CollaborationRequestSumAggregateInputType = {
-  monthlyTrafficSnapshot?: true
-  domainRatingSnapshot?: true
-  domainAuthoritySnapshot?: true
   originalPrice?: true
-  originalDeliveryTimeDays?: true
-  originalMaximumLinks?: true
   proposedBudget?: true
   revisedPrice?: true
-  requestedDeliveryTimeDays?: true
-  requestedNumberOfLinks?: true
-  revisedDeliveryTimeDays?: true
-  revisedNumberOfLinks?: true
 }
 
 export type CollaborationRequestMinAggregateInputType = {
@@ -260,25 +155,10 @@ export type CollaborationRequestMinAggregateInputType = {
   publisherServiceId?: true
   websiteNameSnapshot?: true
   websiteUrlSnapshot?: true
-  websiteNicheSnapshot?: true
-  monthlyTrafficSnapshot?: true
-  websiteLanguageSnapshot?: true
-  targetAudienceCountrySnapshot?: true
-  websiteDescriptionSnapshot?: true
-  domainRatingSnapshot?: true
-  domainAuthoritySnapshot?: true
   serviceNameSnapshot?: true
   serviceTypeSnapshot?: true
-  serviceDescriptionSnapshot?: true
-  publishingGuidelinesSnapshot?: true
-  additionalConditionsSnapshot?: true
   originalPrice?: true
   originalCurrency?: true
-  originalDeliveryTimeDays?: true
-  originalContentWritingIncluded?: true
-  originalLinkType?: true
-  originalMaximumLinks?: true
-  originalHomepageLinkAvailable?: true
   topic?: true
   targetUrl?: true
   anchorText?: true
@@ -292,14 +172,6 @@ export type CollaborationRequestMinAggregateInputType = {
   revisedCurrency?: true
   revisedTerms?: true
   revisedAt?: true
-  requestedDeliveryTimeDays?: true
-  requestedNumberOfLinks?: true
-  requestedHomepageLinkAvailable?: true
-  requestedLinkType?: true
-  revisedDeliveryTimeDays?: true
-  revisedNumberOfLinks?: true
-  revisedHomepageLinkAvailable?: true
-  revisedLinkType?: true
   acceptedAt?: true
   cancelledAt?: true
   completedAt?: true
@@ -315,25 +187,10 @@ export type CollaborationRequestMaxAggregateInputType = {
   publisherServiceId?: true
   websiteNameSnapshot?: true
   websiteUrlSnapshot?: true
-  websiteNicheSnapshot?: true
-  monthlyTrafficSnapshot?: true
-  websiteLanguageSnapshot?: true
-  targetAudienceCountrySnapshot?: true
-  websiteDescriptionSnapshot?: true
-  domainRatingSnapshot?: true
-  domainAuthoritySnapshot?: true
   serviceNameSnapshot?: true
   serviceTypeSnapshot?: true
-  serviceDescriptionSnapshot?: true
-  publishingGuidelinesSnapshot?: true
-  additionalConditionsSnapshot?: true
   originalPrice?: true
   originalCurrency?: true
-  originalDeliveryTimeDays?: true
-  originalContentWritingIncluded?: true
-  originalLinkType?: true
-  originalMaximumLinks?: true
-  originalHomepageLinkAvailable?: true
   topic?: true
   targetUrl?: true
   anchorText?: true
@@ -347,14 +204,6 @@ export type CollaborationRequestMaxAggregateInputType = {
   revisedCurrency?: true
   revisedTerms?: true
   revisedAt?: true
-  requestedDeliveryTimeDays?: true
-  requestedNumberOfLinks?: true
-  requestedHomepageLinkAvailable?: true
-  requestedLinkType?: true
-  revisedDeliveryTimeDays?: true
-  revisedNumberOfLinks?: true
-  revisedHomepageLinkAvailable?: true
-  revisedLinkType?: true
   acceptedAt?: true
   cancelledAt?: true
   completedAt?: true
@@ -370,25 +219,10 @@ export type CollaborationRequestCountAggregateInputType = {
   publisherServiceId?: true
   websiteNameSnapshot?: true
   websiteUrlSnapshot?: true
-  websiteNicheSnapshot?: true
-  monthlyTrafficSnapshot?: true
-  websiteLanguageSnapshot?: true
-  targetAudienceCountrySnapshot?: true
-  websiteDescriptionSnapshot?: true
-  domainRatingSnapshot?: true
-  domainAuthoritySnapshot?: true
   serviceNameSnapshot?: true
   serviceTypeSnapshot?: true
-  serviceDescriptionSnapshot?: true
-  publishingGuidelinesSnapshot?: true
-  additionalConditionsSnapshot?: true
   originalPrice?: true
   originalCurrency?: true
-  originalDeliveryTimeDays?: true
-  originalContentWritingIncluded?: true
-  originalLinkType?: true
-  originalMaximumLinks?: true
-  originalHomepageLinkAvailable?: true
   topic?: true
   targetUrl?: true
   anchorText?: true
@@ -402,14 +236,6 @@ export type CollaborationRequestCountAggregateInputType = {
   revisedCurrency?: true
   revisedTerms?: true
   revisedAt?: true
-  requestedDeliveryTimeDays?: true
-  requestedNumberOfLinks?: true
-  requestedHomepageLinkAvailable?: true
-  requestedLinkType?: true
-  revisedDeliveryTimeDays?: true
-  revisedNumberOfLinks?: true
-  revisedHomepageLinkAvailable?: true
-  revisedLinkType?: true
   acceptedAt?: true
   cancelledAt?: true
   completedAt?: true
@@ -512,25 +338,10 @@ export type CollaborationRequestGroupByOutputType = {
   publisherServiceId: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot: string | null
-  monthlyTrafficSnapshot: number | null
-  websiteLanguageSnapshot: string | null
-  targetAudienceCountrySnapshot: string | null
-  websiteDescriptionSnapshot: string | null
-  domainRatingSnapshot: number | null
-  domainAuthoritySnapshot: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot: string | null
-  publishingGuidelinesSnapshot: string | null
-  additionalConditionsSnapshot: string | null
   originalPrice: runtime.Decimal
   originalCurrency: string
-  originalDeliveryTimeDays: number | null
-  originalContentWritingIncluded: boolean | null
-  originalLinkType: $Enums.ServiceLinkType | null
-  originalMaximumLinks: number | null
-  originalHomepageLinkAvailable: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -544,14 +355,6 @@ export type CollaborationRequestGroupByOutputType = {
   revisedCurrency: string | null
   revisedTerms: string | null
   revisedAt: Date | null
-  requestedDeliveryTimeDays: number | null
-  requestedNumberOfLinks: number | null
-  requestedHomepageLinkAvailable: boolean | null
-  requestedLinkType: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays: number | null
-  revisedNumberOfLinks: number | null
-  revisedHomepageLinkAvailable: boolean | null
-  revisedLinkType: $Enums.ServiceLinkType | null
   acceptedAt: Date | null
   cancelledAt: Date | null
   completedAt: Date | null
@@ -590,25 +393,10 @@ export type CollaborationRequestWhereInput = {
   publisherServiceId?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   websiteNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   websiteUrlSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
-  websiteNicheSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  monthlyTrafficSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  websiteLanguageSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  targetAudienceCountrySnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  websiteDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  domainRatingSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  domainAuthoritySnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
   serviceNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFilter<"CollaborationRequest"> | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  publishingGuidelinesSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  additionalConditionsSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   originalPrice?: Prisma.DecimalFilter<"CollaborationRequest"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFilter<"CollaborationRequest"> | string
-  originalDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalContentWritingIncluded?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  originalLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
   topic?: Prisma.StringFilter<"CollaborationRequest"> | string
   targetUrl?: Prisma.StringFilter<"CollaborationRequest"> | string
   anchorText?: Prisma.StringFilter<"CollaborationRequest"> | string
@@ -622,14 +410,6 @@ export type CollaborationRequestWhereInput = {
   revisedCurrency?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedTerms?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  requestedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  revisedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
@@ -639,7 +419,6 @@ export type CollaborationRequestWhereInput = {
   advertiser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   website?: Prisma.XOR<Prisma.PublisherWebsiteNullableScalarRelationFilter, Prisma.PublisherWebsiteWhereInput> | null
   service?: Prisma.XOR<Prisma.PublisherServiceNullableScalarRelationFilter, Prisma.PublisherServiceWhereInput> | null
-  messages?: Prisma.CollaborationMessageListRelationFilter
   order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
 }
 
@@ -650,25 +429,10 @@ export type CollaborationRequestOrderByWithRelationInput = {
   publisherServiceId?: Prisma.SortOrderInput | Prisma.SortOrder
   websiteNameSnapshot?: Prisma.SortOrder
   websiteUrlSnapshot?: Prisma.SortOrder
-  websiteNicheSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  monthlyTrafficSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  websiteLanguageSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  targetAudienceCountrySnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  websiteDescriptionSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
   serviceNameSnapshot?: Prisma.SortOrder
   serviceTypeSnapshot?: Prisma.SortOrder
-  serviceDescriptionSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  publishingGuidelinesSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  additionalConditionsSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
   originalCurrency?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalContentWritingIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
   topic?: Prisma.SortOrder
   targetUrl?: Prisma.SortOrder
   anchorText?: Prisma.SortOrder
@@ -682,14 +446,6 @@ export type CollaborationRequestOrderByWithRelationInput = {
   revisedCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   revisedTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   revisedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
   acceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -699,7 +455,6 @@ export type CollaborationRequestOrderByWithRelationInput = {
   advertiser?: Prisma.UserOrderByWithRelationInput
   website?: Prisma.PublisherWebsiteOrderByWithRelationInput
   service?: Prisma.PublisherServiceOrderByWithRelationInput
-  messages?: Prisma.CollaborationMessageOrderByRelationAggregateInput
   order?: Prisma.OrderOrderByWithRelationInput
   _relevance?: Prisma.CollaborationRequestOrderByRelevanceInput
 }
@@ -715,25 +470,10 @@ export type CollaborationRequestWhereUniqueInput = Prisma.AtLeast<{
   publisherServiceId?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   websiteNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   websiteUrlSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
-  websiteNicheSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  monthlyTrafficSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  websiteLanguageSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  targetAudienceCountrySnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  websiteDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  domainRatingSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  domainAuthoritySnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
   serviceNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFilter<"CollaborationRequest"> | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  publishingGuidelinesSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  additionalConditionsSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   originalPrice?: Prisma.DecimalFilter<"CollaborationRequest"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFilter<"CollaborationRequest"> | string
-  originalDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalContentWritingIncluded?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  originalLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
   topic?: Prisma.StringFilter<"CollaborationRequest"> | string
   targetUrl?: Prisma.StringFilter<"CollaborationRequest"> | string
   anchorText?: Prisma.StringFilter<"CollaborationRequest"> | string
@@ -747,14 +487,6 @@ export type CollaborationRequestWhereUniqueInput = Prisma.AtLeast<{
   revisedCurrency?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedTerms?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  requestedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  revisedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
@@ -763,7 +495,6 @@ export type CollaborationRequestWhereUniqueInput = Prisma.AtLeast<{
   advertiser?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   website?: Prisma.XOR<Prisma.PublisherWebsiteNullableScalarRelationFilter, Prisma.PublisherWebsiteWhereInput> | null
   service?: Prisma.XOR<Prisma.PublisherServiceNullableScalarRelationFilter, Prisma.PublisherServiceWhereInput> | null
-  messages?: Prisma.CollaborationMessageListRelationFilter
   order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
 }, "id" | "dealId">
 
@@ -774,25 +505,10 @@ export type CollaborationRequestOrderByWithAggregationInput = {
   publisherServiceId?: Prisma.SortOrderInput | Prisma.SortOrder
   websiteNameSnapshot?: Prisma.SortOrder
   websiteUrlSnapshot?: Prisma.SortOrder
-  websiteNicheSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  monthlyTrafficSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  websiteLanguageSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  targetAudienceCountrySnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  websiteDescriptionSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
   serviceNameSnapshot?: Prisma.SortOrder
   serviceTypeSnapshot?: Prisma.SortOrder
-  serviceDescriptionSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  publishingGuidelinesSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
-  additionalConditionsSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
   originalCurrency?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalContentWritingIncluded?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  originalHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
   topic?: Prisma.SortOrder
   targetUrl?: Prisma.SortOrder
   anchorText?: Prisma.SortOrder
@@ -806,14 +522,6 @@ export type CollaborationRequestOrderByWithAggregationInput = {
   revisedCurrency?: Prisma.SortOrderInput | Prisma.SortOrder
   revisedTerms?: Prisma.SortOrderInput | Prisma.SortOrder
   revisedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
-  requestedLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedHomepageLinkAvailable?: Prisma.SortOrderInput | Prisma.SortOrder
-  revisedLinkType?: Prisma.SortOrderInput | Prisma.SortOrder
   acceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -837,25 +545,10 @@ export type CollaborationRequestScalarWhereWithAggregatesInput = {
   publisherServiceId?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
   websiteNameSnapshot?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
   websiteUrlSnapshot?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
-  websiteNicheSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  monthlyTrafficSnapshot?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  websiteLanguageSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  targetAudienceCountrySnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  websiteDescriptionSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  domainRatingSnapshot?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  domainAuthoritySnapshot?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
   serviceNameSnapshot?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeWithAggregatesFilter<"CollaborationRequest"> | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  publishingGuidelinesSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
-  additionalConditionsSnapshot?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
   originalPrice?: Prisma.DecimalWithAggregatesFilter<"CollaborationRequest"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
-  originalDeliveryTimeDays?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  originalContentWritingIncluded?: Prisma.BoolNullableWithAggregatesFilter<"CollaborationRequest"> | boolean | null
-  originalLinkType?: Prisma.EnumServiceLinkTypeNullableWithAggregatesFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  originalHomepageLinkAvailable?: Prisma.BoolNullableWithAggregatesFilter<"CollaborationRequest"> | boolean | null
   topic?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
   targetUrl?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
   anchorText?: Prisma.StringWithAggregatesFilter<"CollaborationRequest"> | string
@@ -869,14 +562,6 @@ export type CollaborationRequestScalarWhereWithAggregatesInput = {
   revisedCurrency?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
   revisedTerms?: Prisma.StringNullableWithAggregatesFilter<"CollaborationRequest"> | string | null
   revisedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CollaborationRequest"> | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  requestedNumberOfLinks?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  requestedHomepageLinkAvailable?: Prisma.BoolNullableWithAggregatesFilter<"CollaborationRequest"> | boolean | null
-  requestedLinkType?: Prisma.EnumServiceLinkTypeNullableWithAggregatesFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  revisedNumberOfLinks?: Prisma.IntNullableWithAggregatesFilter<"CollaborationRequest"> | number | null
-  revisedHomepageLinkAvailable?: Prisma.BoolNullableWithAggregatesFilter<"CollaborationRequest"> | boolean | null
-  revisedLinkType?: Prisma.EnumServiceLinkTypeNullableWithAggregatesFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CollaborationRequest"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CollaborationRequest"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CollaborationRequest"> | Date | string | null
@@ -889,25 +574,10 @@ export type CollaborationRequestCreateInput = {
   id?: string
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -921,14 +591,6 @@ export type CollaborationRequestCreateInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -938,8 +600,7 @@ export type CollaborationRequestCreateInput = {
   advertiser: Prisma.UserCreateNestedOneWithoutCollaborationRequestsInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutCollaborationRequestsInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutCollaborationRequestsInput
-  messages?: Prisma.CollaborationMessageCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestUncheckedCreateInput = {
@@ -949,25 +610,10 @@ export type CollaborationRequestUncheckedCreateInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -981,47 +627,23 @@ export type CollaborationRequestUncheckedCreateInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
   dealId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  messages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1035,14 +657,6 @@ export type CollaborationRequestUpdateInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1052,8 +666,7 @@ export type CollaborationRequestUpdateInput = {
   advertiser?: Prisma.UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutCollaborationRequestsNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutCollaborationRequestsNestedInput
-  messages?: Prisma.CollaborationMessageUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateInput = {
@@ -1063,25 +676,10 @@ export type CollaborationRequestUncheckedUpdateInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1095,22 +693,13 @@ export type CollaborationRequestUncheckedUpdateInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestCreateManyInput = {
@@ -1120,25 +709,10 @@ export type CollaborationRequestCreateManyInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -1152,14 +726,6 @@ export type CollaborationRequestCreateManyInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -1172,25 +738,10 @@ export type CollaborationRequestUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1204,14 +755,6 @@ export type CollaborationRequestUpdateManyMutationInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1227,25 +770,10 @@ export type CollaborationRequestUncheckedUpdateManyInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1259,14 +787,6 @@ export type CollaborationRequestUncheckedUpdateManyInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1298,25 +818,10 @@ export type CollaborationRequestCountOrderByAggregateInput = {
   publisherServiceId?: Prisma.SortOrder
   websiteNameSnapshot?: Prisma.SortOrder
   websiteUrlSnapshot?: Prisma.SortOrder
-  websiteNicheSnapshot?: Prisma.SortOrder
-  monthlyTrafficSnapshot?: Prisma.SortOrder
-  websiteLanguageSnapshot?: Prisma.SortOrder
-  targetAudienceCountrySnapshot?: Prisma.SortOrder
-  websiteDescriptionSnapshot?: Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrder
   serviceNameSnapshot?: Prisma.SortOrder
   serviceTypeSnapshot?: Prisma.SortOrder
-  serviceDescriptionSnapshot?: Prisma.SortOrder
-  publishingGuidelinesSnapshot?: Prisma.SortOrder
-  additionalConditionsSnapshot?: Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
   originalCurrency?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrder
-  originalContentWritingIncluded?: Prisma.SortOrder
-  originalLinkType?: Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrder
-  originalHomepageLinkAvailable?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   targetUrl?: Prisma.SortOrder
   anchorText?: Prisma.SortOrder
@@ -1330,14 +835,6 @@ export type CollaborationRequestCountOrderByAggregateInput = {
   revisedCurrency?: Prisma.SortOrder
   revisedTerms?: Prisma.SortOrder
   revisedAt?: Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrder
-  requestedHomepageLinkAvailable?: Prisma.SortOrder
-  requestedLinkType?: Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrder
-  revisedHomepageLinkAvailable?: Prisma.SortOrder
-  revisedLinkType?: Prisma.SortOrder
   acceptedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -1347,18 +844,9 @@ export type CollaborationRequestCountOrderByAggregateInput = {
 }
 
 export type CollaborationRequestAvgOrderByAggregateInput = {
-  monthlyTrafficSnapshot?: Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrder
   proposedBudget?: Prisma.SortOrder
   revisedPrice?: Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrder
 }
 
 export type CollaborationRequestMaxOrderByAggregateInput = {
@@ -1368,25 +856,10 @@ export type CollaborationRequestMaxOrderByAggregateInput = {
   publisherServiceId?: Prisma.SortOrder
   websiteNameSnapshot?: Prisma.SortOrder
   websiteUrlSnapshot?: Prisma.SortOrder
-  websiteNicheSnapshot?: Prisma.SortOrder
-  monthlyTrafficSnapshot?: Prisma.SortOrder
-  websiteLanguageSnapshot?: Prisma.SortOrder
-  targetAudienceCountrySnapshot?: Prisma.SortOrder
-  websiteDescriptionSnapshot?: Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrder
   serviceNameSnapshot?: Prisma.SortOrder
   serviceTypeSnapshot?: Prisma.SortOrder
-  serviceDescriptionSnapshot?: Prisma.SortOrder
-  publishingGuidelinesSnapshot?: Prisma.SortOrder
-  additionalConditionsSnapshot?: Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
   originalCurrency?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrder
-  originalContentWritingIncluded?: Prisma.SortOrder
-  originalLinkType?: Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrder
-  originalHomepageLinkAvailable?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   targetUrl?: Prisma.SortOrder
   anchorText?: Prisma.SortOrder
@@ -1400,14 +873,6 @@ export type CollaborationRequestMaxOrderByAggregateInput = {
   revisedCurrency?: Prisma.SortOrder
   revisedTerms?: Prisma.SortOrder
   revisedAt?: Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrder
-  requestedHomepageLinkAvailable?: Prisma.SortOrder
-  requestedLinkType?: Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrder
-  revisedHomepageLinkAvailable?: Prisma.SortOrder
-  revisedLinkType?: Prisma.SortOrder
   acceptedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -1423,25 +888,10 @@ export type CollaborationRequestMinOrderByAggregateInput = {
   publisherServiceId?: Prisma.SortOrder
   websiteNameSnapshot?: Prisma.SortOrder
   websiteUrlSnapshot?: Prisma.SortOrder
-  websiteNicheSnapshot?: Prisma.SortOrder
-  monthlyTrafficSnapshot?: Prisma.SortOrder
-  websiteLanguageSnapshot?: Prisma.SortOrder
-  targetAudienceCountrySnapshot?: Prisma.SortOrder
-  websiteDescriptionSnapshot?: Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrder
   serviceNameSnapshot?: Prisma.SortOrder
   serviceTypeSnapshot?: Prisma.SortOrder
-  serviceDescriptionSnapshot?: Prisma.SortOrder
-  publishingGuidelinesSnapshot?: Prisma.SortOrder
-  additionalConditionsSnapshot?: Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
   originalCurrency?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrder
-  originalContentWritingIncluded?: Prisma.SortOrder
-  originalLinkType?: Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrder
-  originalHomepageLinkAvailable?: Prisma.SortOrder
   topic?: Prisma.SortOrder
   targetUrl?: Prisma.SortOrder
   anchorText?: Prisma.SortOrder
@@ -1455,14 +905,6 @@ export type CollaborationRequestMinOrderByAggregateInput = {
   revisedCurrency?: Prisma.SortOrder
   revisedTerms?: Prisma.SortOrder
   revisedAt?: Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrder
-  requestedHomepageLinkAvailable?: Prisma.SortOrder
-  requestedLinkType?: Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrder
-  revisedHomepageLinkAvailable?: Prisma.SortOrder
-  revisedLinkType?: Prisma.SortOrder
   acceptedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -1472,23 +914,9 @@ export type CollaborationRequestMinOrderByAggregateInput = {
 }
 
 export type CollaborationRequestSumOrderByAggregateInput = {
-  monthlyTrafficSnapshot?: Prisma.SortOrder
-  domainRatingSnapshot?: Prisma.SortOrder
-  domainAuthoritySnapshot?: Prisma.SortOrder
   originalPrice?: Prisma.SortOrder
-  originalDeliveryTimeDays?: Prisma.SortOrder
-  originalMaximumLinks?: Prisma.SortOrder
   proposedBudget?: Prisma.SortOrder
   revisedPrice?: Prisma.SortOrder
-  requestedDeliveryTimeDays?: Prisma.SortOrder
-  requestedNumberOfLinks?: Prisma.SortOrder
-  revisedDeliveryTimeDays?: Prisma.SortOrder
-  revisedNumberOfLinks?: Prisma.SortOrder
-}
-
-export type CollaborationRequestScalarRelationFilter = {
-  is?: Prisma.CollaborationRequestWhereInput
-  isNot?: Prisma.CollaborationRequestWhereInput
 }
 
 export type CollaborationRequestNullableScalarRelationFilter = {
@@ -1622,14 +1050,6 @@ export type CollaborationRequestUncheckedUpdateManyWithoutServiceNestedInput = {
   deleteMany?: Prisma.CollaborationRequestScalarWhereInput | Prisma.CollaborationRequestScalarWhereInput[]
 }
 
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
-}
-
-export type NullableEnumServiceLinkTypeFieldUpdateOperationsInput = {
-  set?: $Enums.ServiceLinkType | null
-}
-
 export type EnumCollaborationRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.CollaborationRequestStatus
 }
@@ -1640,20 +1060,6 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type CollaborationRequestCreateNestedOneWithoutMessagesInput = {
-  create?: Prisma.XOR<Prisma.CollaborationRequestCreateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedCreateWithoutMessagesInput>
-  connectOrCreate?: Prisma.CollaborationRequestCreateOrConnectWithoutMessagesInput
-  connect?: Prisma.CollaborationRequestWhereUniqueInput
-}
-
-export type CollaborationRequestUpdateOneRequiredWithoutMessagesNestedInput = {
-  create?: Prisma.XOR<Prisma.CollaborationRequestCreateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedCreateWithoutMessagesInput>
-  connectOrCreate?: Prisma.CollaborationRequestCreateOrConnectWithoutMessagesInput
-  upsert?: Prisma.CollaborationRequestUpsertWithoutMessagesInput
-  connect?: Prisma.CollaborationRequestWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CollaborationRequestUpdateToOneWithWhereWithoutMessagesInput, Prisma.CollaborationRequestUpdateWithoutMessagesInput>, Prisma.CollaborationRequestUncheckedUpdateWithoutMessagesInput>
 }
 
 export type CollaborationRequestCreateNestedOneWithoutOrderInput = {
@@ -1676,25 +1082,10 @@ export type CollaborationRequestCreateWithoutAdvertiserInput = {
   id?: string
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -1708,14 +1099,6 @@ export type CollaborationRequestCreateWithoutAdvertiserInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -1724,8 +1107,7 @@ export type CollaborationRequestCreateWithoutAdvertiserInput = {
   updatedAt?: Date | string
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutCollaborationRequestsInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutCollaborationRequestsInput
-  messages?: Prisma.CollaborationMessageCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestUncheckedCreateWithoutAdvertiserInput = {
@@ -1734,25 +1116,10 @@ export type CollaborationRequestUncheckedCreateWithoutAdvertiserInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -1766,22 +1133,13 @@ export type CollaborationRequestUncheckedCreateWithoutAdvertiserInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
   dealId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  messages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestCreateOrConnectWithoutAdvertiserInput = {
@@ -1820,25 +1178,10 @@ export type CollaborationRequestScalarWhereInput = {
   publisherServiceId?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   websiteNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   websiteUrlSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
-  websiteNicheSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  monthlyTrafficSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  websiteLanguageSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  targetAudienceCountrySnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  websiteDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  domainRatingSnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  domainAuthoritySnapshot?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
   serviceNameSnapshot?: Prisma.StringFilter<"CollaborationRequest"> | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFilter<"CollaborationRequest"> | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  publishingGuidelinesSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
-  additionalConditionsSnapshot?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   originalPrice?: Prisma.DecimalFilter<"CollaborationRequest"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFilter<"CollaborationRequest"> | string
-  originalDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalContentWritingIncluded?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  originalLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  originalHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
   topic?: Prisma.StringFilter<"CollaborationRequest"> | string
   targetUrl?: Prisma.StringFilter<"CollaborationRequest"> | string
   anchorText?: Prisma.StringFilter<"CollaborationRequest"> | string
@@ -1852,14 +1195,6 @@ export type CollaborationRequestScalarWhereInput = {
   revisedCurrency?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedTerms?: Prisma.StringNullableFilter<"CollaborationRequest"> | string | null
   revisedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  requestedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  requestedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedNumberOfLinks?: Prisma.IntNullableFilter<"CollaborationRequest"> | number | null
-  revisedHomepageLinkAvailable?: Prisma.BoolNullableFilter<"CollaborationRequest"> | boolean | null
-  revisedLinkType?: Prisma.EnumServiceLinkTypeNullableFilter<"CollaborationRequest"> | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   cancelledAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"CollaborationRequest"> | Date | string | null
@@ -1872,25 +1207,10 @@ export type CollaborationRequestCreateWithoutWebsiteInput = {
   id?: string
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -1904,14 +1224,6 @@ export type CollaborationRequestCreateWithoutWebsiteInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -1920,8 +1232,7 @@ export type CollaborationRequestCreateWithoutWebsiteInput = {
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutCollaborationRequestsInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutCollaborationRequestsInput
-  messages?: Prisma.CollaborationMessageCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestUncheckedCreateWithoutWebsiteInput = {
@@ -1930,25 +1241,10 @@ export type CollaborationRequestUncheckedCreateWithoutWebsiteInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -1962,22 +1258,13 @@ export type CollaborationRequestUncheckedCreateWithoutWebsiteInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
   dealId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  messages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestCreateOrConnectWithoutWebsiteInput = {
@@ -2010,25 +1297,10 @@ export type CollaborationRequestCreateWithoutServiceInput = {
   id?: string
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2042,14 +1314,6 @@ export type CollaborationRequestCreateWithoutServiceInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -2058,8 +1322,7 @@ export type CollaborationRequestCreateWithoutServiceInput = {
   updatedAt?: Date | string
   advertiser: Prisma.UserCreateNestedOneWithoutCollaborationRequestsInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutCollaborationRequestsInput
-  messages?: Prisma.CollaborationMessageCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestUncheckedCreateWithoutServiceInput = {
@@ -2068,25 +1331,10 @@ export type CollaborationRequestUncheckedCreateWithoutServiceInput = {
   publisherWebsiteId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2100,22 +1348,13 @@ export type CollaborationRequestUncheckedCreateWithoutServiceInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
   dealId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  messages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutRequestInput
-  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput
+  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomRequestInput
 }
 
 export type CollaborationRequestCreateOrConnectWithoutServiceInput = {
@@ -2144,269 +1383,14 @@ export type CollaborationRequestUpdateManyWithWhereWithoutServiceInput = {
   data: Prisma.XOR<Prisma.CollaborationRequestUpdateManyMutationInput, Prisma.CollaborationRequestUncheckedUpdateManyWithoutServiceInput>
 }
 
-export type CollaborationRequestCreateWithoutMessagesInput = {
-  id?: string
-  websiteNameSnapshot: string
-  websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
-  serviceNameSnapshot: string
-  serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
-  originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
-  topic: string
-  targetUrl: string
-  anchorText: string
-  proposedBudget: runtime.Decimal | runtime.DecimalJsLike | number | string
-  proposedCurrency: string
-  contentRequirements: string
-  additionalInstructions: string
-  status?: $Enums.CollaborationRequestStatus
-  publisherResponse?: string | null
-  revisedPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  revisedCurrency?: string | null
-  revisedTerms?: string | null
-  revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
-  acceptedAt?: Date | string | null
-  cancelledAt?: Date | string | null
-  completedAt?: Date | string | null
-  dealId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  advertiser: Prisma.UserCreateNestedOneWithoutCollaborationRequestsInput
-  website?: Prisma.PublisherWebsiteCreateNestedOneWithoutCollaborationRequestsInput
-  service?: Prisma.PublisherServiceCreateNestedOneWithoutCollaborationRequestsInput
-  order?: Prisma.OrderCreateNestedOneWithoutCustomDealRequestInput
-}
-
-export type CollaborationRequestUncheckedCreateWithoutMessagesInput = {
-  id?: string
-  advertiserId: string
-  publisherWebsiteId?: string | null
-  publisherServiceId?: string | null
-  websiteNameSnapshot: string
-  websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
-  serviceNameSnapshot: string
-  serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
-  originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
-  topic: string
-  targetUrl: string
-  anchorText: string
-  proposedBudget: runtime.Decimal | runtime.DecimalJsLike | number | string
-  proposedCurrency: string
-  contentRequirements: string
-  additionalInstructions: string
-  status?: $Enums.CollaborationRequestStatus
-  publisherResponse?: string | null
-  revisedPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  revisedCurrency?: string | null
-  revisedTerms?: string | null
-  revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
-  acceptedAt?: Date | string | null
-  cancelledAt?: Date | string | null
-  completedAt?: Date | string | null
-  dealId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order?: Prisma.OrderUncheckedCreateNestedOneWithoutCustomDealRequestInput
-}
-
-export type CollaborationRequestCreateOrConnectWithoutMessagesInput = {
-  where: Prisma.CollaborationRequestWhereUniqueInput
-  create: Prisma.XOR<Prisma.CollaborationRequestCreateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedCreateWithoutMessagesInput>
-}
-
-export type CollaborationRequestUpsertWithoutMessagesInput = {
-  update: Prisma.XOR<Prisma.CollaborationRequestUpdateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedUpdateWithoutMessagesInput>
-  create: Prisma.XOR<Prisma.CollaborationRequestCreateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedCreateWithoutMessagesInput>
-  where?: Prisma.CollaborationRequestWhereInput
-}
-
-export type CollaborationRequestUpdateToOneWithWhereWithoutMessagesInput = {
-  where?: Prisma.CollaborationRequestWhereInput
-  data: Prisma.XOR<Prisma.CollaborationRequestUpdateWithoutMessagesInput, Prisma.CollaborationRequestUncheckedUpdateWithoutMessagesInput>
-}
-
-export type CollaborationRequestUpdateWithoutMessagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  topic?: Prisma.StringFieldUpdateOperationsInput | string
-  targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  anchorText?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedBudget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  proposedCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  contentRequirements?: Prisma.StringFieldUpdateOperationsInput | string
-  additionalInstructions?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCollaborationRequestStatusFieldUpdateOperationsInput | $Enums.CollaborationRequestStatus
-  publisherResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  advertiser?: Prisma.UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput
-  website?: Prisma.PublisherWebsiteUpdateOneWithoutCollaborationRequestsNestedInput
-  service?: Prisma.PublisherServiceUpdateOneWithoutCollaborationRequestsNestedInput
-  order?: Prisma.OrderUpdateOneWithoutCustomDealRequestNestedInput
-}
-
-export type CollaborationRequestUncheckedUpdateWithoutMessagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  advertiserId?: Prisma.StringFieldUpdateOperationsInput | string
-  publisherWebsiteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  topic?: Prisma.StringFieldUpdateOperationsInput | string
-  targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  anchorText?: Prisma.StringFieldUpdateOperationsInput | string
-  proposedBudget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  proposedCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  contentRequirements?: Prisma.StringFieldUpdateOperationsInput | string
-  additionalInstructions?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumCollaborationRequestStatusFieldUpdateOperationsInput | $Enums.CollaborationRequestStatus
-  publisherResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput
-}
-
 export type CollaborationRequestCreateWithoutOrderInput = {
   id?: string
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2420,14 +1404,6 @@ export type CollaborationRequestCreateWithoutOrderInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -2437,7 +1413,6 @@ export type CollaborationRequestCreateWithoutOrderInput = {
   advertiser: Prisma.UserCreateNestedOneWithoutCollaborationRequestsInput
   website?: Prisma.PublisherWebsiteCreateNestedOneWithoutCollaborationRequestsInput
   service?: Prisma.PublisherServiceCreateNestedOneWithoutCollaborationRequestsInput
-  messages?: Prisma.CollaborationMessageCreateNestedManyWithoutRequestInput
 }
 
 export type CollaborationRequestUncheckedCreateWithoutOrderInput = {
@@ -2447,25 +1422,10 @@ export type CollaborationRequestUncheckedCreateWithoutOrderInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2479,21 +1439,12 @@ export type CollaborationRequestUncheckedCreateWithoutOrderInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
   dealId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  messages?: Prisma.CollaborationMessageUncheckedCreateNestedManyWithoutRequestInput
 }
 
 export type CollaborationRequestCreateOrConnectWithoutOrderInput = {
@@ -2516,25 +1467,10 @@ export type CollaborationRequestUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2548,14 +1484,6 @@ export type CollaborationRequestUpdateWithoutOrderInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2565,7 +1493,6 @@ export type CollaborationRequestUpdateWithoutOrderInput = {
   advertiser?: Prisma.UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutCollaborationRequestsNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutCollaborationRequestsNestedInput
-  messages?: Prisma.CollaborationMessageUpdateManyWithoutRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateWithoutOrderInput = {
@@ -2575,25 +1502,10 @@ export type CollaborationRequestUncheckedUpdateWithoutOrderInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2607,21 +1519,12 @@ export type CollaborationRequestUncheckedUpdateWithoutOrderInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutRequestNestedInput
 }
 
 export type CollaborationRequestCreateManyAdvertiserInput = {
@@ -2630,25 +1533,10 @@ export type CollaborationRequestCreateManyAdvertiserInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2662,14 +1550,6 @@ export type CollaborationRequestCreateManyAdvertiserInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -2682,25 +1562,10 @@ export type CollaborationRequestUpdateWithoutAdvertiserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2714,14 +1579,6 @@ export type CollaborationRequestUpdateWithoutAdvertiserInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2730,8 +1587,7 @@ export type CollaborationRequestUpdateWithoutAdvertiserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   website?: Prisma.PublisherWebsiteUpdateOneWithoutCollaborationRequestsNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutCollaborationRequestsNestedInput
-  messages?: Prisma.CollaborationMessageUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateWithoutAdvertiserInput = {
@@ -2740,25 +1596,10 @@ export type CollaborationRequestUncheckedUpdateWithoutAdvertiserInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2772,22 +1613,13 @@ export type CollaborationRequestUncheckedUpdateWithoutAdvertiserInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateManyWithoutAdvertiserInput = {
@@ -2796,25 +1628,10 @@ export type CollaborationRequestUncheckedUpdateManyWithoutAdvertiserInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2828,14 +1645,6 @@ export type CollaborationRequestUncheckedUpdateManyWithoutAdvertiserInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2850,25 +1659,10 @@ export type CollaborationRequestCreateManyWebsiteInput = {
   publisherServiceId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -2882,14 +1676,6 @@ export type CollaborationRequestCreateManyWebsiteInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -2902,25 +1688,10 @@ export type CollaborationRequestUpdateWithoutWebsiteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2934,14 +1705,6 @@ export type CollaborationRequestUpdateWithoutWebsiteInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2950,8 +1713,7 @@ export type CollaborationRequestUpdateWithoutWebsiteInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput
   service?: Prisma.PublisherServiceUpdateOneWithoutCollaborationRequestsNestedInput
-  messages?: Prisma.CollaborationMessageUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateWithoutWebsiteInput = {
@@ -2960,25 +1722,10 @@ export type CollaborationRequestUncheckedUpdateWithoutWebsiteInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2992,22 +1739,13 @@ export type CollaborationRequestUncheckedUpdateWithoutWebsiteInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateManyWithoutWebsiteInput = {
@@ -3016,25 +1754,10 @@ export type CollaborationRequestUncheckedUpdateManyWithoutWebsiteInput = {
   publisherServiceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3048,14 +1771,6 @@ export type CollaborationRequestUncheckedUpdateManyWithoutWebsiteInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3070,25 +1785,10 @@ export type CollaborationRequestCreateManyServiceInput = {
   publisherWebsiteId?: string | null
   websiteNameSnapshot: string
   websiteUrlSnapshot: string
-  websiteNicheSnapshot?: string | null
-  monthlyTrafficSnapshot?: number | null
-  websiteLanguageSnapshot?: string | null
-  targetAudienceCountrySnapshot?: string | null
-  websiteDescriptionSnapshot?: string | null
-  domainRatingSnapshot?: number | null
-  domainAuthoritySnapshot?: number | null
   serviceNameSnapshot: string
   serviceTypeSnapshot: $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: string | null
-  publishingGuidelinesSnapshot?: string | null
-  additionalConditionsSnapshot?: string | null
   originalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency: string
-  originalDeliveryTimeDays?: number | null
-  originalContentWritingIncluded?: boolean | null
-  originalLinkType?: $Enums.ServiceLinkType | null
-  originalMaximumLinks?: number | null
-  originalHomepageLinkAvailable?: boolean | null
   topic: string
   targetUrl: string
   anchorText: string
@@ -3102,14 +1802,6 @@ export type CollaborationRequestCreateManyServiceInput = {
   revisedCurrency?: string | null
   revisedTerms?: string | null
   revisedAt?: Date | string | null
-  requestedDeliveryTimeDays?: number | null
-  requestedNumberOfLinks?: number | null
-  requestedHomepageLinkAvailable?: boolean | null
-  requestedLinkType?: $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: number | null
-  revisedNumberOfLinks?: number | null
-  revisedHomepageLinkAvailable?: boolean | null
-  revisedLinkType?: $Enums.ServiceLinkType | null
   acceptedAt?: Date | string | null
   cancelledAt?: Date | string | null
   completedAt?: Date | string | null
@@ -3122,25 +1814,10 @@ export type CollaborationRequestUpdateWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3154,14 +1831,6 @@ export type CollaborationRequestUpdateWithoutServiceInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3170,8 +1839,7 @@ export type CollaborationRequestUpdateWithoutServiceInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   advertiser?: Prisma.UserUpdateOneRequiredWithoutCollaborationRequestsNestedInput
   website?: Prisma.PublisherWebsiteUpdateOneWithoutCollaborationRequestsNestedInput
-  messages?: Prisma.CollaborationMessageUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateWithoutServiceInput = {
@@ -3180,25 +1848,10 @@ export type CollaborationRequestUncheckedUpdateWithoutServiceInput = {
   publisherWebsiteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3212,22 +1865,13 @@ export type CollaborationRequestUncheckedUpdateWithoutServiceInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CollaborationMessageUncheckedUpdateManyWithoutRequestNestedInput
-  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomDealRequestNestedInput
+  order?: Prisma.OrderUncheckedUpdateOneWithoutCustomRequestNestedInput
 }
 
 export type CollaborationRequestUncheckedUpdateManyWithoutServiceInput = {
@@ -3236,25 +1880,10 @@ export type CollaborationRequestUncheckedUpdateManyWithoutServiceInput = {
   publisherWebsiteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   websiteNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   websiteUrlSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
-  websiteNicheSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  monthlyTrafficSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  websiteLanguageSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  targetAudienceCountrySnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  websiteDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  domainRatingSnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  domainAuthoritySnapshot?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   serviceNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   serviceTypeSnapshot?: Prisma.EnumPublisherServiceTypeFieldUpdateOperationsInput | $Enums.PublisherServiceType
-  serviceDescriptionSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  publishingGuidelinesSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  additionalConditionsSnapshot?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   originalCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  originalDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalContentWritingIncluded?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  originalLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  originalMaximumLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  originalHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   topic?: Prisma.StringFieldUpdateOperationsInput | string
   targetUrl?: Prisma.StringFieldUpdateOperationsInput | string
   anchorText?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3268,14 +1897,6 @@ export type CollaborationRequestUncheckedUpdateManyWithoutServiceInput = {
   revisedCurrency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   revisedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  requestedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  requestedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  requestedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
-  revisedDeliveryTimeDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedNumberOfLinks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  revisedHomepageLinkAvailable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  revisedLinkType?: Prisma.NullableEnumServiceLinkTypeFieldUpdateOperationsInput | $Enums.ServiceLinkType | null
   acceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3284,35 +1905,6 @@ export type CollaborationRequestUncheckedUpdateManyWithoutServiceInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type CollaborationRequestCountOutputType
- */
-
-export type CollaborationRequestCountOutputType = {
-  messages: number
-}
-
-export type CollaborationRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  messages?: boolean | CollaborationRequestCountOutputTypeCountMessagesArgs
-}
-
-/**
- * CollaborationRequestCountOutputType without action
- */
-export type CollaborationRequestCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CollaborationRequestCountOutputType
-   */
-  select?: Prisma.CollaborationRequestCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * CollaborationRequestCountOutputType without action
- */
-export type CollaborationRequestCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CollaborationMessageWhereInput
-}
 
 
 export type CollaborationRequestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3322,25 +1914,10 @@ export type CollaborationRequestSelect<ExtArgs extends runtime.Types.Extensions.
   publisherServiceId?: boolean
   websiteNameSnapshot?: boolean
   websiteUrlSnapshot?: boolean
-  websiteNicheSnapshot?: boolean
-  monthlyTrafficSnapshot?: boolean
-  websiteLanguageSnapshot?: boolean
-  targetAudienceCountrySnapshot?: boolean
-  websiteDescriptionSnapshot?: boolean
-  domainRatingSnapshot?: boolean
-  domainAuthoritySnapshot?: boolean
   serviceNameSnapshot?: boolean
   serviceTypeSnapshot?: boolean
-  serviceDescriptionSnapshot?: boolean
-  publishingGuidelinesSnapshot?: boolean
-  additionalConditionsSnapshot?: boolean
   originalPrice?: boolean
   originalCurrency?: boolean
-  originalDeliveryTimeDays?: boolean
-  originalContentWritingIncluded?: boolean
-  originalLinkType?: boolean
-  originalMaximumLinks?: boolean
-  originalHomepageLinkAvailable?: boolean
   topic?: boolean
   targetUrl?: boolean
   anchorText?: boolean
@@ -3354,14 +1931,6 @@ export type CollaborationRequestSelect<ExtArgs extends runtime.Types.Extensions.
   revisedCurrency?: boolean
   revisedTerms?: boolean
   revisedAt?: boolean
-  requestedDeliveryTimeDays?: boolean
-  requestedNumberOfLinks?: boolean
-  requestedHomepageLinkAvailable?: boolean
-  requestedLinkType?: boolean
-  revisedDeliveryTimeDays?: boolean
-  revisedNumberOfLinks?: boolean
-  revisedHomepageLinkAvailable?: boolean
-  revisedLinkType?: boolean
   acceptedAt?: boolean
   cancelledAt?: boolean
   completedAt?: boolean
@@ -3371,9 +1940,7 @@ export type CollaborationRequestSelect<ExtArgs extends runtime.Types.Extensions.
   advertiser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   website?: boolean | Prisma.CollaborationRequest$websiteArgs<ExtArgs>
   service?: boolean | Prisma.CollaborationRequest$serviceArgs<ExtArgs>
-  messages?: boolean | Prisma.CollaborationRequest$messagesArgs<ExtArgs>
   order?: boolean | Prisma.CollaborationRequest$orderArgs<ExtArgs>
-  _count?: boolean | Prisma.CollaborationRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["collaborationRequest"]>
 
 
@@ -3385,25 +1952,10 @@ export type CollaborationRequestSelectScalar = {
   publisherServiceId?: boolean
   websiteNameSnapshot?: boolean
   websiteUrlSnapshot?: boolean
-  websiteNicheSnapshot?: boolean
-  monthlyTrafficSnapshot?: boolean
-  websiteLanguageSnapshot?: boolean
-  targetAudienceCountrySnapshot?: boolean
-  websiteDescriptionSnapshot?: boolean
-  domainRatingSnapshot?: boolean
-  domainAuthoritySnapshot?: boolean
   serviceNameSnapshot?: boolean
   serviceTypeSnapshot?: boolean
-  serviceDescriptionSnapshot?: boolean
-  publishingGuidelinesSnapshot?: boolean
-  additionalConditionsSnapshot?: boolean
   originalPrice?: boolean
   originalCurrency?: boolean
-  originalDeliveryTimeDays?: boolean
-  originalContentWritingIncluded?: boolean
-  originalLinkType?: boolean
-  originalMaximumLinks?: boolean
-  originalHomepageLinkAvailable?: boolean
   topic?: boolean
   targetUrl?: boolean
   anchorText?: boolean
@@ -3417,14 +1969,6 @@ export type CollaborationRequestSelectScalar = {
   revisedCurrency?: boolean
   revisedTerms?: boolean
   revisedAt?: boolean
-  requestedDeliveryTimeDays?: boolean
-  requestedNumberOfLinks?: boolean
-  requestedHomepageLinkAvailable?: boolean
-  requestedLinkType?: boolean
-  revisedDeliveryTimeDays?: boolean
-  revisedNumberOfLinks?: boolean
-  revisedHomepageLinkAvailable?: boolean
-  revisedLinkType?: boolean
   acceptedAt?: boolean
   cancelledAt?: boolean
   completedAt?: boolean
@@ -3433,14 +1977,12 @@ export type CollaborationRequestSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CollaborationRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "advertiserId" | "publisherWebsiteId" | "publisherServiceId" | "websiteNameSnapshot" | "websiteUrlSnapshot" | "websiteNicheSnapshot" | "monthlyTrafficSnapshot" | "websiteLanguageSnapshot" | "targetAudienceCountrySnapshot" | "websiteDescriptionSnapshot" | "domainRatingSnapshot" | "domainAuthoritySnapshot" | "serviceNameSnapshot" | "serviceTypeSnapshot" | "serviceDescriptionSnapshot" | "publishingGuidelinesSnapshot" | "additionalConditionsSnapshot" | "originalPrice" | "originalCurrency" | "originalDeliveryTimeDays" | "originalContentWritingIncluded" | "originalLinkType" | "originalMaximumLinks" | "originalHomepageLinkAvailable" | "topic" | "targetUrl" | "anchorText" | "proposedBudget" | "proposedCurrency" | "contentRequirements" | "additionalInstructions" | "status" | "publisherResponse" | "revisedPrice" | "revisedCurrency" | "revisedTerms" | "revisedAt" | "requestedDeliveryTimeDays" | "requestedNumberOfLinks" | "requestedHomepageLinkAvailable" | "requestedLinkType" | "revisedDeliveryTimeDays" | "revisedNumberOfLinks" | "revisedHomepageLinkAvailable" | "revisedLinkType" | "acceptedAt" | "cancelledAt" | "completedAt" | "dealId" | "createdAt" | "updatedAt", ExtArgs["result"]["collaborationRequest"]>
+export type CollaborationRequestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "advertiserId" | "publisherWebsiteId" | "publisherServiceId" | "websiteNameSnapshot" | "websiteUrlSnapshot" | "serviceNameSnapshot" | "serviceTypeSnapshot" | "originalPrice" | "originalCurrency" | "topic" | "targetUrl" | "anchorText" | "proposedBudget" | "proposedCurrency" | "contentRequirements" | "additionalInstructions" | "status" | "publisherResponse" | "revisedPrice" | "revisedCurrency" | "revisedTerms" | "revisedAt" | "acceptedAt" | "cancelledAt" | "completedAt" | "dealId" | "createdAt" | "updatedAt", ExtArgs["result"]["collaborationRequest"]>
 export type CollaborationRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   advertiser?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   website?: boolean | Prisma.CollaborationRequest$websiteArgs<ExtArgs>
   service?: boolean | Prisma.CollaborationRequest$serviceArgs<ExtArgs>
-  messages?: boolean | Prisma.CollaborationRequest$messagesArgs<ExtArgs>
   order?: boolean | Prisma.CollaborationRequest$orderArgs<ExtArgs>
-  _count?: boolean | Prisma.CollaborationRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $CollaborationRequestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3449,7 +1991,6 @@ export type $CollaborationRequestPayload<ExtArgs extends runtime.Types.Extension
     advertiser: Prisma.$UserPayload<ExtArgs>
     website: Prisma.$PublisherWebsitePayload<ExtArgs> | null
     service: Prisma.$PublisherServicePayload<ExtArgs> | null
-    messages: Prisma.$CollaborationMessagePayload<ExtArgs>[]
     order: Prisma.$OrderPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -3459,25 +2000,10 @@ export type $CollaborationRequestPayload<ExtArgs extends runtime.Types.Extension
     publisherServiceId: string | null
     websiteNameSnapshot: string
     websiteUrlSnapshot: string
-    websiteNicheSnapshot: string | null
-    monthlyTrafficSnapshot: number | null
-    websiteLanguageSnapshot: string | null
-    targetAudienceCountrySnapshot: string | null
-    websiteDescriptionSnapshot: string | null
-    domainRatingSnapshot: number | null
-    domainAuthoritySnapshot: number | null
     serviceNameSnapshot: string
     serviceTypeSnapshot: $Enums.PublisherServiceType
-    serviceDescriptionSnapshot: string | null
-    publishingGuidelinesSnapshot: string | null
-    additionalConditionsSnapshot: string | null
     originalPrice: runtime.Decimal
     originalCurrency: string
-    originalDeliveryTimeDays: number | null
-    originalContentWritingIncluded: boolean | null
-    originalLinkType: $Enums.ServiceLinkType | null
-    originalMaximumLinks: number | null
-    originalHomepageLinkAvailable: boolean | null
     topic: string
     targetUrl: string
     anchorText: string
@@ -3491,14 +2017,6 @@ export type $CollaborationRequestPayload<ExtArgs extends runtime.Types.Extension
     revisedCurrency: string | null
     revisedTerms: string | null
     revisedAt: Date | null
-    requestedDeliveryTimeDays: number | null
-    requestedNumberOfLinks: number | null
-    requestedHomepageLinkAvailable: boolean | null
-    requestedLinkType: $Enums.ServiceLinkType | null
-    revisedDeliveryTimeDays: number | null
-    revisedNumberOfLinks: number | null
-    revisedHomepageLinkAvailable: boolean | null
-    revisedLinkType: $Enums.ServiceLinkType | null
     acceptedAt: Date | null
     cancelledAt: Date | null
     completedAt: Date | null
@@ -3848,7 +2366,6 @@ export interface Prisma__CollaborationRequestClient<T, Null = never, ExtArgs ext
   advertiser<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   website<T extends Prisma.CollaborationRequest$websiteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CollaborationRequest$websiteArgs<ExtArgs>>): Prisma.Prisma__PublisherWebsiteClient<runtime.Types.Result.GetResult<Prisma.$PublisherWebsitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   service<T extends Prisma.CollaborationRequest$serviceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CollaborationRequest$serviceArgs<ExtArgs>>): Prisma.Prisma__PublisherServiceClient<runtime.Types.Result.GetResult<Prisma.$PublisherServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  messages<T extends Prisma.CollaborationRequest$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CollaborationRequest$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollaborationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   order<T extends Prisma.CollaborationRequest$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CollaborationRequest$orderArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3885,25 +2402,10 @@ export interface CollaborationRequestFieldRefs {
   readonly publisherServiceId: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly websiteNameSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly websiteUrlSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly websiteNicheSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly monthlyTrafficSnapshot: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly websiteLanguageSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly targetAudienceCountrySnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly websiteDescriptionSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly domainRatingSnapshot: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly domainAuthoritySnapshot: Prisma.FieldRef<"CollaborationRequest", 'Int'>
   readonly serviceNameSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly serviceTypeSnapshot: Prisma.FieldRef<"CollaborationRequest", 'PublisherServiceType'>
-  readonly serviceDescriptionSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly publishingGuidelinesSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly additionalConditionsSnapshot: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly originalPrice: Prisma.FieldRef<"CollaborationRequest", 'Decimal'>
   readonly originalCurrency: Prisma.FieldRef<"CollaborationRequest", 'String'>
-  readonly originalDeliveryTimeDays: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly originalContentWritingIncluded: Prisma.FieldRef<"CollaborationRequest", 'Boolean'>
-  readonly originalLinkType: Prisma.FieldRef<"CollaborationRequest", 'ServiceLinkType'>
-  readonly originalMaximumLinks: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly originalHomepageLinkAvailable: Prisma.FieldRef<"CollaborationRequest", 'Boolean'>
   readonly topic: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly targetUrl: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly anchorText: Prisma.FieldRef<"CollaborationRequest", 'String'>
@@ -3917,14 +2419,6 @@ export interface CollaborationRequestFieldRefs {
   readonly revisedCurrency: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly revisedTerms: Prisma.FieldRef<"CollaborationRequest", 'String'>
   readonly revisedAt: Prisma.FieldRef<"CollaborationRequest", 'DateTime'>
-  readonly requestedDeliveryTimeDays: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly requestedNumberOfLinks: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly requestedHomepageLinkAvailable: Prisma.FieldRef<"CollaborationRequest", 'Boolean'>
-  readonly requestedLinkType: Prisma.FieldRef<"CollaborationRequest", 'ServiceLinkType'>
-  readonly revisedDeliveryTimeDays: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly revisedNumberOfLinks: Prisma.FieldRef<"CollaborationRequest", 'Int'>
-  readonly revisedHomepageLinkAvailable: Prisma.FieldRef<"CollaborationRequest", 'Boolean'>
-  readonly revisedLinkType: Prisma.FieldRef<"CollaborationRequest", 'ServiceLinkType'>
   readonly acceptedAt: Prisma.FieldRef<"CollaborationRequest", 'DateTime'>
   readonly cancelledAt: Prisma.FieldRef<"CollaborationRequest", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"CollaborationRequest", 'DateTime'>
@@ -4314,30 +2808,6 @@ export type CollaborationRequest$serviceArgs<ExtArgs extends runtime.Types.Exten
    */
   include?: Prisma.PublisherServiceInclude<ExtArgs> | null
   where?: Prisma.PublisherServiceWhereInput
-}
-
-/**
- * CollaborationRequest.messages
- */
-export type CollaborationRequest$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CollaborationMessage
-   */
-  select?: Prisma.CollaborationMessageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CollaborationMessage
-   */
-  omit?: Prisma.CollaborationMessageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CollaborationMessageInclude<ExtArgs> | null
-  where?: Prisma.CollaborationMessageWhereInput
-  orderBy?: Prisma.CollaborationMessageOrderByWithRelationInput | Prisma.CollaborationMessageOrderByWithRelationInput[]
-  cursor?: Prisma.CollaborationMessageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CollaborationMessageScalarFieldEnum | Prisma.CollaborationMessageScalarFieldEnum[]
 }
 
 /**

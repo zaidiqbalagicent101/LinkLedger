@@ -65,71 +65,82 @@ enum OrderStatus {
 
 enum PaymentStatus {
   PENDING
+  AUTHORIZED
   PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentAttemptStatus {
+  PENDING
+  AUTHORIZED
+  PAID
+  FAILED
   REFUNDED
 }
 
 model User {
-  id          String        @id @default(cuid()) @db.VarChar(191)
-  fullName    String        @db.VarChar(191)
-  email       String        @unique @db.VarChar(191)
-  password    String        @db.VarChar(255)
-  role        UserRole
-  status      AccountStatus @default(ACTIVE)
-  country     String        @db.VarChar(100)
-  lastLoginAt DateTime?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  sessions    Session[]
-  publisherProfile PublisherProfile?
-  reviewedWebsites PublisherWebsite[] @relation("WebsiteReviewer")
-  websiteReviews WebsiteReview[] @relation("ReviewAdmin")
+  id                    String                 @id @default(cuid()) @db.VarChar(191)
+  fullName              String                 @db.VarChar(191)
+  email                 String                 @unique @db.VarChar(191)
+  password              String                 @db.VarChar(255)
+  role                  UserRole
+  status                AccountStatus          @default(ACTIVE)
+  country               String                 @db.VarChar(100)
+  lastLoginAt           DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  sessions              Session[]
+  publisherProfile      PublisherProfile?
+  reviewedWebsites      PublisherWebsite[]     @relation("WebsiteReviewer")
+  websiteReviews        WebsiteReview[]        @relation("ReviewAdmin")
   collaborationRequests CollaborationRequest[]
-  orders Order[]
+  orders                Order[]
+  cartItems             AdvertiserCartItem[]
 
   @@map("users")
 }
 
 model PublisherProfile {
-  id            String            @id @default(cuid()) @db.VarChar(191)
-  userId        String            @unique @db.VarChar(191)
-  publisherName String            @db.VarChar(191)
-  businessName  String?           @db.VarChar(191)
-  country       String            @db.VarChar(100)
-  contactNumber String?           @db.VarChar(40)
-  description   String            @db.Text
-  profileImage  String?           @db.VarChar(2048)
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
-  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            String             @id @default(cuid()) @db.VarChar(191)
+  userId        String             @unique @db.VarChar(191)
+  publisherName String             @db.VarChar(191)
+  businessName  String?            @db.VarChar(191)
+  country       String             @db.VarChar(100)
+  contactNumber String?            @db.VarChar(40)
+  description   String             @db.Text
+  profileImage  String?            @db.VarChar(2048)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   websites      PublisherWebsite[]
 
-  @@index([country])  
+  @@index([country])
   @@map("publisher_profiles")
 }
 
 model PublisherWebsite {
-  id                    String                @id @default(cuid()) @db.VarChar(191)
-  publisherProfileId    String                @db.VarChar(191)
-  websiteName           String                @db.VarChar(191)
-  websiteUrl            String                @unique @db.VarChar(512)
-  websiteNiche          String                @db.VarChar(120)
+  id                    String                 @id @default(cuid()) @db.VarChar(191)
+  publisherProfileId    String                 @db.VarChar(191)
+  websiteName           String                 @db.VarChar(191)
+  websiteUrl            String                 @unique @db.VarChar(512)
+  websiteNiche          String                 @db.VarChar(120)
   monthlyTraffic        Int
-  websiteLanguage       String                @db.VarChar(80)
-  targetAudienceCountry String                @db.VarChar(100)
-  websiteDescription    String                @db.Text
-  websiteLogo           String?               @db.VarChar(2048)
+  websiteLanguage       String                 @db.VarChar(80)
+  targetAudienceCountry String                 @db.VarChar(100)
+  websiteDescription    String                 @db.Text
+  websiteLogo           String?                @db.VarChar(2048)
   domainRating          Int?
   domainAuthority       Int?
-  metricsVerified       Boolean               @default(false)
-  approvalStatus        WebsiteApprovalStatus @default(PENDING)
-  rejectionReason       String?               @db.Text
+  metricsVerified       Boolean                @default(false)
+  approvalStatus        WebsiteApprovalStatus  @default(PENDING)
+  rejectionReason       String?                @db.Text
   reviewedAt            DateTime?
-  reviewedById          String?               @db.VarChar(191)
-  createdAt             DateTime              @default(now())
-  updatedAt             DateTime              @updatedAt
-  publisherProfile      PublisherProfile      @relation(fields: [publisherProfileId], references: [id], onDelete: Cascade)
-  reviewedBy            User?                 @relation("WebsiteReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedById          String?                @db.VarChar(191)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  publisherProfile      PublisherProfile       @relation(fields: [publisherProfileId], references: [id], onDelete: Cascade)
+  reviewedBy            User?                  @relation("WebsiteReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
   reviews               WebsiteReview[]
   services              PublisherService[]
   collaborationRequests CollaborationRequest[]
@@ -142,27 +153,28 @@ model PublisherWebsite {
 }
 
 model PublisherService {
-  id                     String               @id @default(cuid()) @db.VarChar(191)
-  publisherWebsiteId     String               @db.VarChar(191)
-  serviceName            String               @db.VarChar(120)
+  id                     String                 @id @default(cuid()) @db.VarChar(191)
+  publisherWebsiteId     String                 @db.VarChar(191)
+  serviceName            String                 @db.VarChar(120)
   serviceType            PublisherServiceType
-  price                  Decimal              @db.Decimal(10, 2)
-  currency               String               @db.Char(3)
+  price                  Decimal                @db.Decimal(10, 2)
+  currency               String                 @db.Char(3)
   deliveryTimeDays       Int
-  contentWritingIncluded Boolean              @default(false)
-  linkType               ServiceLinkType      @default(NOT_APPLICABLE)
+  contentWritingIncluded Boolean                @default(false)
+  linkType               ServiceLinkType        @default(NOT_APPLICABLE)
   maximumLinks           Int?
-  homepageLinkAvailable  Boolean              @default(false)
-  description            String               @db.Text
-  publishingGuidelines   String?              @db.Text
-  additionalConditions   String?              @db.Text
-  isActive               Boolean              @default(true)
+  homepageLinkAvailable  Boolean                @default(false)
+  description            String                 @db.Text
+  publishingGuidelines   String?                @db.Text
+  additionalConditions   String?                @db.Text
+  isActive               Boolean                @default(true)
   archivedAt             DateTime?
-  createdAt              DateTime             @default(now())
-  updatedAt              DateTime             @updatedAt
-  website                PublisherWebsite     @relation(fields: [publisherWebsiteId], references: [id], onDelete: Cascade)
-  collaborationRequests CollaborationRequest[]
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+  website                PublisherWebsite       @relation(fields: [publisherWebsiteId], references: [id], onDelete: Cascade)
+  collaborationRequests  CollaborationRequest[]
   orders                 Order[]
+  cartItems              AdvertiserCartItem[]
 
   @@index([publisherWebsiteId, createdAt])
   @@index([publisherWebsiteId, serviceType, isActive])
@@ -198,39 +210,39 @@ model Session {
 }
 
 model CollaborationRequest {
-  id                    String                     @id @default(cuid()) @db.VarChar(191)
-  advertiserId          String                     @db.VarChar(191)
-  publisherWebsiteId    String?                    @db.VarChar(191)
-  publisherServiceId    String?                    @db.VarChar(191)
-  websiteNameSnapshot   String                     @db.VarChar(191)
-  websiteUrlSnapshot    String                     @db.VarChar(512)
-  serviceNameSnapshot   String                     @db.VarChar(120)
-  serviceTypeSnapshot   PublisherServiceType
-  originalPrice         Decimal                    @db.Decimal(10, 2)
-  originalCurrency      String                     @db.Char(3)
-  topic                 String                     @db.VarChar(191)
-  targetUrl             String                     @db.VarChar(2048)
-  anchorText            String                     @db.VarChar(191)
-  proposedBudget        Decimal                    @db.Decimal(10, 2)
-  proposedCurrency      String                     @db.Char(3)
-  contentRequirements  String                     @db.Text
-  additionalInstructions String                    @db.Text
-  status                CollaborationRequestStatus @default(PENDING)
-  publisherResponse     String?                    @db.Text
-  revisedPrice          Decimal?                   @db.Decimal(10, 2)
-  revisedCurrency       String?                    @db.Char(3)
-  revisedTerms          String?                    @db.Text
-  revisedAt             DateTime?
-  acceptedAt            DateTime?
-  cancelledAt           DateTime?
-  completedAt           DateTime?
-  dealId                String?                    @unique @db.VarChar(191)
-  createdAt             DateTime                   @default(now())
-  updatedAt             DateTime                   @updatedAt
-  advertiser            User                       @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
-  website               PublisherWebsite?          @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
-  service               PublisherService?           @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
-  order                 Order?
+  id                     String                     @id @default(cuid()) @db.VarChar(191)
+  advertiserId           String                     @db.VarChar(191)
+  publisherWebsiteId     String?                    @db.VarChar(191)
+  publisherServiceId     String?                    @db.VarChar(191)
+  websiteNameSnapshot    String                     @db.VarChar(191)
+  websiteUrlSnapshot     String                     @db.VarChar(512)
+  serviceNameSnapshot    String                     @db.VarChar(120)
+  serviceTypeSnapshot    PublisherServiceType
+  originalPrice          Decimal                    @db.Decimal(10, 2)
+  originalCurrency       String                     @db.Char(3)
+  topic                  String                     @db.VarChar(191)
+  targetUrl              String                     @db.VarChar(2048)
+  anchorText             String                     @db.VarChar(191)
+  proposedBudget         Decimal                    @db.Decimal(10, 2)
+  proposedCurrency       String                     @db.Char(3)
+  contentRequirements    String                     @db.Text
+  additionalInstructions String                     @db.Text
+  status                 CollaborationRequestStatus @default(PENDING)
+  publisherResponse      String?                    @db.Text
+  revisedPrice           Decimal?                   @db.Decimal(10, 2)
+  revisedCurrency        String?                    @db.Char(3)
+  revisedTerms           String?                    @db.Text
+  revisedAt              DateTime?
+  acceptedAt             DateTime?
+  cancelledAt            DateTime?
+  completedAt            DateTime?
+  dealId                 String?                    @unique @db.VarChar(191)
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
+  advertiser             User                       @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
+  website                PublisherWebsite?          @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
+  service                PublisherService?          @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+  order                  Order?
 
   @@index([advertiserId, createdAt])
   @@index([publisherWebsiteId, status, createdAt])
@@ -240,66 +252,122 @@ model CollaborationRequest {
 }
 
 model Order {
-  id                              String               @id @default(cuid()) @db.VarChar(191)
-  idempotencyKey                  String               @unique @db.VarChar(191)
-  source                          OrderSource
-  status                          OrderStatus          @default(CONFIRMED)
-  paymentStatus                   PaymentStatus        @default(PENDING)
-  advertiserId                    String               @db.VarChar(191)
-  publisherWebsiteId              String?              @db.VarChar(191)
-  publisherServiceId              String?              @db.VarChar(191)
-  customRequestId                 String?              @unique @db.VarChar(191)
-  websiteNameSnapshot             String               @db.VarChar(191)
-  websiteUrlSnapshot              String               @db.VarChar(512)
-  websiteNicheSnapshot            String               @db.VarChar(120)
-  monthlyTrafficSnapshot          Int
-  websiteLanguageSnapshot         String               @db.VarChar(80)
-  targetAudienceCountrySnapshot   String               @db.VarChar(100)
-  websiteDescriptionSnapshot      String               @db.Text
-  domainRatingSnapshot             Int?
-  domainAuthoritySnapshot          Int?
-  serviceNameSnapshot             String               @db.VarChar(120)
-  serviceTypeSnapshot             PublisherServiceType
-  serviceDescriptionSnapshot      String               @db.Text
-  publishingGuidelinesSnapshot    String?              @db.Text
-  additionalConditionsSnapshot    String?              @db.Text
-  originalPrice                   Decimal              @db.Decimal(10, 2)
-  originalCurrency                String               @db.Char(3)
-  originalDeliveryTimeDays        Int
-  originalContentWritingIncluded  Boolean
-  originalLinkType                ServiceLinkType
-  originalMaximumLinks            Int?
-  originalHomepageLinkAvailable   Boolean
-  agreedPrice                     Decimal              @db.Decimal(10, 2)
-  agreedCurrency                  String               @db.Char(3)
-  agreedDeliveryTimeDays          Int
-  agreedContentWritingIncluded    Boolean
-  agreedLinkType                  ServiceLinkType
-  agreedNumberOfLinks             Int?
-  agreedHomepageLinkAvailable     Boolean
-  topic                           String?              @db.VarChar(191)
-  targetUrl                       String?              @db.VarChar(2048)
-  anchorText                      String?              @db.VarChar(191)
-  contentRequirements             String               @db.Text
-  additionalInstructions          String               @db.Text
-  cancellationReason              String?              @db.Text
-  cancellationRequestedAt         DateTime?
-  cancellationResponse            String?              @db.Text
-  cancellationRespondedAt         DateTime?
-  cancelledAt                     DateTime?
-  publishedAt                     DateTime?
-  completedAt                     DateTime?
-  createdAt                       DateTime             @default(now())
-  updatedAt                       DateTime             @updatedAt
-  advertiser                      User                 @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
-  website                         PublisherWebsite?    @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
-  service                         PublisherService?    @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
-  customRequest                   CollaborationRequest? @relation(fields: [customRequestId], references: [id], onDelete: SetNull)
+  id                             String                @id @default(cuid()) @db.VarChar(191)
+  idempotencyKey                 String                @unique @db.VarChar(191)
+  source                         OrderSource
+  status                         OrderStatus           @default(CONFIRMED)
+  paymentStatus                  PaymentStatus         @default(PENDING)
+  advertiserId                   String                @db.VarChar(191)
+  publisherWebsiteId             String?               @db.VarChar(191)
+  publisherServiceId             String?               @db.VarChar(191)
+  customRequestId                String?               @unique @db.VarChar(191)
+  websiteNameSnapshot            String                @db.VarChar(191)
+  websiteUrlSnapshot             String                @db.VarChar(512)
+  websiteNicheSnapshot           String                @db.VarChar(120)
+  monthlyTrafficSnapshot         Int
+  websiteLanguageSnapshot        String                @db.VarChar(80)
+  targetAudienceCountrySnapshot  String                @db.VarChar(100)
+  websiteDescriptionSnapshot     String                @db.Text
+  domainRatingSnapshot           Int?
+  domainAuthoritySnapshot        Int?
+  serviceNameSnapshot            String                @db.VarChar(120)
+  serviceTypeSnapshot            PublisherServiceType
+  serviceDescriptionSnapshot     String                @db.Text
+  publishingGuidelinesSnapshot   String?               @db.Text
+  additionalConditionsSnapshot   String?               @db.Text
+  originalPrice                  Decimal               @db.Decimal(10, 2)
+  originalCurrency               String                @db.Char(3)
+  originalDeliveryTimeDays       Int
+  originalContentWritingIncluded Boolean
+  originalLinkType               ServiceLinkType
+  originalMaximumLinks           Int?
+  originalHomepageLinkAvailable  Boolean
+  agreedPrice                    Decimal               @db.Decimal(10, 2)
+  agreedCurrency                 String                @db.Char(3)
+  agreedDeliveryTimeDays         Int
+  agreedContentWritingIncluded   Boolean
+  agreedLinkType                 ServiceLinkType
+  agreedNumberOfLinks            Int?
+  agreedHomepageLinkAvailable    Boolean
+  topic                          String?               @db.VarChar(191)
+  targetUrl                      String?               @db.VarChar(2048)
+  anchorText                     String?               @db.VarChar(191)
+  contentRequirements            String                @db.Text
+  additionalInstructions         String                @db.Text
+  cancellationReason             String?               @db.Text
+  cancellationRequestedAt        DateTime?
+  cancellationResponse           String?               @db.Text
+  cancellationRespondedAt        DateTime?
+  cancelledAt                    DateTime?
+  publishedAt                    DateTime?
+  completedAt                    DateTime?
+  razorpayOrderId                String?               @unique @db.VarChar(191)
+  razorpayPaymentId              String?               @unique @db.VarChar(191)
+  razorpayRefundId               String?               @unique @db.VarChar(191)
+  paymentAmount                  Int?
+  paymentCurrency                String?               @db.Char(3)
+  paymentCapturedAt              DateTime?
+  paymentRefundedAt              DateTime?
+  paymentFailureCode             String?               @db.VarChar(191)
+  paymentFailureMessage          String?               @db.VarChar(512)
+  paymentUpdatedAt               DateTime?
+  createdAt                      DateTime              @default(now())
+  updatedAt                      DateTime              @updatedAt
+  advertiser                     User                  @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
+  website                        PublisherWebsite?     @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
+  service                        PublisherService?     @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+  customRequest                  CollaborationRequest? @relation(fields: [customRequestId], references: [id], onDelete: SetNull)
+  paymentAttempts                PaymentAttempt[]
 
   @@index([advertiserId, createdAt])
   @@index([publisherWebsiteId, status, createdAt])
   @@index([publisherServiceId, status])
   @@index([status, createdAt])
   @@index([paymentStatus, createdAt])
+  @@index([razorpayPaymentId])
   @@map("orders")
+}
+
+model PaymentAttempt {
+  id                String               @id @default(cuid()) @db.VarChar(191)
+  orderId           String               @db.VarChar(191)
+  idempotencyKey    String               @unique @db.VarChar(191)
+  razorpayOrderId   String?              @unique @db.VarChar(191)
+  razorpayPaymentId String?              @unique @db.VarChar(191)
+  amount            Int
+  currency          String               @db.Char(3)
+  status            PaymentAttemptStatus @default(PENDING)
+  failureCode       String?              @db.VarChar(191)
+  failureMessage    String?              @db.VarChar(512)
+  lastVerifiedAt    DateTime?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  order             Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId, createdAt])
+  @@index([status, createdAt])
+  @@map("payment_attempts")
+}
+
+model RazorpayWebhookEvent {
+  id          String   @id @db.VarChar(191)
+  eventName   String   @db.VarChar(191)
+  processedAt DateTime @default(now())
+  payloadHash String   @db.Char(64)
+
+  @@index([eventName, processedAt])
+  @@map("razorpay_webhook_events")
+}
+
+model AdvertiserCartItem {
+  id                 String           @id @default(cuid()) @db.VarChar(191)
+  advertiserId       String           @db.VarChar(191)
+  publisherServiceId String           @db.VarChar(191)
+  createdAt          DateTime         @default(now())
+  advertiser         User             @relation(fields: [advertiserId], references: [id], onDelete: Cascade)
+  publisherService   PublisherService @relation(fields: [publisherServiceId], references: [id], onDelete: Cascade)
+
+  @@unique([advertiserId, publisherServiceId])
+  @@index([advertiserId, createdAt])
+  @@map("advertiser_cart_items")
 }

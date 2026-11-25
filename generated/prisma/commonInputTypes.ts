@@ -314,18 +314,6 @@ export type EnumServiceLinkTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumServiceLinkTypeFilter<$PrismaModel>
 }
 
-export type BoolNullableFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedBoolNullableFilter<$PrismaModel> | boolean | null
-}
-
-export type EnumServiceLinkTypeNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.ServiceLinkType | Prisma.EnumServiceLinkTypeFieldRefInput<$PrismaModel> | null
-  in?: $Enums.ServiceLinkType[] | null
-  notIn?: $Enums.ServiceLinkType[] | null
-  not?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel> | $Enums.ServiceLinkType | null
-}
-
 export type EnumCollaborationRequestStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.CollaborationRequestStatus | Prisma.EnumCollaborationRequestStatusFieldRefInput<$PrismaModel>
   in?: $Enums.CollaborationRequestStatus[]
@@ -342,24 +330,6 @@ export type DecimalNullableFilter<$PrismaModel = never> = {
   gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-}
-
-export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedBoolNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
-}
-
-export type EnumServiceLinkTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ServiceLinkType | Prisma.EnumServiceLinkTypeFieldRefInput<$PrismaModel> | null
-  in?: $Enums.ServiceLinkType[] | null
-  notIn?: $Enums.ServiceLinkType[] | null
-  not?: Prisma.NestedEnumServiceLinkTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ServiceLinkType | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel>
 }
 
 export type EnumCollaborationRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -386,23 +356,6 @@ export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
-}
-
-export type EnumCollaborationMessageTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.CollaborationMessageType | Prisma.EnumCollaborationMessageTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.CollaborationMessageType[]
-  notIn?: $Enums.CollaborationMessageType[]
-  not?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel> | $Enums.CollaborationMessageType
-}
-
-export type EnumCollaborationMessageTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.CollaborationMessageType | Prisma.EnumCollaborationMessageTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.CollaborationMessageType[]
-  notIn?: $Enums.CollaborationMessageType[]
-  not?: Prisma.NestedEnumCollaborationMessageTypeWithAggregatesFilter<$PrismaModel> | $Enums.CollaborationMessageType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel>
 }
 
 export type EnumOrderSourceFilter<$PrismaModel = never> = {
@@ -454,6 +407,23 @@ export type EnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
+}
+
+export type EnumPaymentAttemptStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PaymentAttemptStatus | Prisma.EnumPaymentAttemptStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PaymentAttemptStatus[]
+  notIn?: $Enums.PaymentAttemptStatus[]
+  not?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel> | $Enums.PaymentAttemptStatus
+}
+
+export type EnumPaymentAttemptStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PaymentAttemptStatus | Prisma.EnumPaymentAttemptStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PaymentAttemptStatus[]
+  notIn?: $Enums.PaymentAttemptStatus[]
+  not?: Prisma.NestedEnumPaymentAttemptStatusWithAggregatesFilter<$PrismaModel> | $Enums.PaymentAttemptStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel>
 }
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -773,18 +743,6 @@ export type NestedEnumServiceLinkTypeWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumServiceLinkTypeFilter<$PrismaModel>
 }
 
-export type NestedBoolNullableFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedBoolNullableFilter<$PrismaModel> | boolean | null
-}
-
-export type NestedEnumServiceLinkTypeNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.ServiceLinkType | Prisma.EnumServiceLinkTypeFieldRefInput<$PrismaModel> | null
-  in?: $Enums.ServiceLinkType[] | null
-  notIn?: $Enums.ServiceLinkType[] | null
-  not?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel> | $Enums.ServiceLinkType | null
-}
-
 export type NestedEnumCollaborationRequestStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.CollaborationRequestStatus | Prisma.EnumCollaborationRequestStatusFieldRefInput<$PrismaModel>
   in?: $Enums.CollaborationRequestStatus[]
@@ -801,24 +759,6 @@ export type NestedDecimalNullableFilter<$PrismaModel = never> = {
   gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-}
-
-export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedBoolNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
-}
-
-export type NestedEnumServiceLinkTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ServiceLinkType | Prisma.EnumServiceLinkTypeFieldRefInput<$PrismaModel> | null
-  in?: $Enums.ServiceLinkType[] | null
-  notIn?: $Enums.ServiceLinkType[] | null
-  not?: Prisma.NestedEnumServiceLinkTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ServiceLinkType | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumServiceLinkTypeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumCollaborationRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -845,23 +785,6 @@ export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
-}
-
-export type NestedEnumCollaborationMessageTypeFilter<$PrismaModel = never> = {
-  equals?: $Enums.CollaborationMessageType | Prisma.EnumCollaborationMessageTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.CollaborationMessageType[]
-  notIn?: $Enums.CollaborationMessageType[]
-  not?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel> | $Enums.CollaborationMessageType
-}
-
-export type NestedEnumCollaborationMessageTypeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.CollaborationMessageType | Prisma.EnumCollaborationMessageTypeFieldRefInput<$PrismaModel>
-  in?: $Enums.CollaborationMessageType[]
-  notIn?: $Enums.CollaborationMessageType[]
-  not?: Prisma.NestedEnumCollaborationMessageTypeWithAggregatesFilter<$PrismaModel> | $Enums.CollaborationMessageType
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumCollaborationMessageTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumOrderSourceFilter<$PrismaModel = never> = {
@@ -913,6 +836,23 @@ export type NestedEnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPaymentStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPaymentAttemptStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PaymentAttemptStatus | Prisma.EnumPaymentAttemptStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PaymentAttemptStatus[]
+  notIn?: $Enums.PaymentAttemptStatus[]
+  not?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel> | $Enums.PaymentAttemptStatus
+}
+
+export type NestedEnumPaymentAttemptStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PaymentAttemptStatus | Prisma.EnumPaymentAttemptStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PaymentAttemptStatus[]
+  notIn?: $Enums.PaymentAttemptStatus[]
+  not?: Prisma.NestedEnumPaymentAttemptStatusWithAggregatesFilter<$PrismaModel> | $Enums.PaymentAttemptStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPaymentAttemptStatusFilter<$PrismaModel>
 }
 
 

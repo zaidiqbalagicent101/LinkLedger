@@ -32,7 +32,7 @@ export default function LandingPage() {
           <nav className="flex items-center gap-5 text-[15px] max-[720px]:gap-3 max-[720px]:text-[14px]" aria-label="Main navigation">
             <a className="text-[#5f6f69] hover:text-[#12211c] max-[720px]:hidden" href="#how-it-works">How it works</a>
             <Link className="text-[#5f6f69] hover:text-[#12211c]" href="/login">Log in</Link>
-            <Link className={`${primaryButtonStyles} min-h-9 px-3.5 text-[14px]`} href="/register/advertiser">Get started</Link>
+            <Link className={`${primaryButtonStyles} min-h-9 px-3.5 text-[14px] !text-white`} href="/register/advertiser">Get started</Link>
           </nav>
         </div>
       </header>
@@ -47,8 +47,8 @@ export default function LandingPage() {
             and publishers get paid for them.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 max-[720px]:flex-col">
-            <Link className={`${primaryButtonStyles} max-[720px]:w-full`} href="/register/advertiser">
-              Sign up as advertiser <ArrowRight size={16} />
+            <Link className={`${secondaryButtonStyles} max-[720px]:w-full`} href="/register/advertiser">
+              Sign up as advertiser 
             </Link>
             <Link className={`${secondaryButtonStyles} max-[720px]:w-full`} href="/register/publisher">
               Sign up as publisher
@@ -98,7 +98,11 @@ export default function LandingPage() {
                 <li className="flex gap-2.5"><Check className="mt-1 shrink-0 text-[#0e7a5a]" size={16} /> Compare publishers on the same metrics</li>
                 <li className="flex gap-2.5"><Check className="mt-1 shrink-0 text-[#0e7a5a]" size={16} /> Approve every post before it goes live</li>
               </ul>
-              <Link className={primaryButtonStyles} href="/register/advertiser">Sign up as advertiser</Link>
+              <Link
+              className={`${primaryButtonStyles} !text-white`} href="/register/advertiser"
+            >
+              Sign up as advertiser
+            </Link>
             </div>
             <div className="rounded-lg border border-[#e5eae8] p-7">
               <h3 className="text-[19px] font-semibold">Publishers</h3>
