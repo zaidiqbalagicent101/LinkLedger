@@ -38,8 +38,11 @@ export type PaymentAttemptMinAggregateOutputType = {
   id: string | null
   orderId: string | null
   idempotencyKey: string | null
+  provider: $Enums.PaymentProvider | null
   razorpayOrderId: string | null
   razorpayPaymentId: string | null
+  stripeCheckoutSessionId: string | null
+  stripePaymentIntentId: string | null
   amount: number | null
   currency: string | null
   status: $Enums.PaymentAttemptStatus | null
@@ -54,8 +57,11 @@ export type PaymentAttemptMaxAggregateOutputType = {
   id: string | null
   orderId: string | null
   idempotencyKey: string | null
+  provider: $Enums.PaymentProvider | null
   razorpayOrderId: string | null
   razorpayPaymentId: string | null
+  stripeCheckoutSessionId: string | null
+  stripePaymentIntentId: string | null
   amount: number | null
   currency: string | null
   status: $Enums.PaymentAttemptStatus | null
@@ -70,8 +76,11 @@ export type PaymentAttemptCountAggregateOutputType = {
   id: number
   orderId: number
   idempotencyKey: number
+  provider: number
   razorpayOrderId: number
   razorpayPaymentId: number
+  stripeCheckoutSessionId: number
+  stripePaymentIntentId: number
   amount: number
   currency: number
   status: number
@@ -96,8 +105,11 @@ export type PaymentAttemptMinAggregateInputType = {
   id?: true
   orderId?: true
   idempotencyKey?: true
+  provider?: true
   razorpayOrderId?: true
   razorpayPaymentId?: true
+  stripeCheckoutSessionId?: true
+  stripePaymentIntentId?: true
   amount?: true
   currency?: true
   status?: true
@@ -112,8 +124,11 @@ export type PaymentAttemptMaxAggregateInputType = {
   id?: true
   orderId?: true
   idempotencyKey?: true
+  provider?: true
   razorpayOrderId?: true
   razorpayPaymentId?: true
+  stripeCheckoutSessionId?: true
+  stripePaymentIntentId?: true
   amount?: true
   currency?: true
   status?: true
@@ -128,8 +143,11 @@ export type PaymentAttemptCountAggregateInputType = {
   id?: true
   orderId?: true
   idempotencyKey?: true
+  provider?: true
   razorpayOrderId?: true
   razorpayPaymentId?: true
+  stripeCheckoutSessionId?: true
+  stripePaymentIntentId?: true
   amount?: true
   currency?: true
   status?: true
@@ -231,8 +249,11 @@ export type PaymentAttemptGroupByOutputType = {
   id: string
   orderId: string
   idempotencyKey: string
+  provider: $Enums.PaymentProvider
   razorpayOrderId: string | null
   razorpayPaymentId: string | null
+  stripeCheckoutSessionId: string | null
+  stripePaymentIntentId: string | null
   amount: number
   currency: string
   status: $Enums.PaymentAttemptStatus
@@ -270,8 +291,11 @@ export type PaymentAttemptWhereInput = {
   id?: Prisma.StringFilter<"PaymentAttempt"> | string
   orderId?: Prisma.StringFilter<"PaymentAttempt"> | string
   idempotencyKey?: Prisma.StringFilter<"PaymentAttempt"> | string
+  provider?: Prisma.EnumPaymentProviderFilter<"PaymentAttempt"> | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   razorpayPaymentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  stripeCheckoutSessionId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  stripePaymentIntentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   amount?: Prisma.IntFilter<"PaymentAttempt"> | number
   currency?: Prisma.StringFilter<"PaymentAttempt"> | string
   status?: Prisma.EnumPaymentAttemptStatusFilter<"PaymentAttempt"> | $Enums.PaymentAttemptStatus
@@ -287,8 +311,11 @@ export type PaymentAttemptOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
   razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeCheckoutSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripePaymentIntentId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -306,10 +333,13 @@ export type PaymentAttemptWhereUniqueInput = Prisma.AtLeast<{
   idempotencyKey?: string
   razorpayOrderId?: string
   razorpayPaymentId?: string
+  stripeCheckoutSessionId?: string
+  stripePaymentIntentId?: string
   AND?: Prisma.PaymentAttemptWhereInput | Prisma.PaymentAttemptWhereInput[]
   OR?: Prisma.PaymentAttemptWhereInput[]
   NOT?: Prisma.PaymentAttemptWhereInput | Prisma.PaymentAttemptWhereInput[]
   orderId?: Prisma.StringFilter<"PaymentAttempt"> | string
+  provider?: Prisma.EnumPaymentProviderFilter<"PaymentAttempt"> | $Enums.PaymentProvider
   amount?: Prisma.IntFilter<"PaymentAttempt"> | number
   currency?: Prisma.StringFilter<"PaymentAttempt"> | string
   status?: Prisma.EnumPaymentAttemptStatusFilter<"PaymentAttempt"> | $Enums.PaymentAttemptStatus
@@ -319,14 +349,17 @@ export type PaymentAttemptWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"PaymentAttempt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PaymentAttempt"> | Date | string
   order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-}, "id" | "idempotencyKey" | "razorpayOrderId" | "razorpayPaymentId">
+}, "id" | "idempotencyKey" | "razorpayOrderId" | "razorpayPaymentId" | "stripeCheckoutSessionId" | "stripePaymentIntentId">
 
 export type PaymentAttemptOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
   razorpayOrderId?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayPaymentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripeCheckoutSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stripePaymentIntentId?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -349,8 +382,11 @@ export type PaymentAttemptScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PaymentAttempt"> | string
   orderId?: Prisma.StringWithAggregatesFilter<"PaymentAttempt"> | string
   idempotencyKey?: Prisma.StringWithAggregatesFilter<"PaymentAttempt"> | string
+  provider?: Prisma.EnumPaymentProviderWithAggregatesFilter<"PaymentAttempt"> | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
   razorpayPaymentId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
+  stripeCheckoutSessionId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
+  stripePaymentIntentId?: Prisma.StringNullableWithAggregatesFilter<"PaymentAttempt"> | string | null
   amount?: Prisma.IntWithAggregatesFilter<"PaymentAttempt"> | number
   currency?: Prisma.StringWithAggregatesFilter<"PaymentAttempt"> | string
   status?: Prisma.EnumPaymentAttemptStatusWithAggregatesFilter<"PaymentAttempt"> | $Enums.PaymentAttemptStatus
@@ -364,8 +400,11 @@ export type PaymentAttemptScalarWhereWithAggregatesInput = {
 export type PaymentAttemptCreateInput = {
   id?: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -381,8 +420,11 @@ export type PaymentAttemptUncheckedCreateInput = {
   id?: string
   orderId: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -396,8 +438,11 @@ export type PaymentAttemptUncheckedCreateInput = {
 export type PaymentAttemptUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -413,8 +458,11 @@ export type PaymentAttemptUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -429,8 +477,11 @@ export type PaymentAttemptCreateManyInput = {
   id?: string
   orderId: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -444,8 +495,11 @@ export type PaymentAttemptCreateManyInput = {
 export type PaymentAttemptUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -460,8 +514,11 @@ export type PaymentAttemptUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -492,8 +549,11 @@ export type PaymentAttemptCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
   razorpayOrderId?: Prisma.SortOrder
   razorpayPaymentId?: Prisma.SortOrder
+  stripeCheckoutSessionId?: Prisma.SortOrder
+  stripePaymentIntentId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -512,8 +572,11 @@ export type PaymentAttemptMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
   razorpayOrderId?: Prisma.SortOrder
   razorpayPaymentId?: Prisma.SortOrder
+  stripeCheckoutSessionId?: Prisma.SortOrder
+  stripePaymentIntentId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -528,8 +591,11 @@ export type PaymentAttemptMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   idempotencyKey?: Prisma.SortOrder
+  provider?: Prisma.SortOrder
   razorpayOrderId?: Prisma.SortOrder
   razorpayPaymentId?: Prisma.SortOrder
+  stripeCheckoutSessionId?: Prisma.SortOrder
+  stripePaymentIntentId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -586,6 +652,10 @@ export type PaymentAttemptUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.PaymentAttemptScalarWhereInput | Prisma.PaymentAttemptScalarWhereInput[]
 }
 
+export type EnumPaymentProviderFieldUpdateOperationsInput = {
+  set?: $Enums.PaymentProvider
+}
+
 export type EnumPaymentAttemptStatusFieldUpdateOperationsInput = {
   set?: $Enums.PaymentAttemptStatus
 }
@@ -593,8 +663,11 @@ export type EnumPaymentAttemptStatusFieldUpdateOperationsInput = {
 export type PaymentAttemptCreateWithoutOrderInput = {
   id?: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -608,8 +681,11 @@ export type PaymentAttemptCreateWithoutOrderInput = {
 export type PaymentAttemptUncheckedCreateWithoutOrderInput = {
   id?: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -653,8 +729,11 @@ export type PaymentAttemptScalarWhereInput = {
   id?: Prisma.StringFilter<"PaymentAttempt"> | string
   orderId?: Prisma.StringFilter<"PaymentAttempt"> | string
   idempotencyKey?: Prisma.StringFilter<"PaymentAttempt"> | string
+  provider?: Prisma.EnumPaymentProviderFilter<"PaymentAttempt"> | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   razorpayPaymentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  stripeCheckoutSessionId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
+  stripePaymentIntentId?: Prisma.StringNullableFilter<"PaymentAttempt"> | string | null
   amount?: Prisma.IntFilter<"PaymentAttempt"> | number
   currency?: Prisma.StringFilter<"PaymentAttempt"> | string
   status?: Prisma.EnumPaymentAttemptStatusFilter<"PaymentAttempt"> | $Enums.PaymentAttemptStatus
@@ -668,8 +747,11 @@ export type PaymentAttemptScalarWhereInput = {
 export type PaymentAttemptCreateManyOrderInput = {
   id?: string
   idempotencyKey: string
+  provider?: $Enums.PaymentProvider
   razorpayOrderId?: string | null
   razorpayPaymentId?: string | null
+  stripeCheckoutSessionId?: string | null
+  stripePaymentIntentId?: string | null
   amount: number
   currency: string
   status?: $Enums.PaymentAttemptStatus
@@ -683,8 +765,11 @@ export type PaymentAttemptCreateManyOrderInput = {
 export type PaymentAttemptUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -698,8 +783,11 @@ export type PaymentAttemptUpdateWithoutOrderInput = {
 export type PaymentAttemptUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -713,8 +801,11 @@ export type PaymentAttemptUncheckedUpdateWithoutOrderInput = {
 export type PaymentAttemptUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
+  provider?: Prisma.EnumPaymentProviderFieldUpdateOperationsInput | $Enums.PaymentProvider
   razorpayOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayPaymentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripeCheckoutSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stripePaymentIntentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPaymentAttemptStatusFieldUpdateOperationsInput | $Enums.PaymentAttemptStatus
@@ -731,8 +822,11 @@ export type PaymentAttemptSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   orderId?: boolean
   idempotencyKey?: boolean
+  provider?: boolean
   razorpayOrderId?: boolean
   razorpayPaymentId?: boolean
+  stripeCheckoutSessionId?: boolean
+  stripePaymentIntentId?: boolean
   amount?: boolean
   currency?: boolean
   status?: boolean
@@ -750,8 +844,11 @@ export type PaymentAttemptSelectScalar = {
   id?: boolean
   orderId?: boolean
   idempotencyKey?: boolean
+  provider?: boolean
   razorpayOrderId?: boolean
   razorpayPaymentId?: boolean
+  stripeCheckoutSessionId?: boolean
+  stripePaymentIntentId?: boolean
   amount?: boolean
   currency?: boolean
   status?: boolean
@@ -762,7 +859,7 @@ export type PaymentAttemptSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PaymentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "idempotencyKey" | "razorpayOrderId" | "razorpayPaymentId" | "amount" | "currency" | "status" | "failureCode" | "failureMessage" | "lastVerifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["paymentAttempt"]>
+export type PaymentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "idempotencyKey" | "provider" | "razorpayOrderId" | "razorpayPaymentId" | "stripeCheckoutSessionId" | "stripePaymentIntentId" | "amount" | "currency" | "status" | "failureCode" | "failureMessage" | "lastVerifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["paymentAttempt"]>
 export type PaymentAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
 }
@@ -776,8 +873,11 @@ export type $PaymentAttemptPayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     orderId: string
     idempotencyKey: string
+    provider: $Enums.PaymentProvider
     razorpayOrderId: string | null
     razorpayPaymentId: string | null
+    stripeCheckoutSessionId: string | null
+    stripePaymentIntentId: string | null
     amount: number
     currency: string
     status: $Enums.PaymentAttemptStatus
@@ -1159,8 +1259,11 @@ export interface PaymentAttemptFieldRefs {
   readonly id: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly orderId: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly idempotencyKey: Prisma.FieldRef<"PaymentAttempt", 'String'>
+  readonly provider: Prisma.FieldRef<"PaymentAttempt", 'PaymentProvider'>
   readonly razorpayOrderId: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly razorpayPaymentId: Prisma.FieldRef<"PaymentAttempt", 'String'>
+  readonly stripeCheckoutSessionId: Prisma.FieldRef<"PaymentAttempt", 'String'>
+  readonly stripePaymentIntentId: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly amount: Prisma.FieldRef<"PaymentAttempt", 'Int'>
   readonly currency: Prisma.FieldRef<"PaymentAttempt", 'String'>
   readonly status: Prisma.FieldRef<"PaymentAttempt", 'PaymentAttemptStatus'>

@@ -123,7 +123,7 @@ export default async function AdminDashboardPage() {
           </span>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {metrics.map((metric) => {
             const Icon = metric.icon;
 
@@ -188,7 +188,7 @@ export default async function AdminDashboardPage() {
 
           <Link
             href="/admin/websites/pending"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#0e7a5a] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#0a6149]"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#0e7a5a] px-5 text-sm font-semibold !text-white "
           >
             Open approvals
             <ArrowRight size={16} />

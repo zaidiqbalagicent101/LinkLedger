@@ -11,13 +11,13 @@ import {
   CheckCircle2,
   FileText,
   Globe2,
-  Link2,
-  ShieldCheck,
   UserRound,
   Wallet,
 } from "lucide-react";
 
 import { OrderStatusBadge } from "@/components/advertiser/OrderStatusBadge";
+import { FulfillmentHistory } from "@/components/orders/FulfillmentHistory";
+import { PublisherFulfillmentControls } from "@/components/orders/PublisherFulfillmentControls";
 import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 import {
   formatServiceLinkType,
@@ -99,7 +99,20 @@ async function PublisherOrderDetails({
       contentRequirements: true,
       additionalInstructions: true,
       status: true,
+      publicationUrl: true,
       createdAt: true,
+      fulfillmentEvents: {
+        orderBy: { createdAt: "asc" },
+        select: {
+          id: true,
+          type: true,
+          contentUrl: true,
+          contentText: true,
+          feedback: true,
+          createdAt: true,
+          actor: { select: { fullName: true, role: true } },
+        },
+      },
       advertiser: {
         select: {
           fullName: true,
@@ -228,6 +241,16 @@ async function PublisherOrderDetails({
               This order was placed and paid for by the advertiser.
             </p>
           </div>
+        </div>
+
+        <div className="mt-5">
+          <PublisherFulfillmentControls
+            orderId={order.id}
+            status={order.status}
+            paymentStatus="PAID"
+            publicationUrl={order.publicationUrl}
+            latestContent={[...order.fulfillmentEvents].reverse().find((event) => event.type === "CONTENT_SUBMITTED")}
+          />
         </div>
 
         {/* Quick Summary */}
@@ -421,6 +444,10 @@ async function PublisherOrderDetails({
               </Detail>
             </dl>
           </section>
+        </div>
+
+        <div className="mt-5">
+          <FulfillmentHistory events={order.fulfillmentEvents} />
         </div>
 
         {/* Bottom Actions */}

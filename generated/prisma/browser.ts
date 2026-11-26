@@ -58,6 +58,11 @@ export type CollaborationRequest = Prisma.CollaborationRequestModel
  */
 export type Order = Prisma.OrderModel
 /**
+ * Model OrderFulfillmentEvent
+ * 
+ */
+export type OrderFulfillmentEvent = Prisma.OrderFulfillmentEventModel
+/**
  * Model PaymentAttempt
  * 
  */
@@ -67,6 +72,11 @@ export type PaymentAttempt = Prisma.PaymentAttemptModel
  * 
  */
 export type RazorpayWebhookEvent = Prisma.RazorpayWebhookEventModel
+/**
+ * Model StripeWebhookEvent
+ * 
+ */
+export type StripeWebhookEvent = Prisma.StripeWebhookEventModel
 /**
  * Model AdvertiserCartItem
  * 

@@ -89,6 +89,19 @@ export const OrderStatus = {
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
+export const OrderFulfillmentEventType = {
+  STARTED: 'STARTED',
+  CONTENT_SUBMITTED: 'CONTENT_SUBMITTED',
+  REVISION_REQUESTED: 'REVISION_REQUESTED',
+  CONTENT_APPROVED: 'CONTENT_APPROVED',
+  FINAL_URL_SUBMITTED: 'FINAL_URL_SUBMITTED',
+  FINAL_URL_APPROVED: 'FINAL_URL_APPROVED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type OrderFulfillmentEventType = (typeof OrderFulfillmentEventType)[keyof typeof OrderFulfillmentEventType]
+
+
 export const PaymentStatus = {
   PENDING: 'PENDING',
   AUTHORIZED: 'AUTHORIZED',
@@ -109,3 +122,11 @@ export const PaymentAttemptStatus = {
 } as const
 
 export type PaymentAttemptStatus = (typeof PaymentAttemptStatus)[keyof typeof PaymentAttemptStatus]
+
+
+export const PaymentProvider = {
+  RAZORPAY: 'RAZORPAY',
+  STRIPE: 'STRIPE'
+} as const
+
+export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvider]

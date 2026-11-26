@@ -4,17 +4,23 @@ import "server-only";
 import { z } from "zod";
 import { requireRole } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getRazorpayClient, toMinorUnits, verifyPaymentSignature, logPaymentEvent } from "@/lib/razorpay";
+import { toMinorUnits, verifyPaymentSignature, logPaymentEvent } from "@/lib/razorpay";
+import { getAppBaseUrl, getStripeClient } from "@/lib/stripe";
+import type { PaymentAttempt } from "@/generated/prisma/client";
 
 export type PurchaseActionState = {
   message?: string;
   success?: boolean;
+  pending?: boolean;
+  retryWithNewKey?: boolean;
   checkout?: {
-    keyId: string;
-    razorpayOrderId: string;
-    amount: number;
-    currency: string;
+    provider: "STRIPE" | "RAZORPAY";
     orderId: string;
+    checkoutUrl?: string;
+    keyId?: string;
+    razorpayOrderId?: string;
+    amount?: number;
+    currency?: string;
   };
 };
 
@@ -29,6 +35,132 @@ const verifySchema = z.object({
   razorpayPaymentId: z.string().min(1).max(191),
   razorpaySignature: z.string().min(1).max(512),
 });
+
+const existingOrderSelect = {
+  id: true,
+  idempotencyKey: true,
+  directPurchaseKey: true,
+  advertiserId: true,
+  publisherServiceId: true,
+  paymentStatus: true,
+  razorpayOrderId: true,
+  paymentAmount: true,
+  paymentCurrency: true,
+  serviceNameSnapshot: true,
+  websiteNameSnapshot: true,
+  paymentAttempts: {
+    orderBy: { createdAt: "desc" as const },
+    take: 1,
+  },
+} as const;
+
+type StripeCheckoutOrder = {
+  id: string;
+  advertiserId: string;
+  serviceNameSnapshot: string;
+  websiteNameSnapshot: string;
+};
+
+async function createStripeCheckout(
+  order: StripeCheckoutOrder,
+  attempt: Pick<PaymentAttempt, "id" | "amount" | "currency" | "stripeCheckoutSessionId">,
+  customerEmail: string,
+): Promise<PurchaseActionState> {
+  const stripe = getStripeClient();
+  let session = attempt.stripeCheckoutSessionId
+    ? await stripe.checkout.sessions.retrieve(attempt.stripeCheckoutSessionId)
+    : null;
+
+  if (session?.status === "open" && session.url) {
+    return { checkout: { provider: "STRIPE", orderId: order.id, checkoutUrl: session.url } };
+  }
+  if (session?.status === "complete") {
+    return { message: "Payment is being confirmed by Stripe.", pending: true };
+  }
+  if (session?.status === "expired") {
+    return {
+      message: "Checkout expired. Waiting for Stripe's webhook before retrying.",
+      pending: true,
+      retryWithNewKey: true,
+    };
+  }
+
+  const baseUrl = getAppBaseUrl();
+  session = await stripe.checkout.sessions.create({
+    mode: "payment",
+    client_reference_id: order.id,
+    customer_email: customerEmail,
+    line_items: [{
+      quantity: 1,
+      price_data: {
+        currency: attempt.currency.toLowerCase(),
+        unit_amount: attempt.amount,
+        product_data: {
+          name: `${order.serviceNameSnapshot} on ${order.websiteNameSnapshot}`.slice(0, 250),
+        },
+      },
+    }],
+    metadata: { orderId: order.id, paymentAttemptId: attempt.id },
+    payment_intent_data: {
+      metadata: { orderId: order.id, paymentAttemptId: attempt.id },
+    },
+    success_url: `${baseUrl}/advertiser/orders/${order.id}?payment=processing`,
+    cancel_url: `${baseUrl}/advertiser/orders/${order.id}?payment=cancelled`,
+    expires_at: Math.floor(Date.now() / 1000) + 60 * 60,
+  }, {
+    idempotencyKey: `linkledger-checkout-${attempt.id}`,
+  });
+
+  if (!session.url || session.status !== "open") {
+    throw new Error("Stripe did not return an open Checkout Session URL.");
+  }
+
+  const linked = await prisma.paymentAttempt.updateMany({
+    where: { id: attempt.id, provider: "STRIPE", stripeCheckoutSessionId: null },
+    data: { stripeCheckoutSessionId: session.id },
+  });
+  if (linked.count !== 1) {
+    const storedAttempt = await prisma.paymentAttempt.findUnique({
+      where: { id: attempt.id },
+      select: { stripeCheckoutSessionId: true },
+    });
+    if (storedAttempt?.stripeCheckoutSessionId !== session.id) {
+      throw new Error("Stripe Checkout Session could not be linked to the payment attempt.");
+    }
+  }
+
+  logPaymentEvent("stripe_checkout_session_created", {
+    orderId: order.id,
+    paymentAttemptId: attempt.id,
+    checkoutSessionId: session.id,
+    amount: attempt.amount,
+    currency: attempt.currency,
+  });
+  return { checkout: { provider: "STRIPE", orderId: order.id, checkoutUrl: session.url } };
+}
+
+function razorpayCheckout(order: {
+  id: string;
+  razorpayOrderId: string | null;
+  paymentAmount: number | null;
+  paymentCurrency: string | null;
+}): PurchaseActionState | null {
+  if (!order.razorpayOrderId || !order.paymentAmount || !order.paymentCurrency) return null;
+  return {
+    checkout: {
+      provider: "RAZORPAY",
+      keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "",
+      razorpayOrderId: order.razorpayOrderId,
+      amount: order.paymentAmount,
+      currency: order.paymentCurrency,
+      orderId: order.id,
+    },
+  };
+}
+
+function isUniqueConstraint(error: unknown): boolean {
+  return typeof error === "object" && error !== null && "code" in error && error.code === "P2002";
+}
 
 export async function buyPublisherServiceAction(
   _previousState: PurchaseActionState | undefined,
@@ -52,28 +184,55 @@ export async function buyPublisherServiceAction(
     return { message: "This service has already been purchased.", success: true };
   }
 
-  const existing = await prisma.order.findUnique({
-    where: { idempotencyKey },
-    select: { id: true, advertiserId: true, publisherServiceId: true, paymentStatus: true, razorpayOrderId: true, paymentAmount: true, paymentCurrency: true, paymentAttempts: { orderBy: { createdAt: "desc" }, take: 1 } },
+  const directPurchaseKey = `${user.id}:${serviceId}`;
+  let existing = await prisma.order.findFirst({
+    where: {
+      advertiserId: user.id,
+      publisherServiceId: serviceId,
+      source: "DIRECT_PURCHASE",
+      OR: [{ idempotencyKey }, { directPurchaseKey }],
+    },
+    select: existingOrderSelect,
   });
 
-  if (existing) {
-    if (existing.advertiserId !== user.id || existing.publisherServiceId !== serviceId) {
-      return { message: "This service could not be purchased. Please try again." };
-    }
-    if (existing.paymentStatus === "PAID") return { message: "Purchase confirmed successfully!", success: true };
+  if (!existing) {
+    existing = await prisma.order.findFirst({
+      where: {
+        advertiserId: user.id,
+        publisherServiceId: serviceId,
+        source: "DIRECT_PURCHASE",
+        paymentStatus: { in: ["PENDING", "AUTHORIZED"] },
+      },
+      orderBy: { createdAt: "desc" },
+      select: existingOrderSelect,
+    });
+  }
 
+  if (existing && (existing.advertiserId !== user.id || existing.publisherServiceId !== serviceId)) {
+    return { message: "This service could not be purchased. Please try again." };
+  }
+  if (existing?.paymentStatus === "PAID") {
+    return { message: "Purchase confirmed successfully!", success: true };
+  }
+
+  if (existing && ["PENDING", "AUTHORIZED"].includes(existing.paymentStatus)) {
     const attempt = existing.paymentAttempts[0];
-    if (existing.razorpayOrderId && existing.paymentAmount && existing.paymentCurrency && attempt) {
-      return {
-        checkout: {
-          keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "",
-          razorpayOrderId: existing.razorpayOrderId,
-          amount: existing.paymentAmount,
-          currency: existing.paymentCurrency,
-          orderId: existing.id,
-        },
-      };
+    if (!attempt) return { message: "Payment is still being prepared. Please retry shortly.", pending: true };
+    if (attempt.provider === "RAZORPAY") {
+      return razorpayCheckout(existing) ?? { message: "Existing Razorpay checkout is unavailable." };
+    }
+    if (attempt.status !== "PENDING") {
+      return { message: "Payment is being reconciled with Stripe.", pending: true };
+    }
+    try {
+      return await createStripeCheckout(existing, attempt, user.email);
+    } catch (error) {
+      logPaymentEvent("stripe_checkout_creation_failed", {
+        orderId: existing.id,
+        paymentAttemptId: attempt.id,
+        error: error instanceof Error ? error.message : "unknown",
+      });
+      return { message: "Stripe Checkout could not be started. You can retry safely." };
     }
   }
 
@@ -88,15 +247,51 @@ export async function buyPublisherServiceAction(
   });
   if (!service) return { message: "This service is no longer available." };
 
-  let orderId: string;
+  let order: StripeCheckoutOrder | null = null;
+  let paymentAttempt: PaymentAttempt | null = null;
   try {
     const minorAmount = toMinorUnits(service.price.toString(), service.currency);
-    if (existing) {
-      orderId = existing.id;
+    if (existing && (existing.paymentStatus === "FAILED" || existing.paymentStatus === "REFUNDED")) {
+      const repeatedAttempt = await prisma.paymentAttempt.findUnique({ where: { idempotencyKey } });
+      if (repeatedAttempt) {
+        return { message: "This payment attempt has already been used. Start a fresh retry.", retryWithNewKey: true };
+      }
+
+      const reopened = await prisma.$transaction(async (transaction) => {
+        const changed = await transaction.order.updateMany({
+          where: { id: existing.id, paymentStatus: existing.paymentStatus },
+          data: {
+            paymentStatus: "PENDING",
+            paymentUpdatedAt: new Date(),
+            paymentFailureCode: null,
+            paymentFailureMessage: null,
+          },
+        });
+        if (changed.count !== 1) return null;
+        return transaction.paymentAttempt.create({
+          data: {
+            orderId: existing.id,
+            idempotencyKey,
+            provider: "STRIPE",
+            amount: existing.paymentAmount ?? minorAmount,
+            currency: existing.paymentCurrency ?? service.currency,
+          },
+        });
+      });
+
+      if (!reopened) {
+        return { message: "Payment status is changing. Refresh before retrying.", pending: true };
+      }
+      paymentAttempt = reopened;
+      order = await prisma.order.findUnique({ where: { id: existing.id }, select: { id: true, advertiserId: true, serviceNameSnapshot: true, websiteNameSnapshot: true } });
     } else {
       const created = await prisma.order.create({
         data: {
-          idempotencyKey, source: "DIRECT_PURCHASE", status: "CONFIRMED", paymentStatus: "PENDING",
+          idempotencyKey,
+          directPurchaseKey,
+          source: "DIRECT_PURCHASE",
+          status: "CONFIRMED",
+          paymentStatus: "PENDING",
           advertiserId: user.id, publisherWebsiteId: service.website.id, publisherServiceId: service.id,
           websiteNameSnapshot: service.website.websiteName, websiteUrlSnapshot: service.website.websiteUrl,
           websiteNicheSnapshot: service.website.websiteNiche, monthlyTrafficSnapshot: service.website.monthlyTraffic,
@@ -112,37 +307,49 @@ export async function buyPublisherServiceAction(
           agreedContentWritingIncluded: service.contentWritingIncluded, agreedLinkType: service.linkType,
           agreedNumberOfLinks: service.maximumLinks, agreedHomepageLinkAvailable: service.homepageLinkAvailable,
           contentRequirements: "", additionalInstructions: "", paymentAmount: minorAmount, paymentCurrency: service.currency,
-          paymentAttempts: { create: { idempotencyKey, amount: minorAmount, currency: service.currency } },
+          paymentAttempts: { create: { idempotencyKey, provider: "STRIPE", amount: minorAmount, currency: service.currency } },
+        },
+        select: {
+          id: true,
+          advertiserId: true,
+          serviceNameSnapshot: true,
+          websiteNameSnapshot: true,
+          paymentAttempts: { orderBy: { createdAt: "desc" }, take: 1 },
         },
       });
-      orderId = created.id;
+      order = created;
+      paymentAttempt = created.paymentAttempts[0];
     }
 
-    const paymentOrder = await getRazorpayClient().orders.create({
-      amount: existing?.paymentAmount ?? toMinorUnits(service.price.toString(), service.currency),
-      currency: service.currency,
-      receipt: orderId,
-      notes: { orderId, advertiserId: user.id, serviceId: service.id },
-    });
-
-    await prisma.$transaction([
-      prisma.order.update({ where: { id: orderId }, data: { razorpayOrderId: paymentOrder.id, paymentStatus: "PENDING", paymentUpdatedAt: new Date() } }),
-      prisma.paymentAttempt.update({ where: { idempotencyKey }, data: { razorpayOrderId: paymentOrder.id, status: "PENDING" } }),
-    ]);
-
-    logPaymentEvent("razorpay_order_created", { orderId, razorpayOrderId: paymentOrder.id, amount: paymentOrder.amount, currency: service.currency });
-    return { checkout: { keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "", razorpayOrderId: paymentOrder.id, amount: Number(paymentOrder.amount), currency: String(paymentOrder.currency), orderId } };
+    if (!order || !paymentAttempt) throw new Error("The payment attempt could not be created.");
+    return await createStripeCheckout(order, paymentAttempt, user.email);
   } catch (error) {
-    if (!existing) {
-      const duplicate = await prisma.order.findUnique({ where: { idempotencyKey }, select: { id: true, advertiserId: true, publisherServiceId: true, paymentStatus: true, razorpayOrderId: true, paymentAmount: true, paymentCurrency: true } });
-      if (duplicate?.advertiserId === user.id && duplicate.publisherServiceId === serviceId) {
-        if (duplicate.paymentStatus === "PAID") return { message: "Purchase confirmed successfully!", success: true };
-        if (duplicate.razorpayOrderId && duplicate.paymentAmount && duplicate.paymentCurrency) {
-          return { checkout: { keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "", razorpayOrderId: duplicate.razorpayOrderId, amount: duplicate.paymentAmount, currency: duplicate.paymentCurrency, orderId: duplicate.id } };
+    if (isUniqueConstraint(error)) {
+      const duplicate = await prisma.order.findFirst({
+        where: {
+          advertiserId: user.id,
+          publisherServiceId: serviceId,
+          source: "DIRECT_PURCHASE",
+          OR: [{ directPurchaseKey }, { idempotencyKey }],
+        },
+        select: existingOrderSelect,
+      });
+      if (duplicate?.paymentStatus === "PAID") {
+        return { message: "Purchase confirmed successfully!", success: true };
+      }
+      const duplicateAttempt = duplicate?.paymentAttempts[0];
+      if (duplicate && duplicateAttempt?.provider === "STRIPE" && duplicate.paymentStatus === "PENDING") {
+        try {
+          return await createStripeCheckout(duplicate, duplicateAttempt, user.email);
+        } catch {
+          return { message: "Stripe Checkout could not be started. You can retry safely." };
         }
       }
+      if (duplicate && duplicateAttempt?.provider === "RAZORPAY") {
+        return razorpayCheckout(duplicate) ?? { message: "Existing Razorpay checkout is unavailable." };
+      }
     }
-    logPaymentEvent("razorpay_order_failed", { orderId: existing?.id, serviceId, advertiserId: user.id, error: error instanceof Error ? error.message : "unknown" });
+    logPaymentEvent("stripe_order_creation_failed", { orderId: order?.id ?? existing?.id, serviceId, advertiserId: user.id, error: error instanceof Error ? error.message : "unknown" });
     return { message: "Payment could not be started. Please try again." };
   }
 }
@@ -164,38 +371,5 @@ export async function verifyPublisherPaymentAction(input: z.infer<typeof verifyS
   if (!order) return { message: "Payment could not be matched to this order." };
   if (order.paymentStatus === "PAID") return { message: "Purchase confirmed successfully!", success: true };
 
-  try {
-    const payment = await getRazorpayClient().payments.fetch(razorpayPaymentId) as unknown as { id: string; order_id: string; amount: number; currency: string; status: string; captured: boolean; method?: string };
-    if (payment.order_id !== razorpayOrderId || payment.id !== razorpayPaymentId) {
-      return { message: "Payment does not belong to this purchase." };
-    }
-    if (payment.amount !== order.paymentAmount || payment.currency?.toUpperCase() !== order.paymentCurrency?.toUpperCase()) {
-      return { message: "Payment amount or currency does not match this purchase." };
-    }
-
-    if (payment.status === "captured" || payment.captured) {
-      await prisma.$transaction([
-        prisma.order.update({ where: { id: order.id }, data: { paymentStatus: "PAID", razorpayPaymentId, paymentCapturedAt: new Date(), paymentUpdatedAt: new Date(), paymentFailureCode: null, paymentFailureMessage: null } }),
-        prisma.paymentAttempt.updateMany({ where: { orderId: order.id, razorpayOrderId }, data: { razorpayPaymentId, status: "PAID", lastVerifiedAt: new Date() } }),
-      ]);
-    } else if (payment.status === "authorized") {
-      await prisma.$transaction([
-        prisma.order.update({ where: { id: order.id }, data: { paymentStatus: "AUTHORIZED", razorpayPaymentId, paymentUpdatedAt: new Date() } }),
-        prisma.paymentAttempt.updateMany({ where: { orderId: order.id, razorpayOrderId }, data: { razorpayPaymentId, status: "AUTHORIZED", lastVerifiedAt: new Date() } }),
-      ]);
-      return { message: "Payment is authorized and awaiting capture verification." };
-    } else {
-      await prisma.$transaction([
-        prisma.order.update({ where: { id: order.id }, data: { paymentStatus: "FAILED", razorpayPaymentId, paymentUpdatedAt: new Date(), paymentFailureCode: payment.status } }),
-        prisma.paymentAttempt.updateMany({ where: { orderId: order.id, razorpayOrderId }, data: { razorpayPaymentId, status: "FAILED", failureCode: payment.status, lastVerifiedAt: new Date() } }),
-      ]);
-      return { message: "Payment failed. Please retry.", success: false };
-    }
-
-    logPaymentEvent("razorpay_payment_verified", { orderId: order.id, razorpayOrderId, razorpayPaymentId, amount: payment.amount });
-    return { message: "Payment captured and purchase confirmed!", success: true };
-  } catch (error) {
-    logPaymentEvent("razorpay_verification_failed", { orderId: order.id, razorpayOrderId, razorpayPaymentId, error: error instanceof Error ? error.message : "unknown" });
-    return { message: "Payment verification is pending. Please check My Orders shortly." };
-  }
+  return { message: "Payment confirmation is pending from Razorpay.", pending: true };
 }

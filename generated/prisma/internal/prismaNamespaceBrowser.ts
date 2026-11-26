@@ -59,8 +59,10 @@ export const ModelName = {
   Session: 'Session',
   CollaborationRequest: 'CollaborationRequest',
   Order: 'Order',
+  OrderFulfillmentEvent: 'OrderFulfillmentEvent',
   PaymentAttempt: 'PaymentAttempt',
   RazorpayWebhookEvent: 'RazorpayWebhookEvent',
+  StripeWebhookEvent: 'StripeWebhookEvent',
   AdvertiserCartItem: 'AdvertiserCartItem'
 } as const
 
@@ -224,6 +226,7 @@ export const OrderScalarFieldEnum = {
   source: 'source',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  directPurchaseKey: 'directPurchaseKey',
   advertiserId: 'advertiserId',
   publisherWebsiteId: 'publisherWebsiteId',
   publisherServiceId: 'publisherServiceId',
@@ -266,12 +269,13 @@ export const OrderScalarFieldEnum = {
   cancellationResponse: 'cancellationResponse',
   cancellationRespondedAt: 'cancellationRespondedAt',
   cancelledAt: 'cancelledAt',
-  publicationUrl: 'publicationUrl',
   publishedAt: 'publishedAt',
   completedAt: 'completedAt',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
   razorpayRefundId: 'razorpayRefundId',
+  stripeRefundId: 'stripeRefundId',
+  publicationUrl: 'publicationUrl',
   paymentAmount: 'paymentAmount',
   paymentCurrency: 'paymentCurrency',
   paymentCapturedAt: 'paymentCapturedAt',
@@ -286,12 +290,29 @@ export const OrderScalarFieldEnum = {
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
 
 
+export const OrderFulfillmentEventScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  actorId: 'actorId',
+  type: 'type',
+  contentUrl: 'contentUrl',
+  contentText: 'contentText',
+  feedback: 'feedback',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderFulfillmentEventScalarFieldEnum = (typeof OrderFulfillmentEventScalarFieldEnum)[keyof typeof OrderFulfillmentEventScalarFieldEnum]
+
+
 export const PaymentAttemptScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   idempotencyKey: 'idempotencyKey',
+  provider: 'provider',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
+  stripeCheckoutSessionId: 'stripeCheckoutSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   amount: 'amount',
   currency: 'currency',
   status: 'status',
@@ -313,6 +334,16 @@ export const RazorpayWebhookEventScalarFieldEnum = {
 } as const
 
 export type RazorpayWebhookEventScalarFieldEnum = (typeof RazorpayWebhookEventScalarFieldEnum)[keyof typeof RazorpayWebhookEventScalarFieldEnum]
+
+
+export const StripeWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  processedAt: 'processedAt',
+  payloadHash: 'payloadHash'
+} as const
+
+export type StripeWebhookEventScalarFieldEnum = (typeof StripeWebhookEventScalarFieldEnum)[keyof typeof StripeWebhookEventScalarFieldEnum]
 
 
 export const AdvertiserCartItemScalarFieldEnum = {
@@ -441,6 +472,7 @@ export type CollaborationRequestOrderByRelevanceFieldEnum = (typeof Collaboratio
 export const OrderOrderByRelevanceFieldEnum = {
   id: 'id',
   idempotencyKey: 'idempotencyKey',
+  directPurchaseKey: 'directPurchaseKey',
   advertiserId: 'advertiserId',
   publisherWebsiteId: 'publisherWebsiteId',
   publisherServiceId: 'publisherServiceId',
@@ -464,10 +496,11 @@ export const OrderOrderByRelevanceFieldEnum = {
   additionalInstructions: 'additionalInstructions',
   cancellationReason: 'cancellationReason',
   cancellationResponse: 'cancellationResponse',
-  publicationUrl: 'publicationUrl',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
   razorpayRefundId: 'razorpayRefundId',
+  stripeRefundId: 'stripeRefundId',
+  publicationUrl: 'publicationUrl',
   paymentCurrency: 'paymentCurrency',
   paymentFailureCode: 'paymentFailureCode',
   paymentFailureMessage: 'paymentFailureMessage'
@@ -476,12 +509,26 @@ export const OrderOrderByRelevanceFieldEnum = {
 export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
 
 
+export const OrderFulfillmentEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  actorId: 'actorId',
+  contentUrl: 'contentUrl',
+  contentText: 'contentText',
+  feedback: 'feedback'
+} as const
+
+export type OrderFulfillmentEventOrderByRelevanceFieldEnum = (typeof OrderFulfillmentEventOrderByRelevanceFieldEnum)[keyof typeof OrderFulfillmentEventOrderByRelevanceFieldEnum]
+
+
 export const PaymentAttemptOrderByRelevanceFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   idempotencyKey: 'idempotencyKey',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
+  stripeCheckoutSessionId: 'stripeCheckoutSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   currency: 'currency',
   failureCode: 'failureCode',
   failureMessage: 'failureMessage'
@@ -497,6 +544,15 @@ export const RazorpayWebhookEventOrderByRelevanceFieldEnum = {
 } as const
 
 export type RazorpayWebhookEventOrderByRelevanceFieldEnum = (typeof RazorpayWebhookEventOrderByRelevanceFieldEnum)[keyof typeof RazorpayWebhookEventOrderByRelevanceFieldEnum]
+
+
+export const StripeWebhookEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  payloadHash: 'payloadHash'
+} as const
+
+export type StripeWebhookEventOrderByRelevanceFieldEnum = (typeof StripeWebhookEventOrderByRelevanceFieldEnum)[keyof typeof StripeWebhookEventOrderByRelevanceFieldEnum]
 
 
 export const AdvertiserCartItemOrderByRelevanceFieldEnum = {

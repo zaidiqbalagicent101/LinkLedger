@@ -5,14 +5,20 @@ import { Check, LoaderCircle, RefreshCw, ShoppingCart } from "lucide-react";
 
 type CheckoutResponse = {
   checkout?: {
-    keyId: string;
-    razorpayOrderId: string;
-    amount: number;
-    currency: string;
+    provider: "STRIPE" | "RAZORPAY";
     orderId: string;
+    checkoutUrl?: string;
+    keyId?: string;
+    razorpayOrderId?: string;
+    amount?: number;
+    currency?: string;
   };
   message?: string;
   success?: boolean;
+};
+
+type PaymentStatusResponse = {
+  paymentStatus?: "PENDING" | "AUTHORIZED" | "PAID" | "FAILED" | "REFUNDED";
 };
 
 type RazorpayInstance = {
@@ -58,6 +64,43 @@ export function BuyNowButton({
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
 
+  async function waitForWebhookStatus(orderId: string) {
+    setPending(true);
+    setFailed(false);
+    setMessage("Waiting for payment confirmation...");
+
+    for (let attempt = 0; attempt < 24; attempt += 1) {
+      if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 2500));
+
+      try {
+        const response = await fetch(`/api/payments/status?orderId=${encodeURIComponent(orderId)}`, { cache: "no-store" });
+        if (!response.ok) continue;
+
+        const result = await response.json() as PaymentStatusResponse;
+        if (result.paymentStatus === "PAID") {
+          setSuccess(true);
+          setFailed(false);
+          setMessage("Purchase confirmed successfully!");
+          setPending(false);
+          return;
+        }
+        if (result.paymentStatus === "FAILED" || result.paymentStatus === "REFUNDED") {
+          setSuccess(false);
+          setFailed(true);
+          setMessage(result.paymentStatus === "REFUNDED" ? "This payment was refunded." : "The payment failed. Please retry.");
+          setPending(false);
+          return;
+        }
+      } catch {
+        // Continue checking while the payment webhook is processed.
+      }
+    }
+
+    setPending(false);
+    setFailed(false);
+    setMessage("Payment is still being confirmed. Check My Orders shortly.");
+  }
+
   async function confirmPurchase(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (alreadyPurchased) return;
@@ -80,6 +123,17 @@ export function BuyNowButton({
         return;
       }
 
+      const checkout = created.checkout;
+      if (checkout.provider === "STRIPE") {
+        if (!checkout.checkoutUrl) {
+          setFailed(true);
+          setMessage("Stripe Checkout could not be started. Please retry.");
+          return;
+        }
+        window.location.assign(checkout.checkoutUrl);
+        return;
+      }
+
       const loaded = await loadRazorpayScript();
       if (!loaded || !window.Razorpay) {
         setFailed(true);
@@ -87,7 +141,7 @@ export function BuyNowButton({
         return;
       }
 
-      const checkout = created.checkout;
+      let confirmationInProgress = false;
       const razorpay = new window.Razorpay({
         key: checkout.keyId,
         amount: checkout.amount,
@@ -97,9 +151,10 @@ export function BuyNowButton({
         order_id: checkout.razorpayOrderId,
         retry: { enabled: true, max_count: 2 },
         handler: async (response: unknown) => {
+          confirmationInProgress = true;
           const payment = response as { razorpay_order_id?: string; razorpay_payment_id?: string; razorpay_signature?: string };
           setPending(true);
-          setMessage("Verifying payment...");
+          setMessage("Checking payment with Razorpay...");
           try {
             const verifyResponse = await fetch("/api/payments/verify", {
               method: "POST",
@@ -112,31 +167,34 @@ export function BuyNowButton({
               }),
             });
             const verified = await verifyResponse.json() as CheckoutResponse;
-            setSuccess(Boolean(verified.success));
-            setFailed(!verified.success);
-            setMessage(verified.message || (verified.success ? "Purchase confirmed successfully!" : "Payment verification is pending."));
+            if (!verifyResponse.ok && verifyResponse.status !== 202) {
+              setPending(false);
+              setFailed(true);
+              setMessage(verified.message || "Payment verification failed. Please check My Orders.");
+              return;
+            }
+            await waitForWebhookStatus(checkout.orderId);
           } catch {
+            setPending(false);
             setFailed(true);
             setMessage("Payment verification could not complete. Please check My Orders and retry safely.");
-          } finally {
-            setPending(false);
           }
         },
         modal: {
           ondismiss: () => {
-            setPending(false);
-            setFailed(true);
-            setMessage("Checkout was cancelled. No purchase has been confirmed.");
+            if (!confirmationInProgress) {
+              setPending(false);
+              setFailed(false);
+              setMessage("Checkout closed. If you completed payment, check My Orders for the final status.");
+            }
           },
         },
         theme: { color: "#0e7a5a" },
       });
 
-      razorpay.on("payment.failed", (response: unknown) => {
-        setPending(false);
-        setFailed(true);
-        setMessage("Payment failed. You can retry safely without duplicate charges.");
-        void response;
+      razorpay.on("payment.failed", () => {
+        confirmationInProgress = true;
+        void waitForWebhookStatus(checkout.orderId);
       });
       razorpay.open();
     } catch {

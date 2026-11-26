@@ -12,6 +12,7 @@ import {
   UserRound,
 } from "lucide-react";
 
+import type { OrderStatus, PublisherServiceType } from "@/generated/prisma/enums";
 import { OrderStatusBadge } from "@/components/advertiser/OrderStatusBadge";
 import { PublisherAccountMenu } from "@/components/publisher/PublisherAccountMenu";
 import { formatServiceType } from "@/components/publisher/service-options";
@@ -26,31 +27,110 @@ function formatDate(date: Date) {
   });
 }
 
-export default function PublisherOrdersPage() {
+type PublisherOrdersSearchParams = {
+  from?: string;
+  to?: string;
+  status?: string;
+  serviceType?: string;
+};
+
+function parseDate(value?: string, endOfDay = false) {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return undefined;
+
+  const date = new Date(`${value}T00:00:00.000Z`);
+  if (Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value) {
+    return undefined;
+  }
+
+  if (endOfDay) date.setUTCDate(date.getUTCDate() + 1);
+  return date;
+}
+
+export default function PublisherOrdersPage({
+  searchParams,
+}: {
+  searchParams: Promise<PublisherOrdersSearchParams>;
+}) {
   return (
     <Suspense
       fallback={
         <main className="min-h-screen bg-[#f6f8f7]" aria-busy="true" />
       }
     >
-      <PublisherOrdersContent />
+      <PublisherOrdersContent searchParams={searchParams} />
     </Suspense>
   );
 }
 
-async function PublisherOrdersContent() {
+async function PublisherOrdersContent({
+  searchParams,
+}: {
+  searchParams: Promise<PublisherOrdersSearchParams>;
+}) {
   await connection();
 
   const user = await requirePublisherProfile();
+  const params = await searchParams;
+
+  const fromDate = parseDate(params.from);
+  const toDateExclusive = parseDate(params.to, true);
+  const statusFilter = params.status?.trim() ?? "";
+  const serviceTypeFilter = params.serviceType?.trim() ?? "";
+
+  const ownershipWhere = {
+    website: {
+      publisherProfile: {
+        userId: user.id,
+      },
+    },
+  };
+
+  // Build filter values from all orders belonging to this publisher.
+  // Payment status is intentionally not restricted: CONFIRMED orders can still be PENDING payment.
+  const [availableStatuses, availableServiceTypes] = await Promise.all([
+    prisma.order.findMany({
+      where: ownershipWhere,
+      distinct: ["status"],
+      select: { status: true },
+    }),
+    prisma.order.findMany({
+      where: ownershipWhere,
+      distinct: ["serviceTypeSnapshot"],
+      select: { serviceTypeSnapshot: true },
+    }),
+  ]);
+
+  const validStatuses = availableStatuses.map((item) => item.status);
+  const validServiceTypes = availableServiceTypes.map((item) => item.serviceTypeSnapshot);
+
+  const filters: {
+    createdAt?: { gte?: Date; lt?: Date };
+    status?: OrderStatus;
+    serviceTypeSnapshot?: PublisherServiceType;
+  } = {};
+
+  if (fromDate || toDateExclusive) {
+    filters.createdAt = {};
+    if (fromDate) filters.createdAt.gte = fromDate;
+    if (toDateExclusive) filters.createdAt.lt = toDateExclusive;
+  }
+
+  if (statusFilter && validStatuses.includes(statusFilter as OrderStatus)) {
+    filters.status = statusFilter as OrderStatus;
+  }
+
+  if (serviceTypeFilter && validServiceTypes.includes(serviceTypeFilter as PublisherServiceType)) {
+    filters.serviceTypeSnapshot = serviceTypeFilter as PublisherServiceType;
+  }
+
+  const hasActiveFilters = Boolean(
+    fromDate || toDateExclusive || filters.status || filters.serviceTypeSnapshot
+  );
 
   const orders = await prisma.order.findMany({
     where: {
-      paymentStatus: "PAID",
-      website: {
-        publisherProfile: {
-          userId: user.id,
-        },
-      },
+      ...ownershipWhere,
+      ...filters,
     },
     orderBy: {
       createdAt: "desc",
@@ -157,9 +237,109 @@ async function PublisherOrdersContent() {
             <CheckCircle2 size={19} />
           </span>
           <p className="text-[13px] leading-relaxed text-[#5f6f69]">
-            Only successfully paid orders are displayed in your incoming orders.
+            All orders placed for your websites are displayed here, including orders with pending payment.
           </p>
         </div>
+
+        {/* Order filters */}
+        <form
+          method="GET"
+          action="/publisher/orders"
+          className="mt-5 rounded-2xl border border-[#e5eae8] bg-white p-5 shadow-[0_12px_30px_-28px_rgba(18,33,28,0.3)]"
+        >
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 className="text-[15px] font-semibold text-[#12211c]">Filter orders</h2>
+              <p className="mt-1 text-[12px] text-[#82918b]">
+                Narrow incoming orders by received date, status, or service.
+              </p>
+            </div>
+            {hasActiveFilters && (
+              <Link
+                href="/publisher/orders"
+                className="text-[12px] font-semibold text-[#0e7a5a] hover:text-[#0a6149]"
+              >
+                Clear all filters
+              </Link>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <label className="block">
+              <span className="mb-1.5 block text-[12px] font-medium text-[#5f6f69]">
+                Received from
+              </span>
+              <input
+                type="date"
+                name="from"
+                defaultValue={params.from ?? ""}
+                max={params.to || undefined}
+                className="h-11 w-full rounded-lg border border-[#dce5e0] bg-white px-3 text-[13px] text-[#12211c] outline-none focus:border-[#0e7a5a] focus:ring-2 focus:ring-[#0e7a5a]/10"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-1.5 block text-[12px] font-medium text-[#5f6f69]">
+                Received to
+              </span>
+              <input
+                type="date"
+                name="to"
+                defaultValue={params.to ?? ""}
+                min={params.from || undefined}
+                className="h-11 w-full rounded-lg border border-[#dce5e0] bg-white px-3 text-[13px] text-[#12211c] outline-none focus:border-[#0e7a5a] focus:ring-2 focus:ring-[#0e7a5a]/10"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-1.5 block text-[12px] font-medium text-[#5f6f69]">
+                Order status
+              </span>
+              <select
+                name="status"
+                defaultValue={filters.status ? statusFilter : ""}
+                className="h-11 w-full rounded-lg border border-[#dce5e0] bg-white px-3 text-[13px] text-[#12211c] outline-none focus:border-[#0e7a5a] focus:ring-2 focus:ring-[#0e7a5a]/10"
+              >
+                <option value="">All statuses</option>
+                {validStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status.replaceAll("_", " ").toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase())}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="mb-1.5 block text-[12px] font-medium text-[#5f6f69]">
+                Service type
+              </span>
+              <select
+                name="serviceType"
+                defaultValue={filters.serviceTypeSnapshot ? serviceTypeFilter : ""}
+                className="h-11 w-full rounded-lg border border-[#dce5e0] bg-white px-3 text-[13px] text-[#12211c] outline-none focus:border-[#0e7a5a] focus:ring-2 focus:ring-[#0e7a5a]/10"
+              >
+                <option value="">All services</option>
+                {validServiceTypes.map((serviceType) => (
+                  <option key={serviceType} value={serviceType}>
+                    {formatServiceType(serviceType)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <button
+              type="submit"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-[#0e7a5a] px-5 text-[13px] font-semibold text-white transition-colors hover:bg-[#0a6149] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e7a5a]"
+            >
+              Apply filters
+            </button>
+            <span className="text-[12px] text-[#82918b]">
+              {orderCount} {orderCount === 1 ? "order" : "orders"} found
+            </span>
+          </div>
+        </form>
 
         {/* Orders table */}
         <div className="mt-5">
@@ -275,15 +455,23 @@ async function PublisherOrdersContent() {
               </span>
 
               <h2 className="mt-5 text-[22px] font-semibold tracking-tight">
-                No incoming orders
+                {hasActiveFilters ? "No matching orders" : "No incoming orders"}
               </h2>
 
               <p className="mt-2 max-w-[460px] text-sm leading-relaxed text-[#5f6f69]">
-                Purchases for your websites will appear here. Once an advertiser
-                purchases one of your services, you can review the order details
-                here.
+                {hasActiveFilters
+                  ? "No paid orders match the selected filters. Try changing the date range, status, or service type."
+                  : "Purchases for your websites will appear here. Once an advertiser purchases one of your services, you can review the order details here."}
               </p>
 
+              {hasActiveFilters ? (
+                <Link
+                  href="/publisher/orders"
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#cfe2d8] px-5 text-sm font-semibold text-[#0e7a5a] transition-colors hover:bg-[#f3f8f5]"
+                >
+                  Clear filters
+                </Link>
+              ) : (
               <Link
                 href="/publisher/websites"
                 className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#0e7a5a] px-5 text-sm font-semibold !text-white transition-colors hover:bg-[#0a6149] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e7a5a]"
@@ -291,6 +479,7 @@ async function PublisherOrdersContent() {
                 Review your websites
                 <ArrowRight size={15} />
               </Link>
+              )}
             </div>
           )}
         </div>

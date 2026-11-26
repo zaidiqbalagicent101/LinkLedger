@@ -15,5 +15,6 @@ export async function POST(request: Request) {
 
   const result = await verifyPublisherPaymentAction(body);
   if (result.success) return Response.json(result);
-  return Response.json(result, { status: 202 });
+  if (result.pending) return Response.json(result, { status: 202 });
+  return Response.json(result, { status: 400 });
 }

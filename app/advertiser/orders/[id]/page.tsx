@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { OrderStatusBadge } from "@/components/advertiser/OrderStatusBadge";
+import { AdvertiserFulfillmentControls } from "@/components/orders/AdvertiserFulfillmentControls";
+import { FulfillmentHistory } from "@/components/orders/FulfillmentHistory";
 import { AdvertiserAccountMenu } from "@/components/advertiser/AdvertiserAccountMenu";
 import { formatServiceLinkType, formatServiceType } from "@/components/publisher/service-options";
 import { requireRole } from "@/lib/auth";
@@ -69,7 +71,20 @@ async function AdvertiserOrderDetails({ params }: { params: Promise<{ id: string
       additionalInstructions: true,
       status: true,
       paymentStatus: true,
+      publicationUrl: true,
       createdAt: true,
+      fulfillmentEvents: {
+        orderBy: { createdAt: "asc" },
+        select: {
+          id: true,
+          type: true,
+          contentUrl: true,
+          contentText: true,
+          feedback: true,
+          createdAt: true,
+          actor: { select: { fullName: true, role: true } },
+        },
+      },
     },
   });
 
@@ -180,6 +195,16 @@ async function AdvertiserOrderDetails({ params }: { params: Promise<{ id: string
               </div>
             </dl>
           </div>
+        </div>
+
+        <div className="mt-6 space-y-5">
+          <AdvertiserFulfillmentControls
+            orderId={order.id}
+            status={order.status}
+            paymentStatus={order.paymentStatus}
+            publicationUrl={order.publicationUrl}
+          />
+          <FulfillmentHistory events={order.fulfillmentEvents} />
         </div>
 
         {/* Details */}

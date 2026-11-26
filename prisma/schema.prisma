@@ -63,6 +63,16 @@ enum OrderStatus {
   CANCELLED
 }
 
+enum OrderFulfillmentEventType {
+  STARTED
+  CONTENT_SUBMITTED
+  REVISION_REQUESTED
+  CONTENT_APPROVED
+  FINAL_URL_SUBMITTED
+  FINAL_URL_APPROVED
+  COMPLETED
+}
+
 enum PaymentStatus {
   PENDING
   AUTHORIZED
@@ -79,24 +89,30 @@ enum PaymentAttemptStatus {
   REFUNDED
 }
 
+enum PaymentProvider {
+  RAZORPAY
+  STRIPE
+}
+
 model User {
-  id                    String                 @id @default(cuid()) @db.VarChar(191)
-  fullName              String                 @db.VarChar(191)
-  email                 String                 @unique @db.VarChar(191)
-  password              String                 @db.VarChar(255)
+  id                    String                  @id @default(cuid()) @db.VarChar(191)
+  fullName              String                  @db.VarChar(191)
+  email                 String                  @unique @db.VarChar(191)
+  password              String                  @db.VarChar(255)
   role                  UserRole
-  status                AccountStatus          @default(ACTIVE)
-  country               String                 @db.VarChar(100)
+  status                AccountStatus           @default(ACTIVE)
+  country               String                  @db.VarChar(100)
   lastLoginAt           DateTime?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
   sessions              Session[]
   publisherProfile      PublisherProfile?
-  reviewedWebsites      PublisherWebsite[]     @relation("WebsiteReviewer")
-  websiteReviews        WebsiteReview[]        @relation("ReviewAdmin")
+  reviewedWebsites      PublisherWebsite[]      @relation("WebsiteReviewer")
+  websiteReviews        WebsiteReview[]         @relation("ReviewAdmin")
   collaborationRequests CollaborationRequest[]
   orders                Order[]
   cartItems             AdvertiserCartItem[]
+  fulfillmentEvents     OrderFulfillmentEvent[] @relation("FulfillmentEventActor")
 
   @@map("users")
 }
@@ -252,72 +268,76 @@ model CollaborationRequest {
 }
 
 model Order {
-  id                             String                @id @default(cuid()) @db.VarChar(191)
-  idempotencyKey                 String                @unique @db.VarChar(191)
+  id                             String                  @id @default(cuid()) @db.VarChar(191)
+  idempotencyKey                 String                  @unique @db.VarChar(191)
   source                         OrderSource
-  status                         OrderStatus           @default(CONFIRMED)
-  paymentStatus                  PaymentStatus         @default(PENDING)
-  advertiserId                   String                @db.VarChar(191)
-  publisherWebsiteId             String?               @db.VarChar(191)
-  publisherServiceId             String?               @db.VarChar(191)
-  customRequestId                String?               @unique @db.VarChar(191)
-  websiteNameSnapshot            String                @db.VarChar(191)
-  websiteUrlSnapshot             String                @db.VarChar(512)
-  websiteNicheSnapshot           String                @db.VarChar(120)
+  status                         OrderStatus             @default(CONFIRMED)
+  paymentStatus                  PaymentStatus           @default(PENDING)
+  directPurchaseKey              String?                 @unique @db.VarChar(191)
+  advertiserId                   String                  @db.VarChar(191)
+  publisherWebsiteId             String?                 @db.VarChar(191)
+  publisherServiceId             String?                 @db.VarChar(191)
+  customRequestId                String?                 @unique @db.VarChar(191)
+  websiteNameSnapshot            String                  @db.VarChar(191)
+  websiteUrlSnapshot             String                  @db.VarChar(512)
+  websiteNicheSnapshot           String                  @db.VarChar(120)
   monthlyTrafficSnapshot         Int
-  websiteLanguageSnapshot        String                @db.VarChar(80)
-  targetAudienceCountrySnapshot  String                @db.VarChar(100)
-  websiteDescriptionSnapshot     String                @db.Text
+  websiteLanguageSnapshot        String                  @db.VarChar(80)
+  targetAudienceCountrySnapshot  String                  @db.VarChar(100)
+  websiteDescriptionSnapshot     String                  @db.Text
   domainRatingSnapshot           Int?
   domainAuthoritySnapshot        Int?
-  serviceNameSnapshot            String                @db.VarChar(120)
+  serviceNameSnapshot            String                  @db.VarChar(120)
   serviceTypeSnapshot            PublisherServiceType
-  serviceDescriptionSnapshot     String                @db.Text
-  publishingGuidelinesSnapshot   String?               @db.Text
-  additionalConditionsSnapshot   String?               @db.Text
-  originalPrice                  Decimal               @db.Decimal(10, 2)
-  originalCurrency               String                @db.Char(3)
+  serviceDescriptionSnapshot     String                  @db.Text
+  publishingGuidelinesSnapshot   String?                 @db.Text
+  additionalConditionsSnapshot   String?                 @db.Text
+  originalPrice                  Decimal                 @db.Decimal(10, 2)
+  originalCurrency               String                  @db.Char(3)
   originalDeliveryTimeDays       Int
   originalContentWritingIncluded Boolean
   originalLinkType               ServiceLinkType
   originalMaximumLinks           Int?
   originalHomepageLinkAvailable  Boolean
-  agreedPrice                    Decimal               @db.Decimal(10, 2)
-  agreedCurrency                 String                @db.Char(3)
+  agreedPrice                    Decimal                 @db.Decimal(10, 2)
+  agreedCurrency                 String                  @db.Char(3)
   agreedDeliveryTimeDays         Int
   agreedContentWritingIncluded   Boolean
   agreedLinkType                 ServiceLinkType
   agreedNumberOfLinks            Int?
   agreedHomepageLinkAvailable    Boolean
-  topic                          String?               @db.VarChar(191)
-  targetUrl                      String?               @db.VarChar(2048)
-  anchorText                     String?               @db.VarChar(191)
-  contentRequirements            String                @db.Text
-  additionalInstructions         String                @db.Text
-  cancellationReason             String?               @db.Text
+  topic                          String?                 @db.VarChar(191)
+  targetUrl                      String?                 @db.VarChar(2048)
+  anchorText                     String?                 @db.VarChar(191)
+  contentRequirements            String                  @db.Text
+  additionalInstructions         String                  @db.Text
+  cancellationReason             String?                 @db.Text
   cancellationRequestedAt        DateTime?
-  cancellationResponse           String?               @db.Text
+  cancellationResponse           String?                 @db.Text
   cancellationRespondedAt        DateTime?
   cancelledAt                    DateTime?
   publishedAt                    DateTime?
   completedAt                    DateTime?
-  razorpayOrderId                String?               @unique @db.VarChar(191)
-  razorpayPaymentId              String?               @unique @db.VarChar(191)
-  razorpayRefundId               String?               @unique @db.VarChar(191)
+  razorpayOrderId                String?                 @unique @db.VarChar(191)
+  razorpayPaymentId              String?                 @unique @db.VarChar(191)
+  razorpayRefundId               String?                 @unique @db.VarChar(191)
+  stripeRefundId                 String?                 @unique @db.VarChar(191)
+  publicationUrl                 String?                 @db.VarChar(2048)
   paymentAmount                  Int?
-  paymentCurrency                String?               @db.Char(3)
+  paymentCurrency                String?                 @db.Char(3)
   paymentCapturedAt              DateTime?
   paymentRefundedAt              DateTime?
-  paymentFailureCode             String?               @db.VarChar(191)
-  paymentFailureMessage          String?               @db.VarChar(512)
+  paymentFailureCode             String?                 @db.VarChar(191)
+  paymentFailureMessage          String?                 @db.VarChar(512)
   paymentUpdatedAt               DateTime?
-  createdAt                      DateTime              @default(now())
-  updatedAt                      DateTime              @updatedAt
-  advertiser                     User                  @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
-  website                        PublisherWebsite?     @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
-  service                        PublisherService?     @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
-  customRequest                  CollaborationRequest? @relation(fields: [customRequestId], references: [id], onDelete: SetNull)
+  createdAt                      DateTime                @default(now())
+  updatedAt                      DateTime                @updatedAt
+  advertiser                     User                    @relation(fields: [advertiserId], references: [id], onDelete: Restrict)
+  website                        PublisherWebsite?       @relation(fields: [publisherWebsiteId], references: [id], onDelete: SetNull)
+  service                        PublisherService?       @relation(fields: [publisherServiceId], references: [id], onDelete: SetNull)
+  customRequest                  CollaborationRequest?   @relation(fields: [customRequestId], references: [id], onDelete: SetNull)
   paymentAttempts                PaymentAttempt[]
+  fulfillmentEvents              OrderFulfillmentEvent[]
 
   @@index([advertiserId, createdAt])
   @@index([publisherWebsiteId, status, createdAt])
@@ -328,12 +348,32 @@ model Order {
   @@map("orders")
 }
 
+model OrderFulfillmentEvent {
+  id          String                    @id @default(cuid()) @db.VarChar(191)
+  orderId     String                    @db.VarChar(191)
+  actorId     String                    @db.VarChar(191)
+  type        OrderFulfillmentEventType
+  contentUrl  String?                   @db.VarChar(2048)
+  contentText String?                   @db.LongText
+  feedback    String?                   @db.Text
+  createdAt   DateTime                  @default(now())
+  order       Order                     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  actor       User                      @relation("FulfillmentEventActor", fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@index([orderId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("order_fulfillment_events")
+}
+
 model PaymentAttempt {
   id                String               @id @default(cuid()) @db.VarChar(191)
   orderId           String               @db.VarChar(191)
   idempotencyKey    String               @unique @db.VarChar(191)
+  provider          PaymentProvider      @default(RAZORPAY)
   razorpayOrderId   String?              @unique @db.VarChar(191)
   razorpayPaymentId String?              @unique @db.VarChar(191)
+  stripeCheckoutSessionId String?         @unique @db.VarChar(191)
+  stripePaymentIntentId   String?         @unique @db.VarChar(191)
   amount            Int
   currency          String               @db.Char(3)
   status            PaymentAttemptStatus @default(PENDING)
@@ -357,6 +397,16 @@ model RazorpayWebhookEvent {
 
   @@index([eventName, processedAt])
   @@map("razorpay_webhook_events")
+}
+
+model StripeWebhookEvent {
+  id          String   @id @db.VarChar(191)
+  eventName   String   @db.VarChar(191)
+  processedAt DateTime @default(now())
+  payloadHash String   @db.Char(64)
+
+  @@index([eventName, processedAt])
+  @@map("stripe_webhook_events")
 }
 
 model AdvertiserCartItem {

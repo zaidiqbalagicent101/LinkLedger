@@ -405,8 +405,10 @@ export const ModelName = {
   Session: 'Session',
   CollaborationRequest: 'CollaborationRequest',
   Order: 'Order',
+  OrderFulfillmentEvent: 'OrderFulfillmentEvent',
   PaymentAttempt: 'PaymentAttempt',
   RazorpayWebhookEvent: 'RazorpayWebhookEvent',
+  StripeWebhookEvent: 'StripeWebhookEvent',
   AdvertiserCartItem: 'AdvertiserCartItem'
 } as const
 
@@ -423,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "publisherProfile" | "publisherWebsite" | "publisherService" | "websiteReview" | "session" | "collaborationRequest" | "order" | "paymentAttempt" | "razorpayWebhookEvent" | "advertiserCartItem"
+    modelProps: "user" | "publisherProfile" | "publisherWebsite" | "publisherService" | "websiteReview" | "session" | "collaborationRequest" | "order" | "orderFulfillmentEvent" | "paymentAttempt" | "razorpayWebhookEvent" | "stripeWebhookEvent" | "advertiserCartItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -955,6 +957,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    OrderFulfillmentEvent: {
+      payload: Prisma.$OrderFulfillmentEventPayload<ExtArgs>
+      fields: Prisma.OrderFulfillmentEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OrderFulfillmentEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OrderFulfillmentEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        findFirst: {
+          args: Prisma.OrderFulfillmentEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OrderFulfillmentEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        findMany: {
+          args: Prisma.OrderFulfillmentEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>[]
+        }
+        create: {
+          args: Prisma.OrderFulfillmentEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        createMany: {
+          args: Prisma.OrderFulfillmentEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.OrderFulfillmentEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        update: {
+          args: Prisma.OrderFulfillmentEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.OrderFulfillmentEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OrderFulfillmentEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.OrderFulfillmentEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OrderFulfillmentEventPayload>
+        }
+        aggregate: {
+          args: Prisma.OrderFulfillmentEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOrderFulfillmentEvent>
+        }
+        groupBy: {
+          args: Prisma.OrderFulfillmentEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrderFulfillmentEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OrderFulfillmentEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OrderFulfillmentEventCountAggregateOutputType> | number
+        }
+      }
+    }
     PaymentAttempt: {
       payload: Prisma.$PaymentAttemptPayload<ExtArgs>
       fields: Prisma.PaymentAttemptFieldRefs
@@ -1084,6 +1152,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.RazorpayWebhookEventCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.RazorpayWebhookEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    StripeWebhookEvent: {
+      payload: Prisma.$StripeWebhookEventPayload<ExtArgs>
+      fields: Prisma.StripeWebhookEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StripeWebhookEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StripeWebhookEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        findFirst: {
+          args: Prisma.StripeWebhookEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StripeWebhookEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        findMany: {
+          args: Prisma.StripeWebhookEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>[]
+        }
+        create: {
+          args: Prisma.StripeWebhookEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        createMany: {
+          args: Prisma.StripeWebhookEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.StripeWebhookEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        update: {
+          args: Prisma.StripeWebhookEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.StripeWebhookEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StripeWebhookEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.StripeWebhookEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StripeWebhookEventPayload>
+        }
+        aggregate: {
+          args: Prisma.StripeWebhookEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStripeWebhookEvent>
+        }
+        groupBy: {
+          args: Prisma.StripeWebhookEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StripeWebhookEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StripeWebhookEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StripeWebhookEventCountAggregateOutputType> | number
         }
       }
     }
@@ -1336,6 +1470,7 @@ export const OrderScalarFieldEnum = {
   source: 'source',
   status: 'status',
   paymentStatus: 'paymentStatus',
+  directPurchaseKey: 'directPurchaseKey',
   advertiserId: 'advertiserId',
   publisherWebsiteId: 'publisherWebsiteId',
   publisherServiceId: 'publisherServiceId',
@@ -1378,12 +1513,13 @@ export const OrderScalarFieldEnum = {
   cancellationResponse: 'cancellationResponse',
   cancellationRespondedAt: 'cancellationRespondedAt',
   cancelledAt: 'cancelledAt',
-  publicationUrl: 'publicationUrl',
   publishedAt: 'publishedAt',
   completedAt: 'completedAt',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
   razorpayRefundId: 'razorpayRefundId',
+  stripeRefundId: 'stripeRefundId',
+  publicationUrl: 'publicationUrl',
   paymentAmount: 'paymentAmount',
   paymentCurrency: 'paymentCurrency',
   paymentCapturedAt: 'paymentCapturedAt',
@@ -1398,12 +1534,29 @@ export const OrderScalarFieldEnum = {
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
 
 
+export const OrderFulfillmentEventScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  actorId: 'actorId',
+  type: 'type',
+  contentUrl: 'contentUrl',
+  contentText: 'contentText',
+  feedback: 'feedback',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderFulfillmentEventScalarFieldEnum = (typeof OrderFulfillmentEventScalarFieldEnum)[keyof typeof OrderFulfillmentEventScalarFieldEnum]
+
+
 export const PaymentAttemptScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   idempotencyKey: 'idempotencyKey',
+  provider: 'provider',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
+  stripeCheckoutSessionId: 'stripeCheckoutSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   amount: 'amount',
   currency: 'currency',
   status: 'status',
@@ -1425,6 +1578,16 @@ export const RazorpayWebhookEventScalarFieldEnum = {
 } as const
 
 export type RazorpayWebhookEventScalarFieldEnum = (typeof RazorpayWebhookEventScalarFieldEnum)[keyof typeof RazorpayWebhookEventScalarFieldEnum]
+
+
+export const StripeWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  processedAt: 'processedAt',
+  payloadHash: 'payloadHash'
+} as const
+
+export type StripeWebhookEventScalarFieldEnum = (typeof StripeWebhookEventScalarFieldEnum)[keyof typeof StripeWebhookEventScalarFieldEnum]
 
 
 export const AdvertiserCartItemScalarFieldEnum = {
@@ -1553,6 +1716,7 @@ export type CollaborationRequestOrderByRelevanceFieldEnum = (typeof Collaboratio
 export const OrderOrderByRelevanceFieldEnum = {
   id: 'id',
   idempotencyKey: 'idempotencyKey',
+  directPurchaseKey: 'directPurchaseKey',
   advertiserId: 'advertiserId',
   publisherWebsiteId: 'publisherWebsiteId',
   publisherServiceId: 'publisherServiceId',
@@ -1576,10 +1740,11 @@ export const OrderOrderByRelevanceFieldEnum = {
   additionalInstructions: 'additionalInstructions',
   cancellationReason: 'cancellationReason',
   cancellationResponse: 'cancellationResponse',
-  publicationUrl: 'publicationUrl',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
   razorpayRefundId: 'razorpayRefundId',
+  stripeRefundId: 'stripeRefundId',
+  publicationUrl: 'publicationUrl',
   paymentCurrency: 'paymentCurrency',
   paymentFailureCode: 'paymentFailureCode',
   paymentFailureMessage: 'paymentFailureMessage'
@@ -1588,12 +1753,26 @@ export const OrderOrderByRelevanceFieldEnum = {
 export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
 
 
+export const OrderFulfillmentEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  actorId: 'actorId',
+  contentUrl: 'contentUrl',
+  contentText: 'contentText',
+  feedback: 'feedback'
+} as const
+
+export type OrderFulfillmentEventOrderByRelevanceFieldEnum = (typeof OrderFulfillmentEventOrderByRelevanceFieldEnum)[keyof typeof OrderFulfillmentEventOrderByRelevanceFieldEnum]
+
+
 export const PaymentAttemptOrderByRelevanceFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   idempotencyKey: 'idempotencyKey',
   razorpayOrderId: 'razorpayOrderId',
   razorpayPaymentId: 'razorpayPaymentId',
+  stripeCheckoutSessionId: 'stripeCheckoutSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
   currency: 'currency',
   failureCode: 'failureCode',
   failureMessage: 'failureMessage'
@@ -1609,6 +1788,15 @@ export const RazorpayWebhookEventOrderByRelevanceFieldEnum = {
 } as const
 
 export type RazorpayWebhookEventOrderByRelevanceFieldEnum = (typeof RazorpayWebhookEventOrderByRelevanceFieldEnum)[keyof typeof RazorpayWebhookEventOrderByRelevanceFieldEnum]
+
+
+export const StripeWebhookEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventName: 'eventName',
+  payloadHash: 'payloadHash'
+} as const
+
+export type StripeWebhookEventOrderByRelevanceFieldEnum = (typeof StripeWebhookEventOrderByRelevanceFieldEnum)[keyof typeof StripeWebhookEventOrderByRelevanceFieldEnum]
 
 
 export const AdvertiserCartItemOrderByRelevanceFieldEnum = {
@@ -1721,6 +1909,20 @@ export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'PaymentStatus'
  */
 export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'OrderFulfillmentEventType'
+ */
+export type EnumOrderFulfillmentEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderFulfillmentEventType'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentProvider'
+ */
+export type EnumPaymentProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentProvider'>
     
 
 
@@ -1896,8 +2098,10 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   collaborationRequest?: Prisma.CollaborationRequestOmit
   order?: Prisma.OrderOmit
+  orderFulfillmentEvent?: Prisma.OrderFulfillmentEventOmit
   paymentAttempt?: Prisma.PaymentAttemptOmit
   razorpayWebhookEvent?: Prisma.RazorpayWebhookEventOmit
+  stripeWebhookEvent?: Prisma.StripeWebhookEventOmit
   advertiserCartItem?: Prisma.AdvertiserCartItemOmit
 }
 

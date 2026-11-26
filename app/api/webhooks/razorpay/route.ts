@@ -59,14 +59,17 @@ export async function POST(request: Request) {
           if (eventName === "payment.captured") {
             try {
               const verified = await getRazorpayClient().payments.fetch(paymentId) as unknown as { id: string; order_id: string; amount: number; currency: string; status: string; captured: boolean };
-              if (verified.id === paymentId && verified.order_id === razorpayOrderId && verified.amount === attempt.amount && verified.currency.toUpperCase() === attempt.currency && (verified.status === "captured" || verified.captured)) {
-                await prisma.$transaction([
-                  prisma.order.update({ where: { id: attempt.orderId }, data: { paymentStatus: "PAID", razorpayPaymentId: paymentId, paymentAmount: attempt.amount, paymentCurrency: attempt.currency, paymentCapturedAt: new Date(), paymentUpdatedAt: new Date(), paymentFailureCode: null, paymentFailureMessage: null } }),
-                  prisma.paymentAttempt.update({ where: { id: attempt.id }, data: { razorpayPaymentId: paymentId, status: "PAID", lastVerifiedAt: new Date() } }),
-                ]);
+              if (verified.id !== paymentId || verified.order_id !== razorpayOrderId || verified.amount !== attempt.amount || verified.currency.toUpperCase() !== attempt.currency || (verified.status !== "captured" && !verified.captured)) {
+                throw new Error("Razorpay payment details did not match the captured webhook event.");
               }
+
+              await prisma.$transaction([
+                prisma.order.update({ where: { id: attempt.orderId }, data: { paymentStatus: "PAID", razorpayPaymentId: paymentId, paymentAmount: attempt.amount, paymentCurrency: attempt.currency, paymentCapturedAt: new Date(), paymentUpdatedAt: new Date(), paymentFailureCode: null, paymentFailureMessage: null } }),
+                prisma.paymentAttempt.update({ where: { id: attempt.id }, data: { razorpayPaymentId: paymentId, status: "PAID", lastVerifiedAt: new Date() } }),
+              ]);
             } catch (error) {
               logPaymentEvent("razorpay_webhook_capture_recovery_failed", { razorpayOrderId, paymentId, error: error instanceof Error ? error.message : "unknown" });
+              throw error;
             }
           } else if (eventName === "payment.failed") {
             await prisma.$transaction([
@@ -102,6 +105,11 @@ export async function POST(request: Request) {
     return Response.json({ received: true });
   } catch (error) {
     logPaymentEvent("razorpay_webhook_processing_failed", { eventName: body.event, error: error instanceof Error ? error.message : "unknown" });
-    return Response.json({ received: true, recoveryRequired: true });
+    try {
+      await prisma.razorpayWebhookEvent.deleteMany({ where: { id: eventId.slice(0, 191) } });
+    } catch {
+      logPaymentEvent("razorpay_webhook_event_cleanup_failed", { eventId });
+    }
+    return Response.json({ received: false, recoveryRequired: true }, { status: 500 });
   }
 }

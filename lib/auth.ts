@@ -1,5 +1,6 @@
 import "server-only";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 
@@ -11,6 +12,7 @@ export type AuthenticatedUser = {
 };
 
 export async function getCurrentUser(): Promise<AuthenticatedUser | null> {
+  await connection();
   const session = await getSession();
 
   if (!session.sessionId) {

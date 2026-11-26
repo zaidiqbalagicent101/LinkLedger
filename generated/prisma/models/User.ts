@@ -229,6 +229,7 @@ export type UserWhereInput = {
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   cartItems?: Prisma.AdvertiserCartItemListRelationFilter
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -249,6 +250,7 @@ export type UserOrderByWithRelationInput = {
   collaborationRequests?: Prisma.CollaborationRequestOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
   cartItems?: Prisma.AdvertiserCartItemOrderByRelationAggregateInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -273,6 +275,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   collaborationRequests?: Prisma.CollaborationRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   cartItems?: Prisma.AdvertiserCartItemListRelationFilter
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -325,6 +328,7 @@ export type UserCreateInput = {
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -345,6 +349,7 @@ export type UserUncheckedCreateInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserUpdateInput = {
@@ -365,6 +370,7 @@ export type UserUpdateInput = {
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -385,6 +391,7 @@ export type UserUncheckedUpdateInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -587,6 +594,20 @@ export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
 }
 
+export type UserCreateNestedOneWithoutFulfillmentEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFulfillmentEventsInput, Prisma.UserUncheckedCreateWithoutFulfillmentEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFulfillmentEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFulfillmentEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFulfillmentEventsInput, Prisma.UserUncheckedCreateWithoutFulfillmentEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFulfillmentEventsInput
+  upsert?: Prisma.UserUpsertWithoutFulfillmentEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFulfillmentEventsInput, Prisma.UserUpdateWithoutFulfillmentEventsInput>, Prisma.UserUncheckedUpdateWithoutFulfillmentEventsInput>
+}
+
 export type UserCreateNestedOneWithoutCartItemsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCartItemsInput, Prisma.UserUncheckedCreateWithoutCartItemsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCartItemsInput
@@ -618,6 +639,7 @@ export type UserCreateWithoutPublisherProfileInput = {
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutPublisherProfileInput = {
@@ -637,6 +659,7 @@ export type UserUncheckedCreateWithoutPublisherProfileInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutPublisherProfileInput = {
@@ -672,6 +695,7 @@ export type UserUpdateWithoutPublisherProfileInput = {
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPublisherProfileInput = {
@@ -691,6 +715,7 @@ export type UserUncheckedUpdateWithoutPublisherProfileInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateWithoutReviewedWebsitesInput = {
@@ -710,6 +735,7 @@ export type UserCreateWithoutReviewedWebsitesInput = {
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedWebsitesInput = {
@@ -729,6 +755,7 @@ export type UserUncheckedCreateWithoutReviewedWebsitesInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedWebsitesInput = {
@@ -764,6 +791,7 @@ export type UserUpdateWithoutReviewedWebsitesInput = {
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedWebsitesInput = {
@@ -783,6 +811,7 @@ export type UserUncheckedUpdateWithoutReviewedWebsitesInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateWithoutWebsiteReviewsInput = {
@@ -802,6 +831,7 @@ export type UserCreateWithoutWebsiteReviewsInput = {
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutWebsiteReviewsInput = {
@@ -821,6 +851,7 @@ export type UserUncheckedCreateWithoutWebsiteReviewsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutWebsiteReviewsInput = {
@@ -856,6 +887,7 @@ export type UserUpdateWithoutWebsiteReviewsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWebsiteReviewsInput = {
@@ -875,6 +907,7 @@ export type UserUncheckedUpdateWithoutWebsiteReviewsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -894,6 +927,7 @@ export type UserCreateWithoutSessionsInput = {
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -913,6 +947,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -948,6 +983,7 @@ export type UserUpdateWithoutSessionsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -967,6 +1003,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateWithoutCollaborationRequestsInput = {
@@ -986,6 +1023,7 @@ export type UserCreateWithoutCollaborationRequestsInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutCollaborationRequestsInput = {
@@ -1005,6 +1043,7 @@ export type UserUncheckedCreateWithoutCollaborationRequestsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutCollaborationRequestsInput = {
@@ -1040,6 +1079,7 @@ export type UserUpdateWithoutCollaborationRequestsInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCollaborationRequestsInput = {
@@ -1059,6 +1099,7 @@ export type UserUncheckedUpdateWithoutCollaborationRequestsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -1078,6 +1119,7 @@ export type UserCreateWithoutOrdersInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -1097,6 +1139,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -1132,6 +1175,7 @@ export type UserUpdateWithoutOrdersInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -1150,6 +1194,103 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
+}
+
+export type UserCreateWithoutFulfillmentEventsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  role: $Enums.UserRole
+  status?: $Enums.AccountStatus
+  country: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  publisherProfile?: Prisma.PublisherProfileCreateNestedOneWithoutUserInput
+  reviewedWebsites?: Prisma.PublisherWebsiteCreateNestedManyWithoutReviewedByInput
+  websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
+  collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
+  cartItems?: Prisma.AdvertiserCartItemCreateNestedManyWithoutAdvertiserInput
+}
+
+export type UserUncheckedCreateWithoutFulfillmentEventsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  role: $Enums.UserRole
+  status?: $Enums.AccountStatus
+  country: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  publisherProfile?: Prisma.PublisherProfileUncheckedCreateNestedOneWithoutUserInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedCreateNestedManyWithoutReviewedByInput
+  websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
+  cartItems?: Prisma.AdvertiserCartItemUncheckedCreateNestedManyWithoutAdvertiserInput
+}
+
+export type UserCreateOrConnectWithoutFulfillmentEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFulfillmentEventsInput, Prisma.UserUncheckedCreateWithoutFulfillmentEventsInput>
+}
+
+export type UserUpsertWithoutFulfillmentEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFulfillmentEventsInput, Prisma.UserUncheckedUpdateWithoutFulfillmentEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFulfillmentEventsInput, Prisma.UserUncheckedCreateWithoutFulfillmentEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFulfillmentEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFulfillmentEventsInput, Prisma.UserUncheckedUpdateWithoutFulfillmentEventsInput>
+}
+
+export type UserUpdateWithoutFulfillmentEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  publisherProfile?: Prisma.PublisherProfileUpdateOneWithoutUserNestedInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUpdateManyWithoutReviewedByNestedInput
+  websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
+  collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
+  cartItems?: Prisma.AdvertiserCartItemUpdateManyWithoutAdvertiserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFulfillmentEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  status?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  publisherProfile?: Prisma.PublisherProfileUncheckedUpdateOneWithoutUserNestedInput
+  reviewedWebsites?: Prisma.PublisherWebsiteUncheckedUpdateManyWithoutReviewedByNestedInput
+  websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
+  collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
   cartItems?: Prisma.AdvertiserCartItemUncheckedUpdateManyWithoutAdvertiserNestedInput
 }
 
@@ -1170,6 +1311,7 @@ export type UserCreateWithoutCartItemsInput = {
   websiteReviews?: Prisma.WebsiteReviewCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventCreateNestedManyWithoutActorInput
 }
 
 export type UserUncheckedCreateWithoutCartItemsInput = {
@@ -1189,6 +1331,7 @@ export type UserUncheckedCreateWithoutCartItemsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedCreateNestedManyWithoutAdminInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedCreateNestedManyWithoutAdvertiserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutAdvertiserInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedCreateNestedManyWithoutActorInput
 }
 
 export type UserCreateOrConnectWithoutCartItemsInput = {
@@ -1224,6 +1367,7 @@ export type UserUpdateWithoutCartItemsInput = {
   websiteReviews?: Prisma.WebsiteReviewUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUpdateManyWithoutActorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCartItemsInput = {
@@ -1243,6 +1387,7 @@ export type UserUncheckedUpdateWithoutCartItemsInput = {
   websiteReviews?: Prisma.WebsiteReviewUncheckedUpdateManyWithoutAdminNestedInput
   collaborationRequests?: Prisma.CollaborationRequestUncheckedUpdateManyWithoutAdvertiserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutAdvertiserNestedInput
+  fulfillmentEvents?: Prisma.OrderFulfillmentEventUncheckedUpdateManyWithoutActorNestedInput
 }
 
 
@@ -1257,6 +1402,7 @@ export type UserCountOutputType = {
   collaborationRequests: number
   orders: number
   cartItems: number
+  fulfillmentEvents: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1266,6 +1412,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   collaborationRequests?: boolean | UserCountOutputTypeCountCollaborationRequestsArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
   cartItems?: boolean | UserCountOutputTypeCountCartItemsArgs
+  fulfillmentEvents?: boolean | UserCountOutputTypeCountFulfillmentEventsArgs
 }
 
 /**
@@ -1320,6 +1467,13 @@ export type UserCountOutputTypeCountCartItemsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AdvertiserCartItemWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFulfillmentEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderFulfillmentEventWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1339,6 +1493,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   collaborationRequests?: boolean | Prisma.User$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   cartItems?: boolean | Prisma.User$cartItemsArgs<ExtArgs>
+  fulfillmentEvents?: boolean | Prisma.User$fulfillmentEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1366,6 +1521,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   collaborationRequests?: boolean | Prisma.User$collaborationRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   cartItems?: boolean | Prisma.User$cartItemsArgs<ExtArgs>
+  fulfillmentEvents?: boolean | Prisma.User$fulfillmentEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1379,6 +1535,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     collaborationRequests: Prisma.$CollaborationRequestPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
     cartItems: Prisma.$AdvertiserCartItemPayload<ExtArgs>[]
+    fulfillmentEvents: Prisma.$OrderFulfillmentEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1738,6 +1895,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   collaborationRequests<T extends Prisma.User$collaborationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collaborationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollaborationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cartItems<T extends Prisma.User$cartItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdvertiserCartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  fulfillmentEvents<T extends Prisma.User$fulfillmentEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$fulfillmentEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderFulfillmentEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2285,6 +2443,30 @@ export type User$cartItemsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AdvertiserCartItemScalarFieldEnum | Prisma.AdvertiserCartItemScalarFieldEnum[]
+}
+
+/**
+ * User.fulfillmentEvents
+ */
+export type User$fulfillmentEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrderFulfillmentEvent
+   */
+  select?: Prisma.OrderFulfillmentEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrderFulfillmentEvent
+   */
+  omit?: Prisma.OrderFulfillmentEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderFulfillmentEventInclude<ExtArgs> | null
+  where?: Prisma.OrderFulfillmentEventWhereInput
+  orderBy?: Prisma.OrderFulfillmentEventOrderByWithRelationInput | Prisma.OrderFulfillmentEventOrderByWithRelationInput[]
+  cursor?: Prisma.OrderFulfillmentEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderFulfillmentEventScalarFieldEnum | Prisma.OrderFulfillmentEventScalarFieldEnum[]
 }
 
 /**
