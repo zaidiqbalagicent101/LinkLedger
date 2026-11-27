@@ -15,6 +15,7 @@ type CheckoutResponse = {
   };
   message?: string;
   success?: boolean;
+  retryWithNewKey?: boolean;
 };
 
 type PaymentStatusResponse = {
@@ -59,6 +60,9 @@ export function BuyNowButton({
   alreadyPurchased?: boolean;
 }) {
   const idempotencyKey = useRef(crypto.randomUUID());
+  const lastCheckoutProvider = useRef<"STRIPE" | "RAZORPAY" | null>(null);
+  const [provider, setProvider] = useState<"STRIPE" | "RAZORPAY">("RAZORPAY");
+  const [gatewaySelectionOpen, setGatewaySelectionOpen] = useState(false);
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState<string>();
   const [success, setSuccess] = useState(false);
@@ -85,6 +89,7 @@ export function BuyNowButton({
           return;
         }
         if (result.paymentStatus === "FAILED" || result.paymentStatus === "REFUNDED") {
+          idempotencyKey.current = crypto.randomUUID();
           setSuccess(false);
           setFailed(true);
           setMessage(result.paymentStatus === "REFUNDED" ? "This payment was refunded." : "The payment failed. Please retry.");
@@ -101,23 +106,33 @@ export function BuyNowButton({
     setMessage("Payment is still being confirmed. Check My Orders shortly.");
   }
 
-  async function confirmPurchase(event: FormEvent<HTMLFormElement>) {
+  function handleBuyNow(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (alreadyPurchased) return;
-    if (!window.confirm("Are you sure you want to buy this service?")) return;
+    setGatewaySelectionOpen(true);
+  }
 
+  async function startCheckout(selectedProvider: "STRIPE" | "RAZORPAY") {
+    if (alreadyPurchased) return;
+    if (lastCheckoutProvider.current && lastCheckoutProvider.current !== selectedProvider) {
+      idempotencyKey.current = crypto.randomUUID();
+    }
+    lastCheckoutProvider.current = selectedProvider;
+    setGatewaySelectionOpen(false);
     setPending(true);
     setMessage(undefined);
     setFailed(false);
+    let checkoutOpened = false;
 
     try {
       const createResponse = await fetch("/api/payments/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ serviceId, idempotencyKey: idempotencyKey.current }),
+        body: JSON.stringify({ serviceId, idempotencyKey: idempotencyKey.current, provider: selectedProvider }),
       });
       const created = await createResponse.json() as CheckoutResponse;
       if (!createResponse.ok || !created.checkout) {
+        if (created.retryWithNewKey) idempotencyKey.current = crypto.randomUUID();
         setFailed(true);
         setMessage(created.message || "Payment could not be started. Please try again.");
         return;
@@ -197,16 +212,17 @@ export function BuyNowButton({
         void waitForWebhookStatus(checkout.orderId);
       });
       razorpay.open();
+      checkoutOpened = true;
     } catch {
       setFailed(true);
       setMessage("Payment could not be started. Please try again.");
     } finally {
-      setPending(false);
+      if (!checkoutOpened) setPending(false);
     }
   }
 
   return (
-    <form onSubmit={confirmPurchase} className="w-full">
+    <form onSubmit={handleBuyNow} className="w-full">
       {message && (
         <p className={`mb-2 text-sm ${success ? "text-[#16734e]" : "text-[#b42318]"}`} role={success ? "status" : "alert"}>
           {message}
@@ -224,6 +240,63 @@ export function BuyNowButton({
         {alreadyPurchased ? <Check size={16} /> : pending ? <LoaderCircle className="animate-spin" size={16} /> : success ? <Check size={16} /> : failed ? <RefreshCw size={16} /> : <ShoppingCart size={16} />}
         {alreadyPurchased ? "Already purchased" : pending ? "Processing..." : success ? "Purchased" : failed ? "Retry payment" : "Buy Now"}
       </button>
+      {gatewaySelectionOpen && (
+        <div
+          className="fixed inset-0 z-50 grid place-items-center bg-[#12211c]/50 p-4"
+          onClick={() => setGatewaySelectionOpen(false)}
+        >
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="payment-gateway-title"
+            className="w-full max-w-md rounded-xl border border-[#e5eae8] bg-white p-5 shadow-2xl sm:p-6"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2 id="payment-gateway-title" className="text-lg font-semibold text-[#12211c]">
+              Choose a payment gateway
+            </h2>
+            <fieldset className="mt-4 grid gap-2">
+              <legend className="sr-only">Payment gateway</legend>
+              {(["RAZORPAY", "STRIPE"] as const).map((option) => (
+                <label
+                  key={option}
+                  className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3 text-sm font-medium transition-colors ${
+                    provider === option
+                      ? "border-[#0e7a5a] bg-[#f0f7f3] text-[#0e7a5a]"
+                      : "border-[#e5eae8] text-[#34443d] hover:bg-[#f6f8f7]"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="payment-gateway"
+                    value={option}
+                    checked={provider === option}
+                    onChange={() => setProvider(option)}
+                    className="size-4 accent-[#0e7a5a]"
+                  />
+                  {option === "RAZORPAY" ? "Razorpay" : "Stripe"}
+                </label>
+              ))}
+            </fieldset>
+            <div className="mt-5 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setGatewaySelectionOpen(false)}
+                className="min-h-10 rounded-lg border border-[#dce7e0] px-4 text-sm font-semibold text-[#34443d] hover:bg-[#f6f8f7]"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => void startCheckout(provider)}
+                className="min-h-10 rounded-lg bg-[#0e7a5a] px-4 text-sm font-semibold text-white hover:bg-[#0a6149]"
+              >
+                Continue to payment
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
     </form>
   );
 }

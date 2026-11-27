@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return Response.json({ message: "Too many payment requests. Please wait and try again." }, { status: 429 });
   }
 
-  const body = await request.json().catch(() => null) as { serviceId?: string; idempotencyKey?: string } | null;
+  const body = await request.json().catch(() => null) as { serviceId?: string; idempotencyKey?: string; provider?: unknown } | null;
   if (!body?.serviceId || !body.idempotencyKey) {
     return Response.json({ message: "Invalid purchase request." }, { status: 400 });
   }
@@ -18,6 +18,7 @@ export async function POST(request: Request) {
   const formData = new FormData();
   formData.set("serviceId", body.serviceId);
   formData.set("idempotencyKey", body.idempotencyKey);
+  formData.set("provider", String(body.provider ?? "RAZORPAY"));
   const result = await buyPublisherServiceAction(undefined, formData);
   if (result.checkout) return Response.json(result);
   return Response.json(result, { status: 409 });
